@@ -1,11 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:donation_system/SubPages/HotlinesPage.dart';
 import 'package:donation_system/SubPages/NewsDetails.dart';
 import 'package:donation_system/SubPages/NewsPage.dart';
 import 'package:donation_system/Variables/color.dart';
-import 'package:donation_system/Variables/size.dart';
-import 'package:donation_system/Widgets/Button.dart';
 import 'package:donation_system/Widgets/CarouselBanner.dart';
 import 'package:donation_system/transitions/slide_route.dart';
 import 'package:flutter/gestures.dart';

@@ -3,12 +3,20 @@ import 'package:flutter/material.dart';
 
 class ProfileDetails extends StatefulWidget {
   const ProfileDetails({
-    @required this.icon,
-    @required this.detail,
+    @required this.fullname,
+    @required this.email,
+    @required this.contact,
+    @required this.state,
+    @required this.province,
+    @required this.street,
 
   });
-  final IconData icon;
-  final String detail;
+  final String fullname;
+  final String email;
+  final String contact;
+  final String state;
+  final String province;
+  final String street;
   @override
   _ProfileDetailsState createState() => _ProfileDetailsState();
 }
@@ -16,35 +24,47 @@ class ProfileDetails extends StatefulWidget {
 class _ProfileDetailsState extends State<ProfileDetails> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+    return Container(
+      child: Column(
         children: [
-          Icon(
-            widget.icon,
-            color: redSecondaryColor,
-            size: 20,
+          SizedBox(
+            height: 15,
           ),
-          Expanded(
-            child: Row(
-              children: [
-                SizedBox(
-                  width: 10,
-                ),
-                Expanded(
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      widget.detail,
-                      style: TextStyle(
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+          Text(
+            widget.fullname,
+            style: TextStyle(
+              fontSize: 22,
+              color: redSecondaryColor,
+            )
+          ),
+          Text(
+            widget.email,
+            style: TextStyle(
+              fontSize: 14,
+            )
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          Text(
+            widget.contact,
+            style: TextStyle(
+              fontSize: 14,
+            )
+          ),
+          
+          Text(
+            '${widget.province} ${widget.state}',
+            style: TextStyle(
+              fontSize: 14,
+            )
+          ),
+          
+          Text(
+            widget.street,
+            style: TextStyle(
+              fontSize: 14,
+            )
           ),
         ],
       ),
