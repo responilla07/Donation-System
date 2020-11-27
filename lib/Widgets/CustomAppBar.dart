@@ -63,7 +63,7 @@ class CustomAppBar extends StatelessWidget {
           ),
           Expanded(child: Container()),
           GestureDetector(
-            onTap: ()=> Navigator.pushReplacement(context, SlideLeftRoute(page: LoginPage())),
+            onTap: ()=> Navigator.push(context, SlideLeftRoute(page: LoginPage())),
             child: Icon(
               CustomIcons.next,
               color: redSecondaryColorLight, 
