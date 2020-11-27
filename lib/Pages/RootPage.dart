@@ -50,7 +50,7 @@ class _RootPageState extends State<RootPage> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Image.asset(
-                        'assets/googlelogo.png',
+                        'assets/logo.png',
                         fit: BoxFit.cover,
                       ),
                     ],

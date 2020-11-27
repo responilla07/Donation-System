@@ -62,7 +62,7 @@ class CustomAppBar extends StatelessWidget {
           ),
           Expanded(child: Container()),
           GestureDetector(
-            onTap: ()=> Navigator.pushReplacement(context, SlideLeftRoute(page: LoginPage())),
+            onTap: ()=> Navigator.push(context, SlideLeftRoute(page: LoginPage())),
             child: Icon(
               Icons.arrow_forward_ios,
               color: redSecondaryColorDark, //TODO IVAN papaltan nalang ng kulay saka icon

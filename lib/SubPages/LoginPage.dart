@@ -34,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   BackButtonRegistration(
                     onTap: (){
-                      Navigator.pushReplacement(context, SlideLeftRoute(page: MainPage())); //TODO pa check nito
+                      Navigator.pop(context);
                     }
                   )
                 ],
@@ -105,7 +105,7 @@ class _LoginPageState extends State<LoginPage> {
               CustomRaisedButton(
                 title: 'LOGIN', 
                 onTap: (){
-                  Navigator.pushReplacement(context, SlideLeftRoute(page: MainPage()));
+                  Navigator.pop(context);
                 }
               ),
 
