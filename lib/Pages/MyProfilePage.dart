@@ -1,6 +1,6 @@
 import 'package:donation_system/Presentation/custom_icons_icons.dart';
 import 'package:donation_system/Variables/color.dart';
-import 'package:donation_system/Variables/global.dart';
+import 'package:donation_system/Variables/size.dart';
 import 'package:donation_system/Widgets/ProfileDetails.dart';
 import 'package:flutter/material.dart';
 
@@ -25,135 +25,131 @@ class _ProfilePageState extends State<ProfilePage> {
               left: 0,
               right: 0,
               child: Container(
+                height: 370,
                 padding: EdgeInsets.all(15),
                 child: Card(
                 elevation: 5,
-                child: Column(
-                  
-                    children: [
-
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                child: Stack(
+                  children: [
+                    Positioned(
+                      left: 15,
+                      right: 15,
+                      top:15,
+                      child: Column(
                         children: [
-                          IconButton(
-                            icon: Icon(
-                              CustomIcons.edit_profile,
-                              color: redSecondaryColor,
-                            ), 
-                            onPressed: (){}
+                          Container(
+                            width: 150.0,
+                            height: 150.0,
+                            decoration: new BoxDecoration(
+                              border: Border.all(
+                                color: redSecondaryColor,
+                                width: 5,
+                              ),
+                              shape: BoxShape.circle,
+                              image: new DecorationImage(
+                                fit: BoxFit.fill,
+                                image: AssetImage('assets/ProfilePlaceHolder.png'),
+                              ),
+                            ),
+                          ),
+                          
+                          ProfileDetails(
+                            fullname: 'Christian Paul Pili',
+                            email: 'christiantkoe@gmail.com',
+                            contact: '639-323-265-144',
+                            state: 'Laguna',
+                            province: 'Calamba',
+                            street: 'asdhakjsdhasjdhaskdhsdhasdjhaasdakjsdhkajsdhaksjdh',
                           )
+
                         ],
                       ),
-                      
-                      SizedBox(
-                        height: 5,
-                      ),
-
-                      Container(
-                        margin: EdgeInsets.only(left: 5),
-                        width: 150.0,
-                        height: 150.0,
-                        decoration: new BoxDecoration(
-                          border: Border.all(
+                    ),
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: Container(
+                        child: IconButton(
+                          icon: Icon(
+                            CustomIcons.edit_profile,
                             color: redSecondaryColor,
-                            width: 5,
-                          ),
-                          shape: BoxShape.circle,
-                          image: new DecorationImage(
-                            fit: BoxFit.fill,
-                            image: AssetImage('assets/ProfilePlaceHolder.png'),
-                          ),
+                          ), 
+                          onPressed: (){}
                         ),
                       ),
-                      
-                      SizedBox(
-                        height: 15,
-                      ),
-                      
-                      
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            ProfileDetails(
-                              icon: CustomIcons.profile,
-                              detail: 'Christian Paul Pili',
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            ProfileDetails(
-                              icon: CustomIcons.info,
-                              detail: 'test@test.com',
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            ProfileDetails(
-                              icon: CustomIcons.contact,
-                              detail: '09xxxxxxxxxxx',
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            ProfileDetails(
-                              icon: CustomIcons.editprofile_outlined,
-                              detail: 'asdgasuydgaysudauysdgausdgajdajsdhghaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasj',
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                          ],
-                        ),
-                      ),
-
-                    ],
-
-                  ),
+                    ),
+                  ],
+                ),
                 ),
                 
               ),
             ),
 
             Positioned(
-              top: 470,
-              left: 0,
-              bottom:0,
-              right: 0,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: GridView.count(
-                  crossAxisCount: 4,
-                  children: <Widget>[
-                    FlatButton(
-                        onPressed: (){
-                          
-                        },
-                        child: Text('Pressme')
-                      ),
-                    FlatButton(
-                        onPressed: (){
-
-                        },
-                        child: Text('Pressme')
-                      ),
-                    FlatButton(
-                        onPressed: (){
-                          print(myUserDetails.value.setUserDetails());
-                        },
-                        child: Text('Pressme')
-                      ),
-                    FlatButton(
-                        onPressed: (){
-
-                        },
-                        child: Text('Pressme')
-                      ),
-                      
-                  ],
+              top:370,
+              left: 15,
+              right: 15,
+              bottom: 15,
+              child: GridView(
+                gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  childAspectRatio: 0.8,
+                  mainAxisSpacing: 15.0,
+                  crossAxisSpacing: 15.0,
                 ),
+                padding: EdgeInsets.all(15),
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      FlatButton(
+                        color: redSecondaryColor,
+                        onPressed: (){},
+                        child: Container(
+                          width: 70,
+                          height: 70,
+                          child: Center(child: Text('Press Me!'))
+                        ),
+                      ),
+                      SizedBox(width: 15,),
+                      FlatButton(
+                        color: redSecondaryColor,
+                        onPressed: (){},
+                        child: Container(
+                          width: 70,
+                          height: 70,
+                          child: Center(child: Text('Press Me!'))
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 15,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      FlatButton(
+                        color: redSecondaryColor,
+                        onPressed: (){},
+                        child: Container(
+                          width: 70,
+                          height: 70,
+                          child: Center(child: Text('Press Me!'))
+                        ),
+                      ),
+                      SizedBox(width: 15,),
+                      FlatButton(
+                        color: redSecondaryColor,
+                        onPressed: (){},
+                        child: Container(
+                          width: 70,
+                          height: 70,
+                          child: Center(child: Text('Press Me!'))
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            )
+            ),
 
           ],
         ),
