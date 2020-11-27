@@ -121,7 +121,7 @@ class _UserDetailsRegisterState extends State<UserDetailsRegister> {
                         child: Text(
                            widget.regClass.state,
                           style: TextStyle(
-                            color: widget.regClass.province == "State" ? Colors.black54 : Colors.black,
+                            color: widget.regClass.state == "State" ? Colors.black54 : Colors.black,
                             fontSize: 16
                           ),
                           textAlign: TextAlign.left,
