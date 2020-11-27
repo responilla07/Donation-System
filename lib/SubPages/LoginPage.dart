@@ -36,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   BackButtonRegistration(
                     onTap: (){
-                      Navigator.pop(context);
+                      Navigator.pushReplacement(context, SlideLeftRoute(page: MainPage()));
                     }
                   )
                 ],
