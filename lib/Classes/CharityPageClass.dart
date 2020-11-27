@@ -102,11 +102,10 @@ class CharityPageClass {
 
   ////THIS IS FOR THE [CARDS OF THE CHARITY]
   currentQueuCardChildrens(CharityModel charityModel) {
-    List<String> charityDetails = [ "Contact", "Address", "Description", ];
     List<Widget> charityCardChildren = [];
     List<String> charityDetailsSample = [ 
       charityModel.contact,
-      (charityModel.location.state + ', ' + charityModel.location.province),
+      (charityModel.location.state + ', ' + charityModel.location.province + (charityModel.location.street == '' ? ('') : (', ' + charityModel.location.street)) ),
       charityModel.description,
     ];
     
@@ -120,40 +119,19 @@ class CharityPageClass {
       maxLines: 2,
       overflow: TextOverflow.ellipsis,
     ),);
-    charityCardChildren.add(SizedBox(height: 5,));
     
-    for (int detail = 0; detail < charityDetails.length; detail++) {
-      charityCardChildren.add( Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: Text(
-              charityDetails[detail],
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-          ),
-          Text( " :   ",
-            style: TextStyle(
-              color: Colors.white,
-            ),
-          ),
-          Expanded(
-            flex: 2,
-            child: Text(
-              charityDetailsSample[detail],
-              textAlign: TextAlign.start,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-        ],
+    for (int detail = 0; detail < 3; detail++) {
+      charityCardChildren.add( detail == 2 ? SizedBox(height: 5,) : Container());
+      charityCardChildren.add( Text(
+        charityDetailsSample[detail],
+        textAlign: TextAlign.start,
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+          fontStyle: detail == 2 ? FontStyle.italic : null
+        ),
+        maxLines: detail == 0 || detail == 1 ? 1 : 2,
+        overflow: TextOverflow.ellipsis,
       ),);
     }
 
