@@ -1,6 +1,6 @@
 
 import 'package:donation_system/Classes/RegistrationClass.dart';
-import 'package:donation_system/Variables/color.dart';
+import 'package:donation_system/Widgets/BackButtonRegistration.dart';
 import 'package:donation_system/Widgets/Button.dart';
 import 'package:donation_system/Widgets/LoginDetailsRegistrations.dart';
 import 'package:donation_system/Widgets/UserDetailsRegister.dart';
@@ -95,26 +95,5 @@ class _RegistrationPageState extends State<RegistrationPage> {
   
 }
 
-class BackButtonRegistration extends StatelessWidget {
- const BackButtonRegistration({
-    @required this.onTap,
-  });
 
-  final VoidCallback onTap;
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Row(
-        children: [
-          Icon(
-            Icons.arrow_back_ios,
-            color: redSecondaryColor,
-          ),
-          Text('Back'),
-        ],
-      )
-    );
-  }
-}
 

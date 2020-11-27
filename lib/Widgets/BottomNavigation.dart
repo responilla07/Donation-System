@@ -1,5 +1,6 @@
 
 import 'package:donation_system/Classes/BottomNavigationClass.dart';
+import 'package:donation_system/Presentation/custom_icons_icons.dart';
 import 'package:donation_system/Variables/color.dart';
 import 'package:flutter/material.dart';
 
@@ -28,11 +29,11 @@ class _BottomNavigationState extends State<BottomNavigation> {
         labelColor: Colors.white,
         unselectedLabelColor: Colors.white,
         tabs: [ //TODO IVAN change all this icons using our custom icons please do
-          Tab(child: Icon( Icons.ac_unit )), 
-          Tab(child: Icon( Icons.access_alarm )), 
-          Tab(child: Icon( Icons.home )),
-          Tab(child: Icon( Icons.card_giftcard )),
-          Tab(child: Icon( Icons.person )),
+          Tab(child: Icon( CustomIcons.charity_list,size:30)), 
+          Tab(child: Icon( Icons.storefront)), 
+          Tab(child: Icon( CustomIcons.charity_home )),
+          Tab(child: Icon( CustomIcons.history)),
+          Tab(child: Icon( CustomIcons.profile_outlined )),
         ],
       )
     );

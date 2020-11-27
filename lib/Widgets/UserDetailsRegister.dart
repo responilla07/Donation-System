@@ -1,5 +1,5 @@
 import 'package:donation_system/Classes/RegistrationClass.dart';
-import 'package:donation_system/SubPages/RegistrationPage.dart';
+import 'package:donation_system/Widgets/BackButtonRegistration.dart';
 import 'package:donation_system/Widgets/Button.dart';
 import 'package:donation_system/Widgets/TextField.dart';
 import 'package:flutter/material.dart';
@@ -55,13 +55,6 @@ class _UserDetailsRegisterState extends State<UserDetailsRegister> {
 
           SizedBox(
             height: 75,
-          ),
-
-          MyTextField(
-            controller: null, 
-            hintText: "Check Box", 
-            inputFormatter: null, 
-            keyboardType: null
           ),
 
           SizedBox(
