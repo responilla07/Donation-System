@@ -54,11 +54,11 @@ class _LoginDetailsRegistrationsState extends State<LoginDetailsRegistrations> {
           ),
 
           SizedBox(
-            height: 75,
+            height: 65,
           ),
 
           MyTextField(
-            controller: null, 
+            controller: widget.regClass.email, 
             hintText: "Email", 
             inputFormatter: null, 
             keyboardType: null
@@ -69,7 +69,7 @@ class _LoginDetailsRegistrationsState extends State<LoginDetailsRegistrations> {
           ),
 
           MyTextField(
-            controller: null, 
+            controller: widget.regClass.password, 
             hintText: "Password", 
             inputFormatter: null, 
             keyboardType: null
@@ -80,7 +80,7 @@ class _LoginDetailsRegistrationsState extends State<LoginDetailsRegistrations> {
           ),
 
           MyTextField(
-            controller: null, 
+            controller: widget.regClass.confirmPassword, 
             hintText: "Confirm Password", 
             inputFormatter: null, 
             keyboardType: null

@@ -1,10 +1,13 @@
 
 import 'package:donation_system/Classes/RegistrationClass.dart';
+import 'package:donation_system/Pages/MainPage.dart';
 import 'package:donation_system/Widgets/BackButtonRegistration.dart';
 import 'package:donation_system/Widgets/Button.dart';
 import 'package:donation_system/Widgets/LoginDetailsRegistrations.dart';
 import 'package:donation_system/Widgets/UserDetailsRegister.dart';
+import 'package:donation_system/transitions/slide_route.dart';
 import 'package:flutter/material.dart';
+import 'package:toast/toast.dart';
 
 class RegistrationPage extends StatefulWidget {
   @override
@@ -52,11 +55,24 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     regClass: regClass,
                     button: CustomRaisedButton(
                       onTap: (){
-                        setState(() {
-                          regClass.pageInt = 1;
-                        });
+                        // setState(() {
+                        //   regClass.pageInt = 1;
+                        // });
+                        if (regClass.validate("fields")) {
+                            
+                           regClass.processRegistration(context).then((isRegistered){
+                              if (isRegistered) {
+                                print("User created........");
+                                Navigator.pop(context);
+                                Navigator.pushReplacement(context, SlideRightRoute(page: MainPage()));
+                              }
+                            });
+                        } 
+                        else{
+                          Toast.show(regClass.validate('message'), context, duration: 3, gravity: Toast.BOTTOM);
+                        }
                       },
-                      title: "Next",
+                      title: "REGISTER",
                     ),
                     backButton: BackButtonRegistration(
                       onTap: (){

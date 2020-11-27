@@ -1,7 +1,10 @@
 import 'package:donation_system/Classes/RegistrationClass.dart';
+import 'package:donation_system/Variables/color.dart';
 import 'package:donation_system/Widgets/BackButtonRegistration.dart';
 import 'package:donation_system/Widgets/Button.dart';
+import 'package:donation_system/Widgets/ProvincePicker.dart';
 import 'package:donation_system/Widgets/TextField.dart';
+import 'package:donation_system/transitions/slide_route.dart';
 import 'package:flutter/material.dart';
 
 class UserDetailsRegister extends StatefulWidget {
@@ -54,15 +57,11 @@ class _UserDetailsRegisterState extends State<UserDetailsRegister> {
           ),
 
           SizedBox(
-            height: 75,
-          ),
-
-          SizedBox(
-            height: 15,
+            height: 65,
           ),
 
           MyTextField(
-            controller: null, 
+            controller: widget.regClass.firstName, 
             hintText: "First Name", 
             inputFormatter: null, 
             keyboardType: null
@@ -73,7 +72,7 @@ class _UserDetailsRegisterState extends State<UserDetailsRegister> {
           ),
 
           MyTextField(
-            controller: null, 
+            controller: widget.regClass.lastName, 
             hintText: "Last Name", 
             inputFormatter: null, 
             keyboardType: null
@@ -84,7 +83,7 @@ class _UserDetailsRegisterState extends State<UserDetailsRegister> {
           ),
 
           MyTextField(
-            controller: null, 
+            controller: widget.regClass.contactNumber, 
             hintText: "Contact Number", 
             inputFormatter: null, 
             keyboardType: null
@@ -94,11 +93,79 @@ class _UserDetailsRegisterState extends State<UserDetailsRegister> {
             height: 15,
           ),
 
-          MyTextField(
-            controller: null, 
-            hintText: "State", 
-            inputFormatter: null, 
-            keyboardType: null
+          Container(
+            height: 40,
+            child: Row(
+              children: [
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, SlideLeftRoute(page: ProvincePicker())).then((value){
+                        setState(() {
+                          widget.regClass.state = value['city'];
+                          widget.regClass.province = value['province'];
+                        });
+                      });
+                    },
+                    child: Container(
+                      height: 40,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(5)),
+                        border: Border.all(
+                          color: redSecondaryColor
+                        )
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                           widget.regClass.state,
+                          style: TextStyle(
+                            color: widget.regClass.province == "State" ? Colors.black54 : Colors.black,
+                            fontSize: 16
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 15,),
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, SlideLeftRoute(page: ProvincePicker())).then((value){
+                        setState(() {
+                          widget.regClass.state = value['city'];
+                          widget.regClass.province = value['province'];
+                        });
+                      });
+                    },
+                    child: Container(
+                      height: 40,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(5)),
+                        border: Border.all(
+                          color: redSecondaryColor
+                        )
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          widget.regClass.province,
+                          style: TextStyle(
+                            color: widget.regClass.province == "Province" ? Colors.black54 : Colors.black,
+                            fontSize: 16
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
 
           SizedBox(
@@ -106,7 +173,7 @@ class _UserDetailsRegisterState extends State<UserDetailsRegister> {
           ),
 
           MyTextField(
-            controller: null, 
+            controller: widget.regClass.completeAddress, 
             hintText: "Street", 
             inputFormatter: null, 
             keyboardType: null
