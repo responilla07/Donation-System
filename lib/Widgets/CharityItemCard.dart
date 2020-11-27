@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:donation_system/Classes/CharityPageClass.dart';
-import 'package:donation_system/Variables/size.dart';
 import 'package:flutter/material.dart';
 
 class CharityItemCard extends StatefulWidget {

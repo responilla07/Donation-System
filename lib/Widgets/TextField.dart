@@ -47,19 +47,6 @@ class _MyTextFieldState extends State<MyTextField> {
     return Stack(
       children: <Widget>[
         Container(
-          decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey,
-                blurRadius: 25.0, 
-                spreadRadius: 5.0, 
-                offset: Offset(
-                  15.0, 
-                  15.0, 
-                ),
-              )
-            ]
-          ),
           height: 40,
           child: new TextFormField(
             keyboardType: widget.keyboardType,

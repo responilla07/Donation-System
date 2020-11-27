@@ -1,7 +1,7 @@
 import 'package:donation_system/Classes/CharityPageClass.dart';
 import 'package:donation_system/SubPages/CharityDetails.dart';
 import 'package:donation_system/Widgets/LoaderForPagination.dart';
-import 'package:donation_system/Widgets/QueueCard.dart';
+import 'package:donation_system/Widgets/CharityItemCard.dart';
 import 'package:donation_system/transitions/slide_route.dart';
 import 'package:flutter/material.dart';
 
