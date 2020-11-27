@@ -10,9 +10,7 @@ class BottomNavigationClass {
       pageTitle.value = "Market Place";
     } else if (index == 2) {
       pageTitle.value = "Home";
-    } else if (index == 3) {
-      pageTitle.value = "My Orders";
-    } else {
+    }  else {
       pageTitle.value = "My Profile";
     }
   }

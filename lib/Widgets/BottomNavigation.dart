@@ -32,7 +32,6 @@ class _BottomNavigationState extends State<BottomNavigation> {
           Tab(child: Icon( CustomIcons.charity_list,size:30)), 
           Tab(child: Icon( CustomIcons.store)), 
           Tab(child: Icon( CustomIcons.charity_home )),
-          Tab(child: Icon( CustomIcons.history)),
           Tab(child: Icon( CustomIcons.profile_outlined )),
         ],
       )

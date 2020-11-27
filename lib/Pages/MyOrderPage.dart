@@ -1,3 +1,4 @@
+import 'package:donation_system/Variables/global.dart';
 import 'package:flutter/material.dart';
 
 class MyOrdersPage extends StatefulWidget {
@@ -14,9 +15,12 @@ class _MyOrdersPageState extends State<MyOrdersPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'Use this for adding new pages',
-            ),
+            FlatButton(
+              child: Text('Text'),
+              onPressed: (){
+                print(myUserDetails.value.setUserDetails());
+              },
+            )
           ],
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.

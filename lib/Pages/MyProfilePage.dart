@@ -1,5 +1,6 @@
 import 'package:donation_system/Presentation/custom_icons_icons.dart';
 import 'package:donation_system/Variables/color.dart';
+import 'package:donation_system/Variables/global.dart';
 import 'package:donation_system/Widgets/ProfileDetails.dart';
 import 'package:flutter/material.dart';
 
@@ -138,7 +139,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     FlatButton(
                         onPressed: (){
-
+                          print(myUserDetails.value.setUserDetails());
                         },
                         child: Text('Pressme')
                       ),

@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'CharityPage.dart';
 import 'HomePage.dart';
 import 'MarketPage.dart';
-import 'MyOrderPage.dart';
 import 'MyProfilePage.dart';
 
 class MainPage extends StatefulWidget {
@@ -26,7 +25,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
         setState(() {});
       }
     });
-    homePageClass.tabController = TabController(length: 5, vsync: this, initialIndex: 2);
+    homePageClass.tabController = TabController(length: 4, vsync: this, initialIndex: 2);
     super.initState();
   }
 
@@ -60,7 +59,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                 Expanded(
                   child: TabBarView(
                     physics: NeverScrollableScrollPhysics(),
-                    children: [CharityPage(), MarketPage(), HomePage(), MyOrdersPage(), ProfilePage()],
+                    children: [CharityPage(), MarketPage(), HomePage(), ProfilePage()],
                     controller: homePageClass.tabController,
                   ),
                 ),

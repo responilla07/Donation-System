@@ -1,5 +1,4 @@
 import 'package:donation_system/Presentation/custom_icons_icons.dart';
-import 'package:donation_system/SubPages/InfoPage.dart';
 import 'package:donation_system/SubPages/LoginPage.dart';
 import 'package:donation_system/Variables/color.dart';
 import 'package:donation_system/Variables/global.dart';
@@ -72,8 +71,10 @@ class CustomAppBar extends StatelessWidget {
           ),
           Expanded(child: Container()),
           GestureDetector(
-            onTap: () =>
-                Navigator.push(context, SlideLeftRoute(page: LoginPage())),
+            onTap: () {
+                auth.signOut();
+                Navigator.push(context, SlideLeftRoute(page: LoginPage()));
+            },
             child: Icon(
               CustomIcons.next,
               color: redSecondaryColorLight,

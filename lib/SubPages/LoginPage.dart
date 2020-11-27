@@ -1,3 +1,4 @@
+import 'package:donation_system/Classes/LoginClass.dart';
 import 'package:donation_system/Pages/MainPage.dart';
 import 'package:donation_system/Variables/color.dart';
 import 'package:donation_system/Widgets/BackButtonRegistration.dart';
@@ -19,6 +20,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  LoginClass logClass = LoginClass();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               
               MyTextField(
-                controller: null, 
+                controller: logClass.email, 
                 hintText: 'Email', 
                 inputFormatter: null, 
                 keyboardType: null
@@ -70,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
 
               MyTextField(
-                controller: null, 
+                controller: logClass.password, 
                 hintText: 'Password', 
                 inputFormatter: null, 
                 keyboardType: null
@@ -105,7 +107,20 @@ class _LoginPageState extends State<LoginPage> {
               CustomRaisedButton(
                 title: 'LOGIN', 
                 onTap: (){
-                  Navigator.pop(context);
+
+                  if(logClass.validate('fields')){
+                    logClass.userSignUp(context).then((isLoggedIn){
+                      if (isLoggedIn) {
+                        
+                        Navigator.pop(context);
+                        Navigator.pushReplacement(context, SlideRightRoute(page: MainPage()));
+                      }
+                    });
+                  }
+                  else{
+                    Toast.show(logClass.validate('message'), context, duration: 3, gravity: Toast.BOTTOM);
+                  }
+                  // Navigator.pop(context);
                 }
               ),
 

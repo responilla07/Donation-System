@@ -1,3 +1,4 @@
+import 'package:donation_system/Models/UserModel.dart';
 import 'package:donation_system/Pages/MainPage.dart';
 import 'package:donation_system/SubPages/LoginPage.dart';
 import 'package:donation_system/Variables/color.dart';
@@ -11,15 +12,27 @@ class RootPage extends StatefulWidget {
 }
 
 class _RootPageState extends State<RootPage> {
-
+  bool isDisposed = false;
+  
   navigateToDesignatedPage() async {
     await Future.delayed(const Duration(milliseconds: 5000), null);
-    myUserDetails.addListener(() {setState(() {});});
+    myUserDetails.addListener(() {
+      if(!isDisposed){
+        setState(() {});
+      }
+    });
+    
     loggedUser = auth.currentUser;
 
-    if (loggedUser == "null") {
+    if (loggedUser == null) {
       await Navigator.pushReplacement(context, SlideLeftRoute(page: LoginPage()));
     } else {
+      var userRef = db.collection("UserDetails").doc(loggedUser.uid);
+
+        await userRef.get().then((doc) {
+          myUserDetails.value = UserDetailsModel(doc.id, doc.data());
+        });
+
       await Navigator.pushReplacement(context, SlideLeftRoute(page: MainPage()));
     }
 
@@ -33,6 +46,7 @@ class _RootPageState extends State<RootPage> {
 
   @override
   void dispose() {
+    isDisposed = true;
     myUserDetails.removeListener(() {});
     super.dispose();
   }
