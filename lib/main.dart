@@ -11,7 +11,7 @@ Future<void> main() async {
       theme: ThemeData(
         primaryColor: redSecondaryColor,
         accentColor: redSecondaryColorLight,
-        fontFamily: 'Century Gothic',
+        fontFamily: 'Nunito',
       ),
       home: RootPage(),
       debugShowCheckedModeBanner: false,
