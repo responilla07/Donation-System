@@ -98,9 +98,15 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 padding: EdgeInsets.all(15),
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
+                  FlatButton(
+                        color: redSecondaryColor,
+                        onPressed: (){},
+                        child: Container(
+                          width: 70,
+                          height: 70,
+                          child: Center(child: Text('Press Me!'))
+                        ),
+                      ),
                       FlatButton(
                         color: redSecondaryColor,
                         onPressed: (){},
@@ -110,7 +116,6 @@ class _ProfilePageState extends State<ProfilePage> {
                           child: Center(child: Text('Press Me!'))
                         ),
                       ),
-                      SizedBox(width: 15,),
                       FlatButton(
                         color: redSecondaryColor,
                         onPressed: (){},
@@ -120,12 +125,6 @@ class _ProfilePageState extends State<ProfilePage> {
                           child: Center(child: Text('Press Me!'))
                         ),
                       ),
-                    ],
-                  ),
-                  SizedBox(height: 15,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
                       FlatButton(
                         color: redSecondaryColor,
                         onPressed: (){},
@@ -135,7 +134,6 @@ class _ProfilePageState extends State<ProfilePage> {
                           child: Center(child: Text('Press Me!'))
                         ),
                       ),
-                      SizedBox(width: 15,),
                       FlatButton(
                         color: redSecondaryColor,
                         onPressed: (){},
@@ -145,8 +143,6 @@ class _ProfilePageState extends State<ProfilePage> {
                           child: Center(child: Text('Press Me!'))
                         ),
                       ),
-                    ],
-                  ),
                 ],
               ),
             ),
