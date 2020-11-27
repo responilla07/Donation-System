@@ -1,19 +1,19 @@
 import 'package:donation_system/Widgets/SubPagesAppBar.dart';
 import 'package:flutter/material.dart';
 
-class InfoPage extends StatefulWidget {
+class CharityDetailsPage extends StatefulWidget {
   @override
-  _InfoPageState createState() => _InfoPageState();
+  _CharityDetailsPageState createState() => _CharityDetailsPageState();
 }
 
-class _InfoPageState extends State<InfoPage> {
+class _CharityDetailsPageState extends State<CharityDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize( 
         preferredSize: Size.fromHeight(45.0),
         child: SubPagesAppBar(
-          title: "Info Page",
+          title: "Charity Details",
           onTap: () {
             Navigator.pop(context);
           },

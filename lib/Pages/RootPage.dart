@@ -49,11 +49,10 @@ class _RootPageState extends State<RootPage> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      //TODO uncomment nalang tapos lagyan ng logo para sa splash screen
-                      // Image.asset(
-                      //   'assets/',
-                      //   fit: BoxFit.cover,
-                      // ),
+                      Image.asset(
+                        'assets/googlelogo.png',
+                        fit: BoxFit.cover,
+                      ),
                     ],
                   ),
                 ),
@@ -68,7 +67,7 @@ class _RootPageState extends State<RootPage> {
                   width: MediaQuery.of(context).size.width,
                   padding: EdgeInsets.symmetric(vertical: 32.0),
                   child: Column(
-                    children: <Widget>[ //TODO Uncomment nalang ito
+                    children: <Widget>[
                       CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(redSecondaryColor))
                     ],
                   ),
