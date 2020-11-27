@@ -1,21 +1,23 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:donation_system/Classes/CharityPageClass.dart';
+import 'package:donation_system/Models/CharityModel.dart';
 import 'package:flutter/material.dart';
 
-class CharityItemCard extends StatefulWidget {
+
+class CharityItemCard extends StatelessWidget {
   const CharityItemCard({
+    Key key,
     @required this.charityPageClass,
-  });
+    @required this.index,
+  }) : super(key: key);
+
   final CharityPageClass charityPageClass;
-
-  @override
-  _CharityItemCardState createState() => _CharityItemCardState();
-}
-
-class _CharityItemCardState extends State<CharityItemCard> {
+  final int index;
 
   @override
   Widget build(BuildContext context) {
+    CharityModel charityModel = charityPageClass.listOfCharity.value[index];
+
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
@@ -30,12 +32,12 @@ class _CharityItemCardState extends State<CharityItemCard> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: CachedNetworkImage(
-                  imageUrl: "https://www.childup.com/user/pages/01.blog/what-children-need-to-know-about-math-at-kindergarten-entry/AELF.jpg",
+                  imageUrl: charityModel.pictures[0],
                   fit: BoxFit.cover,
                   placeholder: (context, url) => Container(
                     height: 250,
                     child: Center(
-                      child: Text("Loading picture..."),
+                      child: Text(""),
                     )
                   ),
                   errorWidget: (context, url, error) => new Icon(Icons.error),
@@ -57,6 +59,7 @@ class _CharityItemCardState extends State<CharityItemCard> {
                 ),
               ),
             ),
+            Text(index.toString()),
             Positioned(
               bottom: 0,
               left: 0,
@@ -65,7 +68,7 @@ class _CharityItemCardState extends State<CharityItemCard> {
                 padding: EdgeInsets.all(15),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: widget.charityPageClass.currentQueuCardChildrens()
+                  children: charityPageClass.currentQueuCardChildrens(charityModel)
                 ),
               ),
             ),
