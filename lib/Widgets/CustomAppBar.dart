@@ -1,4 +1,4 @@
-import 'package:donation_system/Methods/Style.dart';
+
 import 'package:donation_system/SubPages/InfoPage.dart';
 import 'package:donation_system/SubPages/LoginPage.dart';
 import 'package:donation_system/Variables/color.dart';

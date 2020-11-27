@@ -1,7 +1,6 @@
 
 import 'package:donation_system/TestFolder/testFile.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 class TestScreen extends StatefulWidget {
   @override
@@ -9,8 +8,7 @@ class TestScreen extends StatefulWidget {
 }
 
 class _TestScreenState extends State<TestScreen> {
-  var _dateTime;
-  var bday;
+
 
   @override
   Widget build(BuildContext context) {
@@ -59,8 +57,8 @@ class _TestScreenState extends State<TestScreen> {
                   child: Text('Press me!'),
                 ),
 
-                datePicker(),
-
+                //datePicker(),
+                
               ],
             ),
           ),
