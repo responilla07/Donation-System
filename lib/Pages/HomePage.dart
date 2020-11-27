@@ -1,3 +1,4 @@
+import 'package:donation_system/Widgets/PlaceHolder.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -14,8 +15,11 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'Use this for adding new pages',
+            PlaceHolder(
+              image: 'assets/placeholders/nocharity.png',
+              details:
+                  'There are no charities at the moment \nPlease try again later',                  
+              header: 'We\'re Sorry!',
             ),
           ],
         ),
@@ -23,3 +27,4 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
