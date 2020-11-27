@@ -59,7 +59,6 @@ class CharityItemCard extends StatelessWidget {
                 ),
               ),
             ),
-            Text(index.toString()),
             Positioned(
               bottom: 0,
               left: 0,
