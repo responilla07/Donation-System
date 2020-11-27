@@ -1,4 +1,5 @@
 
+import 'package:donation_system/Presentation/custom_icons_icons.dart';
 import 'package:donation_system/SubPages/InfoPage.dart';
 import 'package:donation_system/SubPages/LoginPage.dart';
 import 'package:donation_system/Variables/color.dart';
@@ -23,8 +24,8 @@ class CustomAppBar extends StatelessWidget {
           GestureDetector(
             onTap: ()=> Navigator.push(context, SlideLeftRoute(page: InfoPage())),
             child: Icon(
-              Icons.info_outline,
-              color: redSecondaryColorDark, //TODO IVAN papaltan nalang ng kulay saka icon
+              CustomIcons.menu,
+              color: redSecondaryColorLight,
             ),
           ),
           Expanded(child: Container()),
@@ -64,8 +65,8 @@ class CustomAppBar extends StatelessWidget {
           GestureDetector(
             onTap: ()=> Navigator.pushReplacement(context, SlideLeftRoute(page: LoginPage())),
             child: Icon(
-              Icons.arrow_forward_ios,
-              color: redSecondaryColorDark, //TODO IVAN papaltan nalang ng kulay saka icon
+              CustomIcons.next,
+              color: redSecondaryColorLight, 
             ),
           ),
         ],
