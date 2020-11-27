@@ -1,12 +1,11 @@
-
 import 'package:donation_system/Presentation/custom_icons_icons.dart';
 import 'package:donation_system/SubPages/InfoPage.dart';
 import 'package:donation_system/SubPages/LoginPage.dart';
 import 'package:donation_system/Variables/color.dart';
 import 'package:donation_system/Variables/global.dart';
+import 'package:donation_system/Widgets/MenuAlert.dart';
 import 'package:donation_system/transitions/slide_route.dart';
 import 'package:flutter/material.dart';
-
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
@@ -22,24 +21,37 @@ class CustomAppBar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           GestureDetector(
-            onTap: ()=> Navigator.push(context, SlideLeftRoute(page: InfoPage())),
-            child: Icon(
-              CustomIcons.menu,
-              color: redSecondaryColorLight,
+            onTap: () =>{showMenuAlert(context)},
+            child: Container(
+              padding: EdgeInsets.all(3),
+              decoration: BoxDecoration(
+                color: redSecondaryColor,
+                border: Border.all(
+                  color: redSecondaryColorLighter,
+                ),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(50),
+                ),
+              ),
+              child: Icon(
+                CustomIcons.menu,
+                color: Colors.white,
+              ),
             ),
           ),
           Expanded(child: Container()),
           Padding(
-            padding: const EdgeInsets.only(bottom: 5,),
+            padding: const EdgeInsets.only(
+              bottom: 5,
+            ),
             child: Container(
               height: 40,
               padding: EdgeInsets.only(left: 70, right: 70, top: 10),
               decoration: BoxDecoration(
                 color: redSecondaryColor,
                 borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.elliptical(300, 100),
-                  bottomRight: Radius.elliptical(300, 100)
-                ),
+                    bottomLeft: Radius.elliptical(300, 100),
+                    bottomRight: Radius.elliptical(300, 100)),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey,
@@ -52,21 +64,19 @@ class CustomAppBar extends StatelessWidget {
               child: Center(
                 child: Text(
                   pageTitle.value,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    height: 0.1
-                  ),
+                  style:
+                      TextStyle(color: Colors.white, fontSize: 20, height: 0.1),
                 ),
               ),
             ),
           ),
           Expanded(child: Container()),
           GestureDetector(
-            onTap: ()=> Navigator.push(context, SlideLeftRoute(page: LoginPage())),
+            onTap: () =>
+                Navigator.push(context, SlideLeftRoute(page: LoginPage())),
             child: Icon(
               CustomIcons.next,
-              color: redSecondaryColorLight, 
+              color: redSecondaryColorLight,
             ),
           ),
         ],
