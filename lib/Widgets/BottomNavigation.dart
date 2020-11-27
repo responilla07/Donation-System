@@ -29,7 +29,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
         labelColor: Colors.white,
         unselectedLabelColor: Colors.white,
         tabs: [ //TODO IVAN change all this icons using our custom icons please do
-          Tab(child: Icon( CustomIcons.charity_list)), 
+          Tab(child: Icon( CustomIcons.charity_list,size:30)), 
           Tab(child: Icon( Icons.storefront)), 
           Tab(child: Icon( CustomIcons.charity_home )),
           Tab(child: Icon( CustomIcons.history)),
