@@ -1,3 +1,5 @@
+import 'package:donation_system/Widgets/Button.dart';
+import 'package:donation_system/Widgets/TextField.dart';
 import 'package:flutter/material.dart';
 
 class CharityPage extends StatefulWidget {
@@ -14,9 +16,23 @@ class _CharityPageState extends State<CharityPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+
             Text(
-              'Use this for adding new pages',
+              'Edit',
             ),
+
+            MyTextField(
+              controller: null, 
+              hintText: "Text", 
+              inputFormatter: null, 
+              keyboardType: null
+            ),
+            
+            CustomRaisedButton(
+              onTap : (){},
+              title: "Sample",
+            ),
+
           ],
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.

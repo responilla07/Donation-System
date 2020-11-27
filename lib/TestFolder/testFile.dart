@@ -1,6 +1,5 @@
 
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -57,12 +56,12 @@ Future<void> showScanner() async {
 
 
 
-class datePicker extends StatefulWidget {
+class DatePickers extends StatefulWidget {
   @override
-  _datePickerState createState() => _datePickerState();
+  _DatePickersState createState() => _DatePickersState();
 }
 
-class _datePickerState extends State<datePicker> {
+class _DatePickersState extends State<DatePickers> {
 
   var _dateTime;
   String bday;
