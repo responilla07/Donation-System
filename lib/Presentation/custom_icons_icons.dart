@@ -45,4 +45,5 @@ class CustomIcons {
   static const IconData charity_home = IconData(0xe812, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData charity_cart = IconData(0xe813, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData hand_holding_heart = IconData(0xf4be, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData store = IconData(0xf54e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }
