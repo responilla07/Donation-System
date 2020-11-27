@@ -1,6 +1,5 @@
 import 'package:donation_system/Classes/RegistrationClass.dart';
-import 'package:donation_system/SubPages/RegistrationPage.dart';
-import 'package:donation_system/Variables/color.dart';
+import 'package:donation_system/Widgets/BackButtonRegistration.dart';
 import 'package:donation_system/Widgets/Button.dart';
 import 'package:donation_system/Widgets/TextField.dart';
 import 'package:flutter/material.dart';

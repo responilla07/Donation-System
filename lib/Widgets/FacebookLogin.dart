@@ -1,8 +1,8 @@
 import 'package:donation_system/Variables/color.dart';
 import 'package:flutter/material.dart';
 
-class CustomRaisedButton extends StatefulWidget {
-  const CustomRaisedButton({
+class FacebookLogin extends StatefulWidget {
+  const FacebookLogin({
     @required this.title,
     @required this.onTap,
   });
@@ -11,10 +11,10 @@ class CustomRaisedButton extends StatefulWidget {
   final VoidCallback onTap;
 
   @override
-  _CustomRaisedButtonState createState() => _CustomRaisedButtonState();
+  _FacebookLoginState createState() => _FacebookLoginState();
 }
 
-class _CustomRaisedButtonState extends State<CustomRaisedButton> {
+class _FacebookLoginState extends State<FacebookLogin> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,8 +30,8 @@ class _CustomRaisedButtonState extends State<CustomRaisedButton> {
           decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                 redSecondaryColor, 
-                 redSecondaryColorLight 
+                 bluePrimaryColor,
+                 bluePrimaryColor 
                 ],
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
@@ -40,11 +40,23 @@ class _CustomRaisedButtonState extends State<CustomRaisedButton> {
           child: Container(
             // constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
             alignment: Alignment.center,
-            child: Text(
-              widget.title,
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.white),
-            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+
+                 Image.asset(
+                    'assets/flogo.png',
+                    height: 25,
+                    width: 40,
+                ),
+
+                Text(
+                  widget.title,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.white),
+                ),
+              ],
+            )
           ),
         ),
       ),
