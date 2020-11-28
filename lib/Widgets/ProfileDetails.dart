@@ -54,7 +54,7 @@ class _ProfileDetailsState extends State<ProfileDetails> {
           ),
           
           Text(
-            '${widget.province} ${widget.state}',
+            '${widget.state}, ${widget.province}',
             style: TextStyle(
               fontSize: 14,
             )
@@ -64,7 +64,9 @@ class _ProfileDetailsState extends State<ProfileDetails> {
             widget.street,
             style: TextStyle(
               fontSize: 14,
-            )
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
         ],
       ),

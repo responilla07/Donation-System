@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:donation_system/SubPages/AddItem.dart';
 import 'package:donation_system/SubPages/EditProfile.dart';
 import 'package:donation_system/Presentation/custom_icons_icons.dart';
 import 'package:donation_system/Variables/color.dart';
+import 'package:donation_system/Variables/global.dart';
 import 'package:donation_system/Widgets/ProfileDetails.dart';
 import 'package:donation_system/transitions/slide_route.dart';
 import 'package:flutter/material.dart';
@@ -17,17 +19,14 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Center(
-        
         child: Stack(
-
           children: <Widget>[
-
             Positioned(
               top: 0,
               left: 0,
               right: 0,
               child: Container(
-                height: 370,
+                height: 350,
                 padding: EdgeInsets.all(15),
                 child: Card(
                 elevation: 5,
@@ -40,28 +39,52 @@ class _ProfilePageState extends State<ProfilePage> {
                       child: Column(
                         children: [
                           Container(
-                            width: 150.0,
-                            height: 150.0,
-                            decoration: new BoxDecoration(
+                            width: 150,
+                            height: 150,
+                            decoration: BoxDecoration(
+                              color: redSecondaryColorLight,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(150)
+                              ),
                               border: Border.all(
                                 color: redSecondaryColor,
                                 width: 5,
                               ),
-                              shape: BoxShape.circle,
-                              image: new DecorationImage(
-                                fit: BoxFit.fill,
-                                image: AssetImage('assets/ProfilePlaceHolder.png'),
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(150),
+                              child: CachedNetworkImage(
+                                imageUrl: myUserDetails.value.profileUrl,
+                                fit: BoxFit.cover,
+                                placeholder: (context, value) {
+                                  return Container(
+                                    width: 150.0,
+                                    height: 150.0,
+                                    decoration: new BoxDecoration(
+                                      border: Border.all(
+                                        color: redSecondaryColor,
+                                        width: 5,
+                                      ),
+                                      shape: BoxShape.circle,
+                                      image: new DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image: AssetImage('assets/ProfilePlaceHolder.png'),
+                                      ),
+                                    ),
+                                  );                                
+                                },
                               ),
                             ),
                           ),
                           
+                          
                           ProfileDetails(
-                            fullname: 'Christian Paul Pili',
-                            email: 'christiantkoe@gmail.com',
-                            contact: '639-323-265-144',
-                            state: 'Laguna',
-                            province: 'Calamba',
-                            street: 'asdhakjsdhasjdhaskdhsdhasdjhaasdakjsdhkajsdhaksjdh',
+                            fullname: myUserDetails.value.name.forename.toUpperCase() + ' ' + myUserDetails.value.name.surname.toUpperCase(),
+                            email: myUserDetails.value.email,
+                            contact: myUserDetails.value.contact,
+                            state: myUserDetails.value.location.state,
+                            province: myUserDetails.value.location.province,
+                            street: myUserDetails.value.location.street + 'asd asd  as 6sa54d as65 0465sa4 d06a5s 046dsa5 das65 d4sa',
                           )
 
                         ],
@@ -89,60 +112,63 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
 
             Positioned(
-              top:370,
-              left: 15,
-              right: 15,
-              bottom: 15,
-              child: GridView(
-                primary: false,
-                gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: 1.1,
-                  crossAxisCount: 3,
-                  mainAxisSpacing: 15.0,
-                  crossAxisSpacing: 15.0,
+              top: 335,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              child: Container(
+                // color: Colors.green,
+                child: GridView(
+                  primary: false,
+                  gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: 1.1,
+                    crossAxisCount: 3,
+                    mainAxisSpacing: 15.0,
+                    crossAxisSpacing: 15.0,
+                  ),
+                  padding: EdgeInsets.all(15),
+                  children: [
+                    ConstrainedBox(
+                    constraints: BoxConstraints.expand(),
+                    child: FlatButton(
+                            onPressed: null,
+                            padding: EdgeInsets.all(0.0),
+                            child: Image.asset('assets/buttons/myCharity.png'))),
+                    ConstrainedBox(
+                    constraints: BoxConstraints.expand(),
+                    child: FlatButton(
+                            onPressed: null,
+                            padding: EdgeInsets.all(0.0),
+                            child: Image.asset('assets/buttons/myWishList.png'))),
+                    ConstrainedBox(
+                    constraints: BoxConstraints.expand(),
+                    child: FlatButton(
+                            onPressed: null,
+                            padding: EdgeInsets.all(0.0),
+                            child: Image.asset('assets/buttons/myOrder.png'))),
+                    ConstrainedBox(
+                    constraints: BoxConstraints.expand(),
+                    child: FlatButton(
+                            onPressed: null,
+                            padding: EdgeInsets.all(0.0),
+                            child: Image.asset('assets/buttons/myItems.png'))),
+                    ConstrainedBox(
+                    constraints: BoxConstraints.expand(),
+                    child: FlatButton(
+                            onPressed: null,
+                            padding: EdgeInsets.all(0.0),
+                            child: Image.asset('assets/buttons/chatIcon.png'))),  
+                    ConstrainedBox(
+                    constraints: BoxConstraints.expand(),
+                    child: FlatButton(
+                            onPressed: (){
+                              Navigator.push(context, SlideLeftRoute(page: AddItem()));
+                            },
+                            padding: EdgeInsets.all(0.0),
+                            child: Image.asset('assets/buttons/TrackOrder.png'))),                            
+                    
+                  ],
                 ),
-                padding: EdgeInsets.all(15),
-                children: [
-                  ConstrainedBox(
-                  constraints: BoxConstraints.expand(),
-                  child: FlatButton(
-                          onPressed: null,
-                          padding: EdgeInsets.all(0.0),
-                          child: Image.asset('assets/buttons/myCharity.png'))),
-                  ConstrainedBox(
-                  constraints: BoxConstraints.expand(),
-                  child: FlatButton(
-                          onPressed: null,
-                          padding: EdgeInsets.all(0.0),
-                          child: Image.asset('assets/buttons/myWishList.png'))),
-                  ConstrainedBox(
-                  constraints: BoxConstraints.expand(),
-                  child: FlatButton(
-                          onPressed: null,
-                          padding: EdgeInsets.all(0.0),
-                          child: Image.asset('assets/buttons/myOrder.png'))),
-                  ConstrainedBox(
-                  constraints: BoxConstraints.expand(),
-                  child: FlatButton(
-                          onPressed: null,
-                          padding: EdgeInsets.all(0.0),
-                          child: Image.asset('assets/buttons/myItems.png'))),
-                  ConstrainedBox(
-                  constraints: BoxConstraints.expand(),
-                  child: FlatButton(
-                          onPressed: null,
-                          padding: EdgeInsets.all(0.0),
-                          child: Image.asset('assets/buttons/chatIcon.png'))),  
-                  ConstrainedBox(
-                  constraints: BoxConstraints.expand(),
-                  child: FlatButton(
-                          onPressed: (){
-                            Navigator.push(context, SlideLeftRoute(page: AddItem()));
-                          },
-                          padding: EdgeInsets.all(0.0),
-                          child: Image.asset('assets/buttons/TrackOrder.png'))),                            
-                  
-                ],
               ),
             ),
 
