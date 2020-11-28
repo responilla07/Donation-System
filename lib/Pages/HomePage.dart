@@ -66,13 +66,48 @@ class _HomePageState extends State<HomePage> {
                         top:  position != 0 ? 0 : 20 , bottom: 0, left: 0, right: 0,
                         child: Card(
                           elevation: 8.0,
+                          color: position ==0? Colors.white: Color(0xFF0E2453),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [ // TODO IVAN dito ka nalang maglalagay ng code mo sa column na ito
-                              position == 0 ? cardNewsPhoto() : Container(),
+                              position == 0 ? cardNewsPhoto() : Container(
+                                child: Column(                                  
+                                  children: [
+                                    SizedBox(height: 15,),
+                                    HotlineNumbers(hotline: '  Office of the Governor  -  (052) 481-2555',),
+                                    HotlineNumbers(hotline: '      PDRRMC/PDRRMO  -  (052) 480-5222',),
+                                    HotlineNumbers(hotline: 'Provincial Health Office  -  (052) 437-8150',),
+                                    HotlineNumbers(hotline: '     Philippine Red Cross  -  0907-933-8303',),
+                                    HotlineNumbers(hotline: '                         PAGASA  -  (052) 437-8150',),
+                                    HotlineNumbers(hotline: '  Philippine Coast Guard  -  0921-524-6355',),
+                                    HotlineNumbers(hotline: '               Philippine Navy  -  0917-866-4260',),
+                                    Container(
+                                      alignment: Alignment.bottomRight,
+                                      height: 30,
+                                      padding: EdgeInsets.only(right:15),
+                                      child:FlatButton(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(18.0),
+                                          side: BorderSide(color: Colors.red)),
+                                        color: redSecondaryColor,
+                                        textColor: Colors.white,
+                                        padding: EdgeInsets.all(8.0),
+                                        onPressed: () {},                                     
+                                        child: Text(
+                                          "See More".toUpperCase(),
+                                          style: TextStyle(
+                                            fontSize: 14.0,
+                                            fontWeight: FontWeight.bold
+                                          ),
+                                        ),
+                                     ),
+                                    )
+                                  ]
+                                ),
+                              ),
                               position == 0 ?cardNewsSmallDetails(context) : Container(),
                             ],
                           )
@@ -230,6 +265,32 @@ class _HomePageState extends State<HomePage> {
           thickness: 25,
           color: white,
         )
+      ),
+    );
+  }
+}
+
+class HotlineNumbers extends StatelessWidget {
+  const HotlineNumbers({
+    Key key,@required this.hotline
+  }) : super(key: key);
+
+final String hotline;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            '$hotline',
+            style: TextStyle(
+              color:Colors.white,     
+              fontWeight: FontWeight.bold,                                     
+            ),
+          ),
+        ],
       ),
     );
   }
