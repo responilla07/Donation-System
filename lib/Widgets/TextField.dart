@@ -30,7 +30,7 @@ class _MyTextFieldState extends State<MyTextField> {
 
   @override
   void initState() {
-    if (widget.hintText == "Password" || widget.hintText == "Confirm Password") {
+    if (widget.hintText == "Password" || widget.hintText == "Confirm Password" || widget.hintText == "Old Password" || widget.hintText == "New Password" ) {
       isTextObscure = false;
     } else {
       isTextObscure = true;
@@ -71,7 +71,7 @@ class _MyTextFieldState extends State<MyTextField> {
             ),
           ),
         ),
-        widget.hintText == "Password" || widget.hintText == "Confirm Password" ? Positioned(
+        widget.hintText == "Password" || widget.hintText == "Confirm Password"|| widget.hintText == "Old Password" || widget.hintText == "New Password" ? Positioned(
           right: 0,
           top: -5,
           child: Container(

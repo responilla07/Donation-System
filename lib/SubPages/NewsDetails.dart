@@ -1,3 +1,4 @@
+import 'package:donation_system/Widgets/SubPagesAppBar.dart';
 import 'package:flutter/material.dart';
 
 class NewsDetails extends StatefulWidget {
@@ -9,9 +10,14 @@ class _NewsDetailsState extends State<NewsDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('TITLE HERE'),
-        centerTitle: true,
+      appBar: PreferredSize( 
+        preferredSize: Size.fromHeight(45.0),
+        child: SubPagesAppBar(
+          title: "News Details",
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
       body: Center(
         child: Column(

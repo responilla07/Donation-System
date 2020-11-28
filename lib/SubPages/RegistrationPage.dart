@@ -5,6 +5,7 @@ import 'package:donation_system/Widgets/BackButtonRegistration.dart';
 import 'package:donation_system/Widgets/Button.dart';
 import 'package:donation_system/Widgets/LoginDetailsRegistrations.dart';
 import 'package:donation_system/Widgets/ProcessIndicator.dart';
+import 'package:donation_system/Widgets/SubPagesAppBar.dart';
 import 'package:donation_system/Widgets/UserDetailsRegister.dart';
 import 'package:donation_system/transitions/slide_route.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,15 @@ class _RegistrationPageState extends State<RegistrationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreferredSize( 
+        preferredSize: Size.fromHeight(45.0),
+        child: SubPagesAppBar(
+          title: "Registration",
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       body: Stack(
         children: [
           GestureDetector(

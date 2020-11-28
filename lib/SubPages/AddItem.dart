@@ -17,10 +17,10 @@ class _AddItemState extends State<AddItem> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: PreferredSize( 
+       appBar: PreferredSize( //TODO Eto ang gamitin na app bar sa ibang sub pages
         preferredSize: Size.fromHeight(45.0),
         child: SubPagesAppBar(
-          title: "Add Item",
+          title: "Add Item ",
           onTap: () {
             Navigator.pop(context);
           },
@@ -50,7 +50,11 @@ class _AddItemState extends State<AddItem> {
                 title: "Submit", 
                 onTap: (){
                   if(addItemClass.validate('fields')){
-                    
+                    addItemClass.addItem(context).then((success){
+                      if (success) {
+                        Navigator.pop(context);
+                      }
+                    });
                   }
                   else{
                     Toast.show( addItemClass.validate('message'), context, duration: 3, gravity: Toast.BOTTOM);

@@ -7,6 +7,7 @@ import 'package:donation_system/Widgets/FacebookLogin.dart';
 import 'package:donation_system/Widgets/GoogleLogin.dart';
 import 'package:donation_system/Widgets/ProcessIndicator.dart';
 import 'package:donation_system/Widgets/ShowAlertDialogForgotPassword.dart';
+import 'package:donation_system/Widgets/SubPagesAppBar.dart';
 import 'package:donation_system/Widgets/TextField.dart';
 import 'package:donation_system/transitions/slide_route.dart';
 import 'package:flutter/gestures.dart';
@@ -26,6 +27,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       body: Stack(
         children: [
           GestureDetector(

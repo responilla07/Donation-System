@@ -1,5 +1,6 @@
 import 'package:donation_system/Variables/color.dart';
 import 'package:donation_system/Pages/HomePage.dart';
+import 'package:donation_system/Widgets/SubPagesAppBar.dart';
 
 import 'package:flutter/material.dart';
 
@@ -12,10 +13,15 @@ class _HotlinesPageState extends State<HotlinesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Emergency Hotlines'),
-          centerTitle: true,
+        appBar: PreferredSize( 
+        preferredSize: Size.fromHeight(45.0),
+        child: SubPagesAppBar(
+          title: "Emergency Hotlines",
+          onTap: () {
+            Navigator.pop(context);
+          },
         ),
+      ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: SingleChildScrollView(
