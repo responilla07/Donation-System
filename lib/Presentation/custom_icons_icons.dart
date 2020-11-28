@@ -12,6 +12,10 @@
 ///       - asset: fonts/CustomIcons.ttf
 ///
 /// 
+/// * Material Design Icons, Copyright (C) Google, Inc
+///         Author:    Google
+///         License:   Apache 2.0 (https://www.apache.org/licenses/LICENSE-2.0)
+///         Homepage:  https://design.google.com/icons/
 /// * Font Awesome 5, Copyright (C) 2016 by Dave Gandy
 ///         Author:    Dave Gandy
 ///         License:   SIL (https://github.com/FortAwesome/Font-Awesome/blob/master/LICENSE.txt)
@@ -42,6 +46,7 @@ class CustomIcons {
   static const IconData history2 = IconData(0xe80e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData contact_outlined = IconData(0xe80f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData market = IconData(0xe810, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData add_a_photo = IconData(0xe811, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData charity_home = IconData(0xe812, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData charity_cart = IconData(0xe813, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData next = IconData(0xe814, fontFamily: _kFontFam, fontPackage: _kFontPkg);
