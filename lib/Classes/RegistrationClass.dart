@@ -50,6 +50,7 @@ class RegistrationClass{
     auth.signOut();
     bool isRegistered = false;
 
+    userDetailsModel.profileUrl= "";
     userDetailsModel.email = email.text.trim();
     userDetailsModel.name.forename = firstName.text.trim();
     userDetailsModel.name.surname = lastName.text.trim();
@@ -74,7 +75,6 @@ class RegistrationClass{
             //Do something here after signin
             //TODO Stop the loading if loader for registration is added
           });
-
         });
       }).catchError((onError){
         print(onError.message);
@@ -83,8 +83,6 @@ class RegistrationClass{
     } catch (e) {
       Toast.show("Something went wrong happen.", context, duration: 4, gravity: Toast.BOTTOM);
     }
-
-    
     return isRegistered;
   }
 

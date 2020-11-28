@@ -10,13 +10,15 @@ class UserDetailsModel {
     email,
     messagingToken,
     secretLoginHash,
-    id;
+    id,
+    profileUrl;
 
   NameModel name;
   LocationModel location;
   DateTime registeredDate;
 
   UserDetailsModel ( String id, Map<dynamic, dynamic> data ) {
+    this.profileUrl = data["profileUrl"] ?? "";
     this.id = id ?? "";
     this.contact = data["contact"] ?? "";
     this.email = data["email"] ?? "";
@@ -33,6 +35,7 @@ class UserDetailsModel {
 
   setUserDetails() {
     return {
+      "profileUrl" : this.profileUrl,
       "contact" : this.contact,
       "email" : this.email,
       "messagingToken" : this.messagingToken,

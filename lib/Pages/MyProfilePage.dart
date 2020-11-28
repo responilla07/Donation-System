@@ -1,5 +1,6 @@
 import 'package:donation_system/Pages/EditProfile.dart';
 import 'package:donation_system/Presentation/custom_icons_icons.dart';
+
 import 'package:donation_system/Variables/color.dart';
 import 'package:donation_system/Widgets/ProfileDetails.dart';
 import 'package:donation_system/transitions/slide_route.dart';
@@ -75,7 +76,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             color: redSecondaryColor,
                           ), 
                           onPressed: (){
-                            Navigator.pushReplacement(context, SlideLeftRoute(page: EditProfile()));
+                            Navigator.push(context, SlideLeftRoute(page: EditProfile()));
                           }
                         ),
                       ),

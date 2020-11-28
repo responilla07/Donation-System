@@ -111,8 +111,6 @@ class _LoginPageState extends State<LoginPage> {
                   if(logClass.validate('fields')){
                     logClass.userSignUp(context).then((isLoggedIn){
                       if (isLoggedIn) {
-                        
-                        Navigator.pop(context);
                         Navigator.pushReplacement(context, SlideRightRoute(page: MainPage()));
                       }
                     });
