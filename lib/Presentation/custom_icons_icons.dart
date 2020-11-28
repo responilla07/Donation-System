@@ -33,7 +33,7 @@ class CustomIcons {
   static const IconData profile_outlined = IconData(0xe805, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData showpass_icon_ = IconData(0xe806, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData editprofile_outlined = IconData(0xe807, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData chat_sample_ = IconData(0xe808, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData chat = IconData(0xe808, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData qr = IconData(0xe809, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData email_sample_ = IconData(0xe80a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData logout = IconData(0xe80b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
@@ -47,6 +47,7 @@ class CustomIcons {
   static const IconData next = IconData(0xe814, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData menu = IconData(0xe815, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData charity_socialcare = IconData(0xe816, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData wishlist = IconData(0xe817, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData hand_holding_heart = IconData(0xf4be, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData store = IconData(0xf54e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }
