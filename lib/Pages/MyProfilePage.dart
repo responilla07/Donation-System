@@ -1,7 +1,8 @@
+import 'package:donation_system/Pages/EditProfile.dart';
 import 'package:donation_system/Presentation/custom_icons_icons.dart';
 import 'package:donation_system/Variables/color.dart';
-import 'package:donation_system/Variables/size.dart';
 import 'package:donation_system/Widgets/ProfileDetails.dart';
+import 'package:donation_system/transitions/slide_route.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -73,7 +74,9 @@ class _ProfilePageState extends State<ProfilePage> {
                             CustomIcons.edit_profile,
                             color: redSecondaryColor,
                           ), 
-                          onPressed: (){}
+                          onPressed: (){
+                            Navigator.pushReplacement(context, SlideLeftRoute(page: EditProfile()));
+                          }
                         ),
                       ),
                     ),
@@ -90,59 +93,53 @@ class _ProfilePageState extends State<ProfilePage> {
               right: 15,
               bottom: 15,
               child: GridView(
+                primary: false,
                 gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+                  childAspectRatio: 1.1,
                   crossAxisCount: 3,
-                  childAspectRatio: 0.8,
                   mainAxisSpacing: 15.0,
                   crossAxisSpacing: 15.0,
                 ),
                 padding: EdgeInsets.all(15),
                 children: [
                   FlatButton(
-                        color: redSecondaryColor,
-                        onPressed: (){},
-                        child: Container(
-                          width: 70,
-                          height: 70,
-                          child: Center(child: Text('Press Me!'))
-                        ),
-                      ),
-                      FlatButton(
-                        color: redSecondaryColor,
-                        onPressed: (){},
-                        child: Container(
-                          width: 70,
-                          height: 70,
-                          child: Center(child: Text('Press Me!'))
-                        ),
-                      ),
-                      FlatButton(
-                        color: redSecondaryColor,
-                        onPressed: (){},
-                        child: Container(
-                          width: 70,
-                          height: 70,
-                          child: Center(child: Text('Press Me!'))
-                        ),
-                      ),
-                      FlatButton(
-                        color: redSecondaryColor,
-                        onPressed: (){},
-                        child: Container(
-                          width: 70,
-                          height: 70,
-                          child: Center(child: Text('Press Me!'))
-                        ),
-                      ),
-                      FlatButton(
-                        color: redSecondaryColor,
-                        onPressed: (){},
-                        child: Container(
-                          width: 70,
-                          height: 70,
-                          child: Center(child: Text('Press Me!'))
-                        ),
-                      ),
+                    color: redSecondaryColor,
+                    onPressed: (){},
+                    child: Container(    
+                      // decoration: BoxDecoration(
+                      //   image: new DecorationImage(
+                      //     image: new AssetImage('assets/ProfilePlaceHolder.png'),
+                      //     fit: BoxFit.cover,
+                      //   ),
+                      // ),                      
+                      height: double.infinity,
+                      child: Center(child: Text('Press Me!'))
+                    ),
+                  ),
+                  FlatButton(
+                    color: redSecondaryColor,
+                    onPressed: (){},
+                    child: Container(
+                      height: 40,
+                      child: Center(child: Text('Press Me!'))
+                    ),
+                  ),
+                  FlatButton(
+                    color: redSecondaryColor,
+                    onPressed: (){},
+                    child: Container(
+                      height: 40,
+                      child: Center(child: Text('Press Me!'))
+                    ),
+                  ),
+                  FlatButton(
+                    color: redSecondaryColor,
+                    onPressed: (){},
+                    child: Container(
+                      height: 40,
+                      child: Center(child: Text('Press Me!'))
+                    ),
+                  ),
                 ],
               ),
             ),

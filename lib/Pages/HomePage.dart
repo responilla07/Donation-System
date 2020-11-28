@@ -77,13 +77,13 @@ class _HomePageState extends State<HomePage> {
                                 child: Column(                                  
                                   children: [
                                     SizedBox(height: 15,),
-                                    HotlineNumbers(hotline: '  Office of the Governor  -  (052) 481-2555',),
-                                    HotlineNumbers(hotline: '      PDRRMC/PDRRMO  -  (052) 480-5222',),
-                                    HotlineNumbers(hotline: 'Provincial Health Office  -  (052) 437-8150',),
-                                    HotlineNumbers(hotline: '     Philippine Red Cross  -  0907-933-8303',),
-                                    HotlineNumbers(hotline: '                         PAGASA  -  (052) 437-8150',),
-                                    HotlineNumbers(hotline: '  Philippine Coast Guard  -  0921-524-6355',),
-                                    HotlineNumbers(hotline: '               Philippine Navy  -  0917-866-4260',),
+                                    HotlineNumbers(hotline: '  Office of the Governor  -  (052) 481-2555',textcolor: Colors.white,),
+                                    HotlineNumbers(hotline: '      PDRRMC/PDRRMO  -  (052) 480-5222',textcolor: Colors.white),
+                                    HotlineNumbers(hotline: 'Provincial Health Office  -  (052) 437-8150',textcolor: Colors.white),
+                                    HotlineNumbers(hotline: '     Philippine Red Cross  -  0907-933-8303',textcolor: Colors.white),
+                                    HotlineNumbers(hotline: '                         PAGASA  -  (052) 437-8150',textcolor: Colors.white),
+                                    HotlineNumbers(hotline: '  Philippine Coast Guard  -  0921-524-6355',textcolor: Colors.white),
+                                    HotlineNumbers(hotline: '               Philippine Navy  -  0917-866-4260',textcolor: Colors.white),
                                     Container(
                                       alignment: Alignment.bottomRight,
                                       height: 30,
@@ -95,7 +95,9 @@ class _HomePageState extends State<HomePage> {
                                         color: redSecondaryColor,
                                         textColor: Colors.white,
                                         padding: EdgeInsets.all(8.0),
-                                        onPressed: () {},                                     
+                                        onPressed: () {
+                                          Navigator.push( context, SlideLeftRoute(page: HotlinesPage()));
+                                        },                                     
                                         child: Text(
                                           "See More".toUpperCase(),
                                           style: TextStyle(
@@ -272,21 +274,22 @@ class _HomePageState extends State<HomePage> {
 
 class HotlineNumbers extends StatelessWidget {
   const HotlineNumbers({
-    Key key,@required this.hotline
+    Key key,@required this.hotline,this.textcolor
   }) : super(key: key);
 
 final String hotline;
+final Color textcolor;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        // mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             '$hotline',
             style: TextStyle(
-              color:Colors.white,     
+              color: textcolor,
               fontWeight: FontWeight.bold,                                     
             ),
           ),
