@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:donation_system/Classes/ItemDetailsClass.dart';
 import 'package:donation_system/Formatter/number.dart';
 import 'package:donation_system/Methods/Style.dart';
 import 'package:donation_system/Models/CharityModel.dart';
@@ -23,6 +24,7 @@ class ItemDetails extends StatefulWidget {
 }
 
 class _ItemDetailsState extends State<ItemDetails> with SingleTickerProviderStateMixin{
+  ItemDetailsClass itemDetailsClass = ItemDetailsClass();
   CharityModel charityModel = CharityModel('', {});
   String itemID = '';
   bool isSeeMore = false;
@@ -76,15 +78,37 @@ class _ItemDetailsState extends State<ItemDetails> with SingleTickerProviderStat
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  carouselBanner(),
-                  itemDetailsButton(),
+                  itemDetailsClass.carouselBanner(widget.itemModel),
+                  itemDetailsClass.itemDetailsButton(
+                    chatCallback: () {
+                      print('chat button clicked!');
+                    },
+                    wishlistCallback: () {
+                      print('wishlist button clicked!');
+                    },
+                    buyCallback: () {
+                      itemDetailsClass.showBuyDialog(context);
+                      // Navigator.push( context, SlideLeftRoute(page: HotlinesPage()));
+                    },
+                  ),
                   Expanded(
                     child: ListView(
-                      padding: EdgeInsets.all(10),
+                      primary: false,
+                      padding: EdgeInsets.all(5),
                       children: [
-                        itemDetails(),
+                        itemDetailsClass.itemDetails(widget.itemModel, itemDescriptionDisplay, isHidingClicker, itemDescription, isSeeMore, () {
+                          setState(() {
+                            if (isSeeMore) {
+                              itemDescriptionDisplay = itemDescription.substring(0, itemDescription.runes.fold(5, (previousValue, element) => element * 3)) + "...";
+                              isSeeMore = false;
+                            } else {
+                              itemDescriptionDisplay = itemDescription;
+                              isSeeMore = true;
+                            }
+                          });
+                        }),
                         SizedBox( height: 10, ),
-                        widget.itemModel.beneficiaries.length > 0 ? charitableOrgDetails() : Container()
+                        widget.itemModel.beneficiaries.length > 0 ? itemDetailsClass.charitableOrgDetails(charityModel, widget.itemModel) : Container()
                       ],
                     ),
                   )
@@ -96,289 +120,6 @@ class _ItemDetailsState extends State<ItemDetails> with SingleTickerProviderStat
           }
         },
       ),
-    );
-  }
-
-  Column itemDetails() {
-    return Column(
-      children: [
-        Container(
-          padding: EdgeInsets.fromLTRB(15,15,15,5),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                widget.itemModel.name,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18
-                ),
-              ),
-              Text(
-                "₱ " + numberDecimalComma(widget.itemModel.price),
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: bluePrimaryColorDark,
-                  fontSize: 18
-                ),
-              ),
-              Row(
-                children: [
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: List.generate(5, (index) {
-                      num value = 3.5;
-                              return Icon(
-                                index < value ? Icons.star : Icons.star_border,
-                      );
-                    }),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left:15.0),
-                    child: Text('3.5',
-                      style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),
-                    ),
-                  ),              
-                ],
-              ),
-              SizedBox( height: 5, ),
-              Text(
-                widget.itemModel.location.state + ', ' + widget.itemModel.location.province,
-                style: TextStyle(
-                  fontSize: 14,
-                ),
-              ),
-              widget.itemModel.location.street == '' ? Container() 
-              : Text(
-                widget.itemModel.location.street,
-                style: TextStyle(
-                  fontSize: 14,
-                ),
-              ),
-              SizedBox( height: 10, ),
-              Text(
-                'Description',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 17,
-                  color: redSecondaryColorDark
-                ),
-              ),
-              RichText(
-                textAlign: TextAlign.left,
-                text: TextSpan(children: <InlineSpan>[
-                  TextSpan(
-                    text: itemDescriptionDisplay,
-                    style: TextStyle(
-                      color: hexColor('393939'),
-                      fontWeight: FontWeight.w400,
-                      fontSize: 12,
-                    )
-                  ),
-
-                  isHidingClicker ? TextSpan(text: '') : TextSpan(
-                    recognizer: new TapGestureRecognizer()..onTap = (){
-                      setState(() {
-                        if (isSeeMore) {
-                          itemDescriptionDisplay = itemDescription.substring(0, itemDescription.runes.fold(5, (previousValue, element) => element * 3)) + "...";
-                          isSeeMore = false;
-                        } else {
-                          itemDescriptionDisplay = itemDescription;
-                          isSeeMore = true;
-                        }
-                      });
-                    },
-                    text: !isSeeMore ? " See More" : " See Less",
-                    style: TextStyle(
-                      color: bluePrimaryColorDark.withOpacity(0.8),
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold
-                    )
-                  ),
-                ]),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
-  Column charitableOrgDetails() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Container(
-          padding: EdgeInsets.fromLTRB(15,0,15,0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                'Charitable Organization',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 17,
-                  color: redSecondaryColorDark
-                ),
-              ),
-              Text(
-                charityModel.name,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold
-                ),
-              ),
-              Text(
-                charityModel.location.state + ', ' + charityModel.location.province,
-                style: TextStyle(
-                  fontSize: 14
-                ),
-              ),
-              charityModel.location.street == '' ? Container() 
-              : Text(
-                widget.itemModel.location.street,
-                style: TextStyle(
-                  fontSize: 14,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
-  Container itemDetailsButton() {
-    return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/item_details_button_background.png'),
-          fit: BoxFit.cover
-        )
-      ),
-      height: 40,
-      child: Row(
-        children: [
-          GestureDetector(
-            onTap: (){
-              print('chat item owner...');
-            },
-            child: Container(
-              color: Colors.transparent,
-              padding: EdgeInsets.only(left: 15, right: 7.5),
-              height: 40,
-              child: Row(
-                children: [
-                  Icon(
-                    CustomIcons.chat,
-                    color: Colors.black,
-                  ),
-                  SizedBox(width: 10,),
-                  Text(
-                    "Chat",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          GestureDetector(
-            onTap: (){
-              print('add to wishlist yung item...');
-            },
-            child: Container(
-              color: Colors.transparent,
-              padding: EdgeInsets.only(left: 15, right: 15),
-              height: 40,
-              child: Row(
-                children: [
-                  Icon(
-                    CustomIcons.wishlist,
-                    color: Colors.black,
-                  ),
-                  SizedBox(width: 10,),
-                  Text(
-                    "Wishlist",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Expanded(
-            child: GestureDetector(
-              onTap: (){
-                print('add to cart yung item...');
-              },
-              child: Container(
-                color: Colors.transparent,
-                padding: EdgeInsets.only(left: 35, right: 15),
-                height: 40,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      CustomIcons.charity_cart,
-                      color: Colors.black,
-                    ),
-                    SizedBox(width: 10,),
-                    Text(
-                      "Buy Now",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  AspectRatio carouselBanner() {
-    List<Widget> carouselItem = List<Widget>();
-    for (var i = 0; i < widget.itemModel.itemPhoto.length; i++) {
-      carouselItem.add( CachedNetworkImage(
-        imageUrl: widget.itemModel.itemPhoto[i],
-        fit: BoxFit.cover,
-        placeholder: (context, value){
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(redSecondaryColor)),
-            ],
-          );
-        },
-      ),);
-    }
-    return AspectRatio(
-      aspectRatio: 16/10,
-      child: Container(
-        child: ClipRRect(
-          child: Carousel(
-            boxFit: BoxFit.cover,
-            autoplay: true,
-            animationCurve: Curves.fastOutSlowIn,
-            animationDuration: Duration(milliseconds: 1000),
-            showIndicator: false,
-            images: carouselItem,
-          ),
-        ),
-      )
     );
   }
 }
