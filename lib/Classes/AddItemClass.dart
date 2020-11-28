@@ -8,9 +8,11 @@ class AddItemClass{
   TextEditingController itemName = new TextEditingController(text: '');
   TextEditingController price = new TextEditingController(text: '');
   TextEditingController discount = new TextEditingController(text: '');
+  TextEditingController stock = new TextEditingController(text: '');
   String state = "State";
   String province = "Province";
   TextEditingController street = new TextEditingController(text: '');
+  String charitable = "Charitable";
   TextEditingController description = new TextEditingController(text: '');
 
   List<Widget> imageList = [];
@@ -22,20 +24,17 @@ class AddItemClass{
     return  pickedFile.path;
   }
 
-  String message
+  String message = "";
 
   dynamic validate(String isFor){
     bool isValid = false;
 
-    if (email.text.trim() != '' && password.text.trim() != '' ) {
+    if (itemName.text.trim() != '' && price.text.trim() != ''
+    && discount.text.trim() != '' && state != '' && province != '' && 
+    street.text.trim() != '' && description.text.trim() != ''
+    && charitable != '') {
       
-     if (emailRegExp.hasMatch(email.text.trim())) {
-          isValid = true;
-        
-      }
-      else {
-        message = "Enter a valid email address.";
-      }
+      isValid = true;
     }
     else {
         message = "Fields are all required so please kindly check.";

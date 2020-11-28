@@ -26,17 +26,10 @@ class _LoginDetailsRegistrationsState extends State<LoginDetailsRegistrations> {
     return Padding(
       padding: const EdgeInsets.all(15),
       child: Column(
-        
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        
         children: <Widget>[
-        
-        widget.backButton,
-
-        SizedBox(
-            height: 35,
-        ),
-
+          widget.backButton,
+          SizedBox(height: 35,),
           Text(
             'Registration',
             style: TextStyle(
@@ -44,7 +37,6 @@ class _LoginDetailsRegistrationsState extends State<LoginDetailsRegistrations> {
               //TODO font style 
             ),
           ),
-
           Text(
             'Please Enter your email and password',
             style: TextStyle(
@@ -52,48 +44,30 @@ class _LoginDetailsRegistrationsState extends State<LoginDetailsRegistrations> {
               //TODO font style 
             ),
           ),
-
-          SizedBox(
-            height: 65,
-          ),
-
+          SizedBox(height: 65,),
           MyTextField(
             controller: widget.regClass.email, 
             hintText: "Email", 
             inputFormatter: null, 
             keyboardType: null
           ),
-
-          SizedBox(
-            height: 15,
-          ),
-
+          SizedBox(height: 15,),
           MyTextField(
             controller: widget.regClass.password, 
             hintText: "Password", 
             inputFormatter: null, 
             keyboardType: null
           ),
-
-          SizedBox(
-            height: 15,
-          ),
-
+          SizedBox(height: 15,),
           MyTextField(
             controller: widget.regClass.confirmPassword, 
             hintText: "Confirm Password", 
             inputFormatter: null, 
             keyboardType: null
           ),
-
-          SizedBox(
-            height: 25,
-          ),
-
+          SizedBox( height: 25, ),
           widget.button,
-          
         ],
-
       ),
     );
   }

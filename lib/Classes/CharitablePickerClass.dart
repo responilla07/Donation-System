@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:donation_system/Models/ItemModel.dart';
+import 'package:donation_system/Models/CharityModel.dart';
 import 'package:flutter/cupertino.dart';
 
-class MarketPageClass {
+class CharitablePickerClass {
   
   DocumentSnapshot lastDocument;
   QuerySnapshot querySnapshot;
-  ValueNotifier<List<ItemModel>> listOfItems = ValueNotifier<List<ItemModel>>(List<ItemModel>());
+  ValueNotifier<List<CharityModel>> listofCharity = ValueNotifier<List<CharityModel>>(List<CharityModel>());
 
   TextEditingController textController = TextEditingController();
   ScrollController scrollController = ScrollController();
@@ -26,13 +26,13 @@ class MarketPageClass {
       if (textController.text.length > 0) {
         if(lastDocument != null){
           if (isPullUp.value) {
-            querySnapshot = await FirebaseFirestore.instance.collection("Products").where("searchKey", arrayContains: query).orderBy('dateCreated', descending: true).limit(6).startAfterDocument(lastDocument).get();
+            querySnapshot = await FirebaseFirestore.instance.collection("Charities").where("searchKey", arrayContains: query).orderBy('dateCreated', descending: true).limit(6).startAfterDocument(lastDocument).get();
             if (querySnapshot.docs.length > 0) {
-              List<ItemModel> listChar = List<ItemModel>();
+              List<CharityModel> charity = List<CharityModel>();
               for (var i = 0; i < querySnapshot.docs.length; i++) {
-                listChar.add(ItemModel(querySnapshot.docs[i].id, querySnapshot.docs[i].data())); 
+                charity.add(CharityModel(querySnapshot.docs[i].id, querySnapshot.docs[i].data())); 
               }
-              listOfItems.value.addAll(listChar);
+              listofCharity.value.addAll(charity);
               lastDocument = querySnapshot.docs[querySnapshot.docs.length - 1];
             }
             whenCompleteFetchingInPullUp();
@@ -41,13 +41,13 @@ class MarketPageClass {
         } else {
           isFetching.value = true;
           searchingText = query;
-          listOfItems.value.clear();
-          querySnapshot = await FirebaseFirestore.instance.collection("Products").where("searchKey", arrayContains: query).orderBy('dateCreated', descending: true).limit(6).get();
-          List<ItemModel> listChar = List<ItemModel>();
+          listofCharity.value.clear();
+          querySnapshot = await FirebaseFirestore.instance.collection("Charities").where("searchKey", arrayContains: query).orderBy('dateCreated', descending: true).limit(20).get();
+          List<CharityModel> charity = List<CharityModel>();
           for (var i = 0; i < querySnapshot.docs.length; i++) {
-            listChar.add(ItemModel(querySnapshot.docs[i].id, querySnapshot.docs[i].data()));
+            charity.add(CharityModel(querySnapshot.docs[i].id, querySnapshot.docs[i].data()));
           }
-          listOfItems.value = listChar;
+          listofCharity.value = charity;
           if (querySnapshot.docs.length > 0) {
             lastDocument = querySnapshot.docs[querySnapshot.docs.length - 1];
           }
@@ -55,26 +55,26 @@ class MarketPageClass {
       } else {
         if(lastDocument != null){
           if (isPullUp.value) {
-            querySnapshot = await FirebaseFirestore.instance.collection("Products").orderBy('dateCreated', descending: true).limit(6).startAfterDocument(lastDocument).get();
+            querySnapshot = await FirebaseFirestore.instance.collection("Charities").orderBy('dateCreated', descending: true).limit(20).startAfterDocument(lastDocument).get();
             if (querySnapshot.docs.length > 0) {
-              List<ItemModel> listChar = List<ItemModel>();
+              List<CharityModel> charity = List<CharityModel>();
               for (var i = 0; i < querySnapshot.docs.length; i++) {
-                listChar.add(ItemModel(querySnapshot.docs[i].id, querySnapshot.docs[i].data()));
+                charity.add(CharityModel(querySnapshot.docs[i].id, querySnapshot.docs[i].data()));
               }
               lastDocument = querySnapshot.docs[querySnapshot.docs.length - 1];
-              listOfItems.value.addAll(listChar);
+              listofCharity.value.addAll(charity);
             }
             whenCompleteFetchingInPullUp();
           }
         } else {
           isFetching.value = true;
-          listOfItems.value.clear();
-          querySnapshot = await FirebaseFirestore.instance.collection("Products").orderBy('dateCreated', descending: true).limit(6).get();
-          List<ItemModel> listChar = List<ItemModel>();
+          listofCharity.value.clear();
+          querySnapshot = await FirebaseFirestore.instance.collection("Charities").orderBy('dateCreated', descending: true).limit(20).get();
+          List<CharityModel> charity = List<CharityModel>();
           for (var i = 0; i < querySnapshot.docs.length; i++) {
-            listChar.add(ItemModel(querySnapshot.docs[i].id, querySnapshot.docs[i].data()));
+            charity.add(CharityModel(querySnapshot.docs[i].id, querySnapshot.docs[i].data()));
           }
-          listOfItems.value = listChar;
+          listofCharity.value = charity;
           if (querySnapshot.docs.length > 0) {
             lastDocument = querySnapshot.docs[querySnapshot.docs.length - 1]; 
           }
@@ -83,14 +83,14 @@ class MarketPageClass {
     // } catch (e) {
     //   print(e);
     // }
-    return listOfItems.value ?? List<dynamic>();
+    return listofCharity.value ?? List<dynamic>();
   }
 
 
   int findeCharityPosition(id){
     int findCharityPosition = 0;
-    for(int itemList = 0; itemList < listOfItems.value.length; itemList++){
-      var docID = listOfItems.value[itemList].id;
+    for(int itemList = 0; itemList < listofCharity.value.length; itemList++){
+      var docID = listofCharity.value[itemList].id;
       if(docID == id){
         findCharityPosition = itemList;
         break;

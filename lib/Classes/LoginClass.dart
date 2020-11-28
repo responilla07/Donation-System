@@ -6,6 +6,7 @@ import 'package:toast/toast.dart';
 class LoginClass{
   TextEditingController email = new TextEditingController(text: '');
   TextEditingController password = new TextEditingController(text: '');
+  bool isProcessing = false;
 
   UserDetailsModel userDetailsModel = UserDetailsModel("", {});
   var emailRegExp = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
@@ -30,7 +31,7 @@ class LoginClass{
     return isFor == "fields" ? isValid : isFor == "message" ? message : "error";
   }
 
-  Future<bool> userSignUp(BuildContext context) async {
+  Future<bool> userSignIn(BuildContext context) async {
     bool isLoggedin = false;
 
     try {
@@ -40,6 +41,7 @@ class LoginClass{
 
         await userRef.get().then((doc) {
           myUserDetails.value = UserDetailsModel(doc.id, doc.data());
+          loggedUser = auth.currentUser;
           isLoggedin = true;
         });
 

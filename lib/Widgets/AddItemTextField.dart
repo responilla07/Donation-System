@@ -1,6 +1,7 @@
 import 'package:donation_system/Classes/AddItemClass.dart';
 import 'package:donation_system/Variables/color.dart';
 import 'package:donation_system/Widgets/Button.dart';
+import 'package:donation_system/Widgets/CharitablePicker.dart';
 import 'package:donation_system/Widgets/ProvincePicker.dart';
 import 'package:donation_system/Widgets/TextField.dart';
 import 'package:donation_system/transitions/slide_route.dart';
@@ -27,27 +28,33 @@ class _AddItemTextFieldState extends State<AddItemTextField> {
       child: Column(
         children: [
           MyTextField(
-            controller: null, 
+            controller: widget.addItemClass.itemName, 
             hintText: "Item Name", 
             inputFormatter: null, 
             keyboardType: null
           ),
           SizedBox(height: 15,),
           MyTextField(
-            controller: null, 
+            controller: widget.addItemClass.price, 
             hintText: "Price", 
             inputFormatter: null, 
             keyboardType: null
           ),
           SizedBox(height: 15,),
           MyTextField(
-            controller: null, 
+            controller: widget.addItemClass.discount, 
             hintText: "Discount", 
             inputFormatter: null, 
             keyboardType: null
           ),
           SizedBox(height: 15,),
-          
+          MyTextField(
+            controller: widget.addItemClass.stock, 
+            hintText: "Stock", 
+            inputFormatter: null, 
+            keyboardType: null
+          ),
+          SizedBox(height: 15,),
           Container(
           height: 40,
           child: Row(
@@ -123,19 +130,49 @@ class _AddItemTextFieldState extends State<AddItemTextField> {
             ],
           ),
         ),
-
         SizedBox(height: 15,),
-
-          MyTextField(
-            controller: null, 
-            hintText: "Street", 
-            inputFormatter: null, 
-            keyboardType: null
+        MyTextField(
+          controller: widget.addItemClass.street, 
+          hintText: "Street", 
+          inputFormatter: null, 
+          keyboardType: null
+        ),
+        SizedBox(height: 15,),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context, SlideLeftRoute(page: ChartiablePicker())).then((value){
+                setState(() {
+                  widget.addItemClass.charitable = value['name'];
+                });
+              });
+            },
+            child: Container(
+              width: double.infinity,
+              height: 40,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(5)),
+                border: Border.all(
+                  color: redSecondaryColor
+                )
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                    widget.addItemClass.charitable,
+                  style: TextStyle(
+                    color:   widget.addItemClass.charitable == "Charitable" ? Colors.black54 : Colors.black,
+                    fontSize: 16
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+              ),
+            ),
           ),
-
           SizedBox(height: 15,),
 
           TextField(
+            controller: widget.addItemClass.description,
             decoration: new InputDecoration(
             filled: true,
             fillColor: Colors.white,

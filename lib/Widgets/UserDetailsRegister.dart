@@ -6,6 +6,7 @@ import 'package:donation_system/Widgets/ProvincePicker.dart';
 import 'package:donation_system/Widgets/TextField.dart';
 import 'package:donation_system/transitions/slide_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class UserDetailsRegister extends StatefulWidget {
   const UserDetailsRegister({
@@ -29,17 +30,10 @@ class _UserDetailsRegisterState extends State<UserDetailsRegister> {
     return Padding(
       padding: const EdgeInsets.all(15),
       child: Column(
-        
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        
         children: <Widget>[
-        
-        widget.backButton,
-
-        SizedBox(
-            height: 35,
-        ),
-
+          widget.backButton,
+          SizedBox( height: 35, ),
           Text(
             'Registration',
             style: TextStyle(
@@ -47,7 +41,6 @@ class _UserDetailsRegisterState extends State<UserDetailsRegister> {
               //TODO font style 
             ),
           ),
-
           Text(
             'Please Enter your information',
             style: TextStyle(
@@ -55,44 +48,28 @@ class _UserDetailsRegisterState extends State<UserDetailsRegister> {
               //TODO font style 
             ),
           ),
-
-          SizedBox(
-            height: 65,
-          ),
-
+          SizedBox(height: 65, ),
           MyTextField(
             controller: widget.regClass.firstName, 
             hintText: "First Name", 
-            inputFormatter: null, 
+            inputFormatter: [FilteringTextInputFormatter.allow(RegExp("[a-zA-Z\-' ]")) ],
             keyboardType: null
           ),
-
-          SizedBox(
-            height: 15,
-          ),
-
+          SizedBox(height: 15, ),
           MyTextField(
             controller: widget.regClass.lastName, 
             hintText: "Last Name", 
-            inputFormatter: null, 
+            inputFormatter: [FilteringTextInputFormatter.allow(RegExp("[a-zA-Z\-' ]")) ],
             keyboardType: null
           ),
-
-          SizedBox(
-            height: 15,
-          ),
-
+          SizedBox(height: 15,),
           MyTextField(
             controller: widget.regClass.contactNumber, 
             hintText: "Contact Number", 
-            inputFormatter: null, 
+            inputFormatter: [FilteringTextInputFormatter.allow(RegExp("[0-9\-\(\)\+]")) ],
             keyboardType: null
           ),
-
-          SizedBox(
-            height: 15,
-          ),
-
+          SizedBox(height: 15,),
           Container(
             height: 40,
             child: Row(
@@ -167,24 +144,15 @@ class _UserDetailsRegisterState extends State<UserDetailsRegister> {
               ],
             ),
           ),
-
-          SizedBox(
-            height: 15,
-          ),
-
+          SizedBox(height: 15,),
           MyTextField(
             controller: widget.regClass.completeAddress, 
             hintText: "Street", 
-            inputFormatter: null, 
+            inputFormatter: [FilteringTextInputFormatter.allow(RegExp("[a-zA-Z&@&/,.0-9\-\(\)\+]")) ],
             keyboardType: null
           ),
-
-          SizedBox(
-            height: 25,
-          ),
-
+          SizedBox(height: 25,),
           widget.button
-          
         ],
 
       ),

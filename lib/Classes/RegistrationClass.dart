@@ -16,6 +16,7 @@ class RegistrationClass{
   String state = "State";
   String province = "Province";
   TextEditingController completeAddress = new TextEditingController(text: '');
+  bool isProcessing = false;
 
 
   UserDetailsModel userDetailsModel = UserDetailsModel("", {});
