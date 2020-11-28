@@ -12,7 +12,8 @@ class ItemModel {
     price,
     discounted,
     stock,
-    ratings;
+    ratings,
+    totalReviewer;
 
   List<dynamic> 
     itemPhoto, 
@@ -36,6 +37,7 @@ class ItemModel {
     this.discounted = data['discounted'] ?? 0;
     this.stock = data['stock'] ?? 0;
     this.ratings = data['ratings'] ?? 0;
+    this.totalReviewer = data['totalReviewer'] ?? 0;
     this.isArchive = data['isArchive'] ?? false;
     this.location = LocationModel(data['location'] ?? {});
     if(data['dateCreated'] is DateTime){
@@ -57,6 +59,7 @@ class ItemModel {
       'discounted' : this.discounted,
       'stock' : this.stock,
       'ratings' : this.ratings,
+      'totalReviewer' : this.totalReviewer,
       'isArchive' : this.isArchive,
       'location' : this.location.setLocation(),
       'dateCreated' : FieldValue.serverTimestamp(),

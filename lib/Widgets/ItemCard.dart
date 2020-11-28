@@ -1,15 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:donation_system/Formatter/number.dart';
+import 'package:donation_system/Models/ItemModel.dart';
+import 'package:donation_system/SubPages/ItemDetails.dart';
 import 'package:donation_system/Variables/color.dart';
 import 'package:flutter/material.dart';
 
 class ItemCard extends StatelessWidget {
   const ItemCard({
     Key key,
-    @required this.rating,
+    @required this.itemModel,
   }) : super(key: key);
 
-  final int rating;
+  final ItemModel itemModel;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class ItemCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: CachedNetworkImage(
-                  imageUrl: 'http://ph-test-11.slatic.net/p/6c5cdb8ded861ff4224d5128a27a52df.jpg_340x340q80.jpg_.webp',
+                  imageUrl: itemModel.itemPhoto[0],
                   fit: BoxFit.cover,
                   placeholder: (context, value){
                     return Column(
@@ -51,7 +53,7 @@ class ItemCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Philippines eyes portfolio of potential vaccines vs COVID-19",
+                  itemModel.name,
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
@@ -60,7 +62,7 @@ class ItemCard extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text( 
-                  "₱ " + "22,000",
+                  "₱ " + itemModel.price.toString(),
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
@@ -69,52 +71,20 @@ class ItemCard extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Icon(Icons.star, size: 15, color: rating >= 1 ? Colors.yellow : Colors.grey),
-                    Icon(Icons.star, size: 15, color: rating >= 2 ? Colors.yellow : Colors.grey),
-                    Icon(Icons.star, size: 15, color: rating >= 3 ? Colors.yellow : Colors.grey),
-                    Icon(Icons.star, size: 15, color: rating >= 4 ? Colors.yellow : Colors.grey),
-                    Icon(Icons.star, size: 15, color: rating >= 5 ? Colors.yellow : Colors.grey),
+                    Icon(Icons.star, size: 15, color: itemModel.ratings >= 1 ? Colors.yellow : Colors.grey),
+                    Icon(Icons.star, size: 15, color: itemModel.ratings >= 2 ? Colors.yellow : Colors.grey),
+                    Icon(Icons.star, size: 15, color: itemModel.ratings >= 3 ? Colors.yellow : Colors.grey),
+                    Icon(Icons.star, size: 15, color: itemModel.ratings >= 4 ? Colors.yellow : Colors.grey),
+                    Icon(Icons.star, size: 15, color: itemModel.ratings >= 5 ? Colors.yellow : Colors.grey),
                     SizedBox(width: 5,),
                     Text(
-                      '('+ totalCount(832654) + ')',
+                      '('+ totalCount(itemModel.totalReviewer) + ')',
                       style: TextStyle(
                         fontSize: 12
                       ),
                     ),
                   ],
                 ),
-                // SizedBox(height: 10,),
-                // Row(
-                //   children: [
-                //     // Expanded(child: Container()),
-                //     // Icon(
-                //     //   Icons.adb
-                //     // ),
-                //     // SizedBox(width: 5,),
-                //     // Icon(
-                //     //   Icons.chat_bubble
-                //     // ),
-                //     SizedBox(width: 10,),
-                //     Container(
-                //       alignment: Alignment.center,
-                //       height: 30,
-                //       decoration: BoxDecoration(
-                //         color: hexColor(successColor),
-                //         borderRadius: BorderRadius.all(Radius.circular(5)),
-                //       ),
-                //       child: Padding(
-                //         padding: const EdgeInsets.only(left: 30, right: 30),
-                //         child: Text(
-                //           "BUY",
-                //           style: TextStyle(
-                //             color: white,
-                //             fontWeight: FontWeight.bold
-                //           ),
-                //         ),
-                //       ),
-                //     )
-                //   ],
-                // ),
               ],
             ),
           )
