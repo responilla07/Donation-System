@@ -16,6 +16,6 @@ Color colorTertiary = Color(0xff808080);
 Color white = Colors.white;
 
 
-var successColor = "035e17";
+var successColor = "14a634";
 var waitingColor = "d5ab21";
 var failedColor = "da3c1d";
