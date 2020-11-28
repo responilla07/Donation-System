@@ -200,7 +200,7 @@ class _MarketPageState extends State<MarketPage> {
                             itemBuilder: (context, index) {
                               return GestureDetector(
                                 onTap: () async {
-                                  await Navigator.push(context, SlideLeftRoute(page: ItemDetails()));
+                                  await Navigator.push(context, SlideLeftRoute(page: ItemDetails(itemModel: marketClass.listOfItems.value[index],)));
                                 },
                                 child: ItemCard(itemModel: marketClass.listOfItems.value[index],)
                               );

@@ -18,7 +18,12 @@ class _SubPagesAppBarState extends State<SubPagesAppBar> {
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 10,
-      title: Text(widget.title),
+      title: Text(
+        widget.title,
+        style: TextStyle(
+          fontWeight: FontWeight.bold
+        ),
+      ),
       leading: GestureDetector(
         onTap: widget.onTap,
         child: Container(
