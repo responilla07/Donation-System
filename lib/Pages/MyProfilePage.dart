@@ -103,44 +103,43 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 padding: EdgeInsets.all(15),
                 children: [
-                  FlatButton(
-                    color: redSecondaryColor,
-                    onPressed: (){},
-                    child: Container(    
-                      // decoration: BoxDecoration(
-                      //   image: new DecorationImage(
-                      //     image: new AssetImage('assets/ProfilePlaceHolder.png'),
-                      //     fit: BoxFit.cover,
-                      //   ),
-                      // ),                      
-                      height: double.infinity,
-                      child: Center(child: Text('Press Me!'))
-                    ),
-                  ),
-                  FlatButton(
-                    color: redSecondaryColor,
-                    onPressed: (){},
-                    child: Container(
-                      height: 40,
-                      child: Center(child: Text('Press Me!'))
-                    ),
-                  ),
-                  FlatButton(
-                    color: redSecondaryColor,
-                    onPressed: (){},
-                    child: Container(
-                      height: 40,
-                      child: Center(child: Text('Press Me!'))
-                    ),
-                  ),
-                  FlatButton(
-                    color: redSecondaryColor,
-                    onPressed: (){},
-                    child: Container(
-                      height: 40,
-                      child: Center(child: Text('Press Me!'))
-                    ),
-                  ),
+                  ConstrainedBox(
+                  constraints: BoxConstraints.expand(),
+                  child: FlatButton(
+                          onPressed: null,
+                          padding: EdgeInsets.all(0.0),
+                          child: Image.asset('assets/buttons/myCharity.png'))),
+                  ConstrainedBox(
+                  constraints: BoxConstraints.expand(),
+                  child: FlatButton(
+                          onPressed: null,
+                          padding: EdgeInsets.all(0.0),
+                          child: Image.asset('assets/buttons/myWishList.png'))),
+                  ConstrainedBox(
+                  constraints: BoxConstraints.expand(),
+                  child: FlatButton(
+                          onPressed: null,
+                          padding: EdgeInsets.all(0.0),
+                          child: Image.asset('assets/buttons/myOrder.png'))),
+                  ConstrainedBox(
+                  constraints: BoxConstraints.expand(),
+                  child: FlatButton(
+                          onPressed: null,
+                          padding: EdgeInsets.all(0.0),
+                          child: Image.asset('assets/buttons/myItems.png'))),
+                  ConstrainedBox(
+                  constraints: BoxConstraints.expand(),
+                  child: FlatButton(
+                          onPressed: null,
+                          padding: EdgeInsets.all(0.0),
+                          child: Image.asset('assets/buttons/chatIcon.png'))),  
+                  ConstrainedBox(
+                  constraints: BoxConstraints.expand(),
+                  child: FlatButton(
+                          onPressed: null,
+                          padding: EdgeInsets.all(0.0),
+                          child: Image.asset('assets/buttons/TrackOrder.png'))),                            
+                  
                 ],
               ),
             ),
