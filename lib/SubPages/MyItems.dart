@@ -106,7 +106,7 @@ class _MyItemsState extends State<MyItems> {
       appBar: PreferredSize( 
         preferredSize: Size.fromHeight(45.0),
         child: SubPagesAppBar(
-          title: "My Item ",
+          title: "My Item's",
           onTap: () {
             Navigator.pop(context);
           },

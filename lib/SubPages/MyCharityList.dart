@@ -103,7 +103,7 @@ class _MyCharityListState extends State<MyCharityList> {
       appBar: PreferredSize( 
         preferredSize: Size.fromHeight(45.0),
         child: SubPagesAppBar(
-          title: "My Charity",
+          title: "My Charities",
           onTap: () {
             Navigator.pop(context);
           },
