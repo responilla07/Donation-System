@@ -92,7 +92,7 @@ class _DatePickersState extends State<DatePickers> {
               }, currentTime: DateTime.now(), locale: LocaleType.en);
             },
             child: Container(
-              height: 60.0,
+              height: 40.0,
               //width: double.infinity,
               child: Container(
                 decoration: BoxDecoration(

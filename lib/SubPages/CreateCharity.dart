@@ -1,7 +1,8 @@
-import 'package:donation_system/Classes/AddItemClass.dart';
-import 'package:donation_system/Widgets/AddItemPicture.dart';
-import 'package:donation_system/Widgets/AddItemTextField.dart';
+
+import 'package:donation_system/Classes/createCharityClass.dart';
 import 'package:donation_system/Widgets/Button.dart';
+import 'package:donation_system/Widgets/CreateCharityAddPicture.dart';
+import 'package:donation_system/Widgets/CreateCharityTextField.dart';
 import 'package:donation_system/Widgets/ProcessIndicator.dart';
 import 'package:donation_system/Widgets/SubPagesAppBar.dart';
 import 'package:flutter/material.dart';
@@ -13,66 +14,69 @@ class CreateCharity extends StatefulWidget {
 }
 
 class _CreateCharityState extends State<CreateCharity> {
-  AddItemClass addItemClass = AddItemClass();
+  CreateCharityClass createCharityClass1 = CreateCharityClass();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-       appBar: PreferredSize( 
-        preferredSize: Size.fromHeight(45.0),
-        child: SubPagesAppBar(
-          title: "Add Item ",
-          onTap: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
-      body: Center(
-        child: Stack(
-          children: [
-            ListView(
-              children: <Widget>[
-                
-                AddItemPicture(
-                  button: CustomRaisedButton(
-                    title: "Add Photo", 
-                    onTap: () async {
-                      if(addItemClass.imageUrl.length != 3){
-                        String temp = await addItemClass.getPhoto();
-                        setState(()  {
-                          addItemClass.imageUrl.add(temp);
-                        });
-                      }
-                    }
-                  ), 
-                  addItemClass: addItemClass
-                ),
-
-                AddItemTextField(
+        return Scaffold(
+           appBar: PreferredSize( 
+            preferredSize: Size.fromHeight(45.0),
+            child: SubPagesAppBar(
+              title: "Add Item ",
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+          ),
+          body: Center(
+            child: Stack(
+              children: [
+                ListView(
+                  children: <Widget>[
+                    
+                    CreateCharityPicture(
+                      createCharityClass: createCharityClass1,
+                      button: CustomRaisedButton(
+                        title: "Add Photo", 
+                        onTap: () async {
+                          if(createCharityClass1.imageUrl.length != 3){
+                            String temp = await createCharityClass1.getPhoto();
+                            setState(()  {
+                              createCharityClass1.imageUrl.add(temp);
+                            });
+                          }
+                        }
+                      ), 
+                      
+                    ),
+    
+                    CreateCharityTextField(
+                      createCharityClass: createCharityClass1,
                   button:  CustomRaisedButton(
                     title: "Submit", 
                     onTap: (){
-                      setState(() { addItemClass.isProcessing = true; });
-                      if(addItemClass.validate('fields')){
-                        addItemClass.addItem(context).then((success){
+                      setState(() { createCharityClass1.isProcessing = true; });
+                      if(createCharityClass1.validate('fields')){
+                        createCharityClass1.addItem(context).then((success){
                           if (success) {
                             Navigator.pop(context);
                           }
-                          setState(() { addItemClass.isProcessing = false; });
+                          setState(() { createCharityClass1.isProcessing = false; });
                         });
+                        Toast.show("wprds", context, duration: 3, gravity: Toast.BOTTOM);
                       }
                       else{
-                        Toast.show( addItemClass.validate('message'), context, duration: 3, gravity: Toast.BOTTOM);
-                        setState(() { addItemClass.isProcessing = false; });
+                        Toast.show( createCharityClass1.validate('message'), context, duration: 3, gravity: Toast.BOTTOM);
+                        setState(() { createCharityClass1.isProcessing = false; });
                       }
                     }
                   ),
-                  addItemClass: addItemClass, 
+                  
                 ),
 
               ],
             ),
-            addItemClass.isProcessing ? ProcessIndicator() : Container()
+            createCharityClass1.isProcessing ? ProcessIndicator() : Container()
           ],
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
