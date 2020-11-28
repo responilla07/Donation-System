@@ -25,6 +25,7 @@ class OrdersModel {
   String itemID;
   String status;
   String id;
+  String buyerId;
 
   int price,
     totalPrice,
@@ -34,6 +35,7 @@ class OrdersModel {
 
   OrdersModel(String id, Map<dynamic, dynamic> data) {
     this.id = id ?? '';
+    this.buyerId = data['buyerId'];
     this.fullname = data['fullname'] ?? '';
     this.email = data['email'] ?? '';
     this.phone = data['phone'] ?? '';
@@ -66,6 +68,7 @@ class OrdersModel {
   Map<String, dynamic> createOrder() {
     return {
       'fullname' : this.fullname,
+      'buyerId' : this.buyerId,
       'email' : this.email,
       'phone' : this.phone,
       'address1' : this.address1,

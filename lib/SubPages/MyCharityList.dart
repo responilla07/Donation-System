@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:donation_system/Classes/MyCharityClass.dart';
 import 'package:donation_system/Models/CharityModel.dart';
+import 'package:donation_system/SubPages/CreateCharity.dart';
 import 'package:donation_system/Variables/color.dart';
 import 'package:donation_system/Widgets/CharityItemCard.dart';
 import 'package:donation_system/Widgets/LoaderForPagination.dart';
@@ -120,7 +121,9 @@ class _MyCharityListState extends State<MyCharityList> {
             color: white,
             size: 30,
           ), 
-          onPressed: null
+          onPressed: (){
+            Navigator.push(context, SlideLeftRoute(page: CreateCharity()));
+          }
         ),
       ),
       body: Center(

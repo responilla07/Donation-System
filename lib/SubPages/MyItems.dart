@@ -112,14 +112,21 @@ class _MyItemsState extends State<MyItems> {
           },
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          Navigator.push(context, SlideLeftRoute(page: AddItem()));
-        },
-        child:  Icon(
-          Icons.add,
-          color: Colors.white,
-          size: 36.0,
+      floatingActionButton: Container(
+        height: 50, width: 50,
+        decoration: BoxDecoration(
+          color: redSecondaryColor,
+          borderRadius: BorderRadius.all(Radius.circular(100))
+        ),
+        child: IconButton(
+          icon: Icon(
+            Icons.add,
+            color: white,
+            size: 30,
+          ), 
+          onPressed: (){
+            Navigator.push(context, SlideLeftRoute(page: AddItem()));
+          }
         ),
       ),
       backgroundColor: Colors.transparent,
@@ -200,50 +207,57 @@ class _MyItemsState extends State<MyItems> {
                       child: ListView.builder(
                         itemBuilder: (context, position){
                           return GestureDetector(
-                            onTap: (){
-                            
+                            onTap: () async {
+                              await Navigator.push(context, SlideLeftRoute(page: ItemDetails(itemModel: marketClass.listOfItems.value[position],)));
                             },
                             child: Card(
                               elevation: 8.0,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
-                              child: Column(
-                                children: [
+                              child: Container(
+                                height: 150,
+                                child: Column(
+                                  children: [
 
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: Container(
-                                          height: 100,
-                                          child: Image.network(
-                                            marketClass.listOfItems.value[position].itemPhoto[0]
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: Container(
+                                            height: 150,
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(10),
+                                              image: DecorationImage(
+                                                image: NetworkImage(
+                                                  marketClass.listOfItems.value[position].itemPhoto[0]
+                                                ),
+                                                fit: BoxFit.cover
+                                              )
+                                            )
                                           ),
                                         ),
-                                      ),
-                                      Expanded(
-                                        child: Column(
-                                          children: [
-                                            Text(
-                                              "Name: "+ marketClass.listOfItems.value[position].name,
-                                            ),
-                                            Text(
-                                             "Price: "+ "P "+ marketClass.listOfItems.value[position].price.toString(),
-                                            ),
-                                            Text(
-                                              "Discount: "+"P " +marketClass.listOfItems.value[position].discounted.toString(),
-                                            ),
-                                            Text(
-                                              "Revieer: "+marketClass.listOfItems.value[position].ratings.toString()
-                                            ),
-                                          ],
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  
-
-                                ],
+                                        Expanded(
+                                          child: Column(
+                                            children: [
+                                              Text(
+                                                "Name: "+ marketClass.listOfItems.value[position].name,
+                                              ),
+                                              Text(
+                                               "Price: "+ "P "+ marketClass.listOfItems.value[position].price.toString(),
+                                              ),
+                                              Text(
+                                                "Discount: "+"P " +marketClass.listOfItems.value[position].discounted.toString(),
+                                              ),
+                                              Text(
+                                                "Revieer: "+marketClass.listOfItems.value[position].ratings.toString()
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           );

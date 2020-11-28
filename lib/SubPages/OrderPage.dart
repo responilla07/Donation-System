@@ -98,7 +98,7 @@ class _OrderPageState extends State<OrderPage> {
                           MyTextField(
                             controller: orderClass.email, 
                             hintText: 'email*', 
-                            inputFormatter: [FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9.a-zA-Z0-9.!#\$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]")) ],	 
+                            inputFormatter: null,	 
                             keyboardType: null,
                             color: redSecondaryColor,
                           ),
