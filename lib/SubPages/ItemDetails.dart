@@ -51,6 +51,9 @@ class _ItemDetailsState extends State<ItemDetails> with SingleTickerProviderStat
     }
     super.initState();
   }
+
+  bool isheart = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,79 +101,105 @@ class _ItemDetailsState extends State<ItemDetails> with SingleTickerProviderStat
 
   Column itemDetails() {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Text(
-          widget.itemModel.name,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 18
-          ),
-        ),
-        Text(
-          "₱ " + numberDecimalComma(widget.itemModel.price),
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: bluePrimaryColorDark,
-            fontSize: 18
-          ),
-        ),
-        SizedBox( height: 5, ),
-        Text(
-          widget.itemModel.location.state + ', ' + widget.itemModel.location.province,
-          style: TextStyle(
-            fontSize: 14,
-          ),
-        ),
-        widget.itemModel.location.street == '' ? Container() 
-        : Text(
-          widget.itemModel.location.street,
-          style: TextStyle(
-            fontSize: 14,
-          ),
-        ),
-        SizedBox( height: 10, ),
-        Text(
-          'Description',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 17,
-            color: redSecondaryColorDark
-          ),
-        ),
-        RichText(
-          textAlign: TextAlign.left,
-          text: TextSpan(children: <InlineSpan>[
-            TextSpan(
-              text: itemDescriptionDisplay,
-              style: TextStyle(
-                color: hexColor('393939'),
-                fontWeight: FontWeight.w400,
-                fontSize: 12,
-              )
-            ),
+        Container(
+          padding: EdgeInsets.fromLTRB(15,15,15,5),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                widget.itemModel.name,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18
+                ),
+              ),
+              Text(
+                "₱ " + numberDecimalComma(widget.itemModel.price),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: bluePrimaryColorDark,
+                  fontSize: 18
+                ),
+              ),
+              Row(
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: List.generate(5, (index) {
+                      num value = 3.5;
+                              return Icon(
+                                index < value ? Icons.star : Icons.star_border,
+                      );
+                    }),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left:15.0),
+                    child: Text('3.5',
+                      style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),
+                    ),
+                  ),              
+                ],
+              ),
+              SizedBox( height: 5, ),
+              Text(
+                widget.itemModel.location.state + ', ' + widget.itemModel.location.province,
+                style: TextStyle(
+                  fontSize: 14,
+                ),
+              ),
+              widget.itemModel.location.street == '' ? Container() 
+              : Text(
+                widget.itemModel.location.street,
+                style: TextStyle(
+                  fontSize: 14,
+                ),
+              ),
+              SizedBox( height: 10, ),
+              Text(
+                'Description',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 17,
+                  color: redSecondaryColorDark
+                ),
+              ),
+              RichText(
+                textAlign: TextAlign.left,
+                text: TextSpan(children: <InlineSpan>[
+                  TextSpan(
+                    text: itemDescriptionDisplay,
+                    style: TextStyle(
+                      color: hexColor('393939'),
+                      fontWeight: FontWeight.w400,
+                      fontSize: 12,
+                    )
+                  ),
 
-            isHidingClicker ? TextSpan(text: '') : TextSpan(
-              recognizer: new TapGestureRecognizer()..onTap = (){
-                setState(() {
-                  if (isSeeMore) {
-                    itemDescriptionDisplay = itemDescription.substring(0, itemDescription.runes.fold(5, (previousValue, element) => element * 3)) + "...";
-                    isSeeMore = false;
-                  } else {
-                    itemDescriptionDisplay = itemDescription;
-                    isSeeMore = true;
-                  }
-                });
-              },
-              text: !isSeeMore ? " See More" : " See Less",
-              style: TextStyle(
-                color: bluePrimaryColorDark.withOpacity(0.8),
-                fontSize: 14,
-                fontWeight: FontWeight.bold
-              )
-            ),
-          ]),
+                  isHidingClicker ? TextSpan(text: '') : TextSpan(
+                    recognizer: new TapGestureRecognizer()..onTap = (){
+                      setState(() {
+                        if (isSeeMore) {
+                          itemDescriptionDisplay = itemDescription.substring(0, itemDescription.runes.fold(5, (previousValue, element) => element * 3)) + "...";
+                          isSeeMore = false;
+                        } else {
+                          itemDescriptionDisplay = itemDescription;
+                          isSeeMore = true;
+                        }
+                      });
+                    },
+                    text: !isSeeMore ? " See More" : " See Less",
+                    style: TextStyle(
+                      color: bluePrimaryColorDark.withOpacity(0.8),
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold
+                    )
+                  ),
+                ]),
+              ),
+            ],
+          ),
         ),
       ],
     );
@@ -179,34 +208,43 @@ class _ItemDetailsState extends State<ItemDetails> with SingleTickerProviderStat
   Column charitableOrgDetails() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Text(
-          'Charitable Organization',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 17,
-            color: redSecondaryColorDark
-          ),
-        ),
-        Text(
-          charityModel.name,
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold
-          ),
-        ),
-        Text(
-          charityModel.location.state + ', ' + charityModel.location.province,
-          style: TextStyle(
-            fontSize: 14
-          ),
-        ),
-        charityModel.location.street == '' ? Container() 
-        : Text(
-          widget.itemModel.location.street,
-          style: TextStyle(
-            fontSize: 14,
+        Container(
+          padding: EdgeInsets.fromLTRB(15,0,15,0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                'Charitable Organization',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 17,
+                  color: redSecondaryColorDark
+                ),
+              ),
+              Text(
+                charityModel.name,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold
+                ),
+              ),
+              Text(
+                charityModel.location.state + ', ' + charityModel.location.province,
+                style: TextStyle(
+                  fontSize: 14
+                ),
+              ),
+              charityModel.location.street == '' ? Container() 
+              : Text(
+                widget.itemModel.location.street,
+                style: TextStyle(
+                  fontSize: 14,
+                ),
+              ),
+            ],
           ),
         ),
       ],
@@ -235,13 +273,15 @@ class _ItemDetailsState extends State<ItemDetails> with SingleTickerProviderStat
               child: Row(
                 children: [
                   Icon(
-                    CustomIcons.chat
+                    CustomIcons.chat,
+                    color: Colors.black,
                   ),
                   SizedBox(width: 10,),
                   Text(
                     "Chat",
                     style: TextStyle(
-                      fontWeight: FontWeight.bold
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white
                     ),
                   ),
                 ],
@@ -266,7 +306,8 @@ class _ItemDetailsState extends State<ItemDetails> with SingleTickerProviderStat
                   Text(
                     "Wishlist",
                     style: TextStyle(
-                      fontWeight: FontWeight.bold
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white
                     ),
                   ),
                 ],
@@ -286,13 +327,15 @@ class _ItemDetailsState extends State<ItemDetails> with SingleTickerProviderStat
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
-                      CustomIcons.charity_cart
+                      CustomIcons.charity_cart,
+                      color: Colors.black,
                     ),
                     SizedBox(width: 10,),
                     Text(
                       "Buy Now",
                       style: TextStyle(
-                        fontWeight: FontWeight.bold
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white
                       ),
                     ),
                   ],

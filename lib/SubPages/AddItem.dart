@@ -4,6 +4,7 @@ import 'package:donation_system/Widgets/AddItemTextField.dart';
 import 'package:donation_system/Widgets/Button.dart';
 import 'package:donation_system/Widgets/SubPagesAppBar.dart';
 import 'package:flutter/material.dart';
+import 'package:toast/toast.dart';
 
 class AddItem extends StatefulWidget {
   @override
@@ -48,9 +49,12 @@ class _AddItemState extends State<AddItem> {
               button:  CustomRaisedButton(
                 title: "Submit", 
                 onTap: (){
-                  // if(addItemClass.validate('fields')){
-
-                  // }
+                  if(addItemClass.validate('fields')){
+                    
+                  }
+                  else{
+                    Toast.show( addItemClass.validate('message'), context, duration: 3, gravity: Toast.BOTTOM);
+                  }
                 }
               ),
               addItemClass: addItemClass, 
