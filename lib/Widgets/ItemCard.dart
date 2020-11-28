@@ -62,7 +62,7 @@ class ItemCard extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text( 
-                  "₱ " + itemModel.price.toString(),
+                  "₱ " + numberDecimalComma(itemModel.price),
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
