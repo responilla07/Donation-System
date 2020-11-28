@@ -18,7 +18,7 @@ class _AddItemState extends State<AddItem> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: PreferredSize( //TODO Eto ang gamitin na app bar sa ibang sub pages
+       appBar: PreferredSize( 
         preferredSize: Size.fromHeight(45.0),
         child: SubPagesAppBar(
           title: "Add Item ",
