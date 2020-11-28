@@ -8,12 +8,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:toast/toast.dart';
 
 class EditProfileClass{
+  bool isProcessing = false;
 
   TextEditingController firstName = new TextEditingController(text: myUserDetails.value.name.forename);
   TextEditingController lastName = new TextEditingController(text: myUserDetails.value.name.surname);
   TextEditingController contacts = new TextEditingController(text: myUserDetails.value.contact);
-  TextEditingController confirmPassword = new TextEditingController(text: '');
-  TextEditingController password = new TextEditingController(text: '');
   String state = myUserDetails.value.location.state;
   String province = myUserDetails.value.location.province;
   TextEditingController street = new TextEditingController(text: myUserDetails.value.location.street);
@@ -107,4 +106,34 @@ class EditProfileClass{
     return dlref;
   }
 
+  TextEditingController oldPassword = new TextEditingController(text:'');
+  TextEditingController newPassword = new TextEditingController(text:'');
+  TextEditingController confirmpassword = new TextEditingController(text:'');
+
+  dynamic changePassword(String isFor){
+    bool success = false;
+    if(oldPassword.text.trim() != ''&&
+      newPassword.text.trim() != '' &&
+      confirmpassword.text.trim() != ''){
+      if( newPassword.text.length >= 6){
+        if(newPassword.text.trim() == confirmpassword.text.trim()){
+          loggedUser.updatePassword(newPassword.text.trim());
+          success = true;
+        }
+        else{
+          print(newPassword.text.trim());
+          print(confirmpassword.text.trim());
+          message = "New and Confirm Password do not match";  
+        }
+      }
+      else{
+        message = "New passworkd should be longer then 6 characters";
+      }
+    }
+    else{
+      message = "All fields are required";
+    }
+    return isFor == "fields" ? success : isFor == "message" ? message : "error";
+  }
+  
 }
