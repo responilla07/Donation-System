@@ -22,11 +22,11 @@ class CustomAppBar extends StatelessWidget {
           GestureDetector(
             onTap: () =>{showMenuAlert(context)},
             child: Container(
-              padding: EdgeInsets.all(3),
+              padding: EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: redSecondaryColor,
+                color: redSecondaryColorLight,
                 border: Border.all(
-                  color: redSecondaryColorLighter,
+                color: redSecondaryColorLight,
                 ),
                 borderRadius: BorderRadius.all(
                   Radius.circular(50),
@@ -35,6 +35,7 @@ class CustomAppBar extends StatelessWidget {
               child: Icon(
                 CustomIcons.menu,
                 color: Colors.white,
+                size: 18,
               ),
             ),
           ),
@@ -76,10 +77,23 @@ class CustomAppBar extends StatelessWidget {
                   await Navigator.pushReplacement(context, SlideLeftRoute(page: LoginPage()));
                 });
             },
-            child: Icon(
+            child:Container(
+              padding: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: redSecondaryColorLight,
+                border: Border.all(
+                  color: redSecondaryColorLight,
+                ),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(50),
+                ),
+              ),
+              child: Icon(
               CustomIcons.power_off,
-              color: redSecondaryColorLight,
+              color: Colors.white,
+              size: 18,
             ),
+            ), 
           ),
         ],
       ),
