@@ -143,6 +143,7 @@ class _AddItemTextFieldState extends State<AddItemTextField> {
               Navigator.push(context, SlideLeftRoute(page: ChartiablePicker())).then((value){
                 setState(() {
                   widget.addItemClass.charitable = value['name'];
+                  widget.addItemClass.benefitId = value['id'];
                 });
               });
             },
