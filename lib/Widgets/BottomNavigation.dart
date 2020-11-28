@@ -1,7 +1,10 @@
 
 import 'package:donation_system/Classes/BottomNavigationClass.dart';
 import 'package:donation_system/Presentation/custom_icons_icons.dart';
+import 'package:donation_system/SubPages/LoginPage.dart';
 import 'package:donation_system/Variables/color.dart';
+import 'package:donation_system/Variables/global.dart';
+import 'package:donation_system/transitions/slide_route.dart';
 import 'package:flutter/material.dart';
 
 
@@ -23,7 +26,13 @@ class _BottomNavigationState extends State<BottomNavigation> {
     return BottomAppBar(
       color: redSecondaryColor,
       child: TabBar(
-        onTap: (index) => navigation.onTapTabBar(index),
+        onTap: (index) async {
+          if (loggedUser == null && index == 3) {
+            await Navigator.pushReplacement(context, SlideLeftRoute(page: LoginPage()));
+          } else {
+            navigation.onTapTabBar(index);
+          }
+        },
         controller: widget.tabController,
         indicatorColor: Colors.white,
         labelColor: Colors.white,

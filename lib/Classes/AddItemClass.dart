@@ -22,26 +22,26 @@ class AddItemClass{
     return  pickedFile.path;
   }
 
-  String message
+  // String message
 
-  dynamic validate(String isFor){
-    bool isValid = false;
+  // dynamic validate(String isFor){
+  //   bool isValid = false;
 
-    if (email.text.trim() != '' && password.text.trim() != '' ) {
+  //   if (email.text.trim() != '' && password.text.trim() != '' ) {
       
-     if (emailRegExp.hasMatch(email.text.trim())) {
-          isValid = true;
+  //    if (emailRegExp.hasMatch(email.text.trim())) {
+  //         isValid = true;
         
-      }
-      else {
-        message = "Enter a valid email address.";
-      }
-    }
-    else {
-        message = "Fields are all required so please kindly check.";
-    }
-    return isFor == "fields" ? isValid : isFor == "message" ? message : "error";
-  }
+  //     }
+  //     else {
+  //       message = "Enter a valid email address.";
+  //     }
+  //   }
+  //   else {
+  //       message = "Fields are all required so please kindly check.";
+  //   }
+  //   return isFor == "fields" ? isValid : isFor == "message" ? message : "error";
+  // }
 }
 
 // void takePicture() async {

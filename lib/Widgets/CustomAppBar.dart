@@ -74,6 +74,7 @@ class CustomAppBar extends StatelessWidget {
           GestureDetector(
             onTap: () {
                 auth.signOut().then((value) async {
+                  loggedUser = null;
                   await Navigator.pushReplacement(context, SlideLeftRoute(page: LoginPage()));
                 });
             },
