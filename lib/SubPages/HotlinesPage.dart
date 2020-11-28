@@ -170,6 +170,73 @@ class _HotlinesPageState extends State<HotlinesPage> {
                   hotline:
                   '0917-847-5757  -  Text hotline',
                 ),
+                Divider(color: Colors.black,),
+                SizedBox(height: 10,),
+                Container(
+                  margin: EdgeInsets.all(5),
+                  child: Text(
+                    'Bureau of Fire Protection (BFP)',
+                    style: TextStyle(
+                      color: redSecondaryColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+                 HotlineNumbers(
+                  hotline:
+                  '(02) 8426-0219  -  Direct line',
+                ),
+                Divider(color: Colors.black,),
+                SizedBox(height: 10,),
+                Container(
+                  margin: EdgeInsets.all(5),
+                  child: Text(
+                    'Philippine Coast Guard',
+                    style: TextStyle(
+                      color: redSecondaryColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+                HotlineNumbers(
+                  hotline:
+                  '(02) 8527-8481  -  Hotline',
+                ),
+                HotlineNumbers(
+                  hotline:
+                  '(02) 8527-8482  -  Telefax',
+                ),
+                HotlineNumbers(
+                  hotline:
+                  '0918-967-4697  -  Text hotline',
+                ),
+                Divider(color: Colors.black,),
+                SizedBox(height: 10,),
+                Container(
+                  margin: EdgeInsets.all(5),
+                  child: Text(
+                    'Metro Manila Development Authority',
+                    style: TextStyle(
+                      color: redSecondaryColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+                 HotlineNumbers(
+                  hotline:
+                  '136  -  Hotline',
+                ),
+                HotlineNumbers(
+                  hotline:
+                  '(02) 8882-4151  -  Trunk line',
+                ),
+                HotlineNumbers(
+                  hotline:
+                  '0939-922-7161  -  Viber',
+                ),
               ],
             ),
           ),
