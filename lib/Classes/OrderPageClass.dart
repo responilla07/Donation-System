@@ -3,11 +3,15 @@ import 'package:donation_system/Formatter/number.dart';
 import 'package:donation_system/Models/ItemModel.dart';
 import 'package:donation_system/Models/OrdersModel.dart';
 import 'package:donation_system/Variables/color.dart';
+import 'package:donation_system/Variables/global.dart';
 import 'package:donation_system/Variables/size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
+import 'package:toast/toast.dart';
+import 'package:uuid/uuid.dart';
 
 class OrderPageClass {
+  bool isProcessing = false;
   String state = "State*";
   String province = "Province*";
   String countryValue;
@@ -27,6 +31,7 @@ class OrderPageClass {
 
   OrdersModel ordersModel = OrdersModel('', {});
   
+  String message = '';
   
   Card itemCard(BuildContext context, ItemModel itemModel) {
     return Card(
@@ -71,5 +76,70 @@ class OrderPageClass {
         ),
       ),
     );
+  }
+
+  dynamic checkFields(String isFor){
+    bool isValid = false;
+
+      if(fullname.text.trim() != '' && email.text.trim() != '' && phone.text.trim() != '' &&
+        address1.text.trim() != '' && address2.text.trim() != '' && state != '' && province != '' &&
+        postal.text.trim() != '' && countryValue != ''){
+        
+        if(paymentOption == "card" && cardController.text.trim() != "" && 
+        monthController.text.trim() != '' && yearController.text.trim() != ''){
+          isValid = true;
+        }
+        else if(paymentOption == "Cash on Delivery"){
+          isValid = true;
+        }
+        else{
+          message = "Please choose a payment method and fill up the fields required";
+        }
+
+      }
+      else{
+        message = "All Fields are required";
+      }
+    return isFor == "fields" ? isValid : isFor == "message" ? message : "error";
+  }
+
+  Future<bool> createOrder(BuildContext context, ItemModel itemModel) async{
+    bool success = false;
+    ordersModel.fullname = fullname.text.trim();
+    ordersModel.email = email.text.trim();
+    ordersModel.phone = phone.text.trim();
+    ordersModel.address1 = address1.text.trim();
+    ordersModel.address2 = address2.text.trim();
+    ordersModel.postal = postal.text.trim();
+    ordersModel.country = countryValue.toString();
+    ordersModel.state = state;
+    ordersModel.province = province;
+    
+    if(paymentOption == "card"){
+      ordersModel.cardNumber = cardController.text.trim().substring(0,12);
+      ordersModel.expMonth = monthController.text.trim();
+      ordersModel.expYear = yearController.text.trim();
+    }
+
+    ordersModel.itemID = itemModel.id;
+    ordersModel.status = "onGoing";
+    ordersModel.price = itemModel.price;
+    ordersModel.transactionFee = 20;
+    ordersModel.deliveryFee = 75;
+    ordersModel.totalPrice = itemModel.price + 20 + 75;
+    var uuid = Uuid();
+    var temp = uuid.v4();
+    try{
+      var userRef = db.collection("Orders").doc(temp);
+
+      await userRef.set(ordersModel.createOrder()).then((value) async { 
+        success = true;
+      });
+    }
+    catch (e){
+      Toast.show("Something went wrong happen.", context, duration: 4, gravity: Toast.BOTTOM);
+    }
+    
+    return success;
   }
 }

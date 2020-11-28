@@ -60,7 +60,7 @@ class OrdersModel {
     this.price = data['price'] ?? 0;
     this.totalPrice = data['totalPrice'] ?? 0;
     this.transactionFee = data['transactionFee'] ?? 20;
-    this.deliveryFee = data['deliveryFee'] ?? 85;
+    this.deliveryFee = data['deliveryFee'] ?? 75;
   }
 
   Map<String, dynamic> createOrder() {

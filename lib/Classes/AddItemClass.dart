@@ -60,9 +60,6 @@ class AddItemClass{
   Future<bool> addItem(BuildContext context) async{
     bool isRegistered = false;
     var uuid = Uuid();
-
-    
-
     itemModel.ownerID = myUserDetails.value.id;
     itemModel.name = itemName.text.trim();
     itemModel.price = int.parse(price.text.trim());
@@ -104,7 +101,7 @@ class AddItemClass{
       });
     }
     catch (e){
-      
+      Toast.show("Something went wrong happen.", context, duration: 4, gravity: Toast.BOTTOM);
     }
       
     return isRegistered;

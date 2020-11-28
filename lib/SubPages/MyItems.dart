@@ -201,7 +201,7 @@ class _MyItemsState extends State<MyItems> {
                         itemBuilder: (context, position){
                           return GestureDetector(
                             onTap: (){
-                              Navigator.of(context).pop({'name' : marketClass.listOfItems.value[position].name, 'id' :marketClass.listOfItems.value[position].id });
+                            
                             },
                             child: Card(
                               elevation: 8.0,
@@ -209,16 +209,39 @@ class _MyItemsState extends State<MyItems> {
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
                               child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
 
-                                  Container(
-                                    height: 200,
-                                    width: 150,
-                                    child: Image.network(
-                                      marketClass.listOfItems.value[position].itemPhoto[0]
-                                    ),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Container(
+                                          height: 100,
+                                          child: Image.network(
+                                            marketClass.listOfItems.value[position].itemPhoto[0]
+                                          ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Column(
+                                          children: [
+                                            Text(
+                                              "Name: "+ marketClass.listOfItems.value[position].name,
+                                            ),
+                                            Text(
+                                             "Price: "+ "P "+ marketClass.listOfItems.value[position].price.toString(),
+                                            ),
+                                            Text(
+                                              "Discount: "+"P " +marketClass.listOfItems.value[position].discounted.toString(),
+                                            ),
+                                            Text(
+                                              "Revieer: "+marketClass.listOfItems.value[position].ratings.toString()
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    ],
                                   ),
+                                  
 
                                 ],
                               ),
