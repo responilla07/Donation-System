@@ -6,6 +6,7 @@ import 'package:donation_system/Widgets/ProvincePicker.dart';
 import 'package:donation_system/Widgets/TextField.dart';
 import 'package:donation_system/transitions/slide_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class AddItemTextField extends StatefulWidget {
   const AddItemTextField({
@@ -30,28 +31,28 @@ class _AddItemTextFieldState extends State<AddItemTextField> {
           MyTextField(
             controller: widget.addItemClass.itemName, 
             hintText: "Item Name", 
-            inputFormatter: null, 
+            inputFormatter: [FilteringTextInputFormatter.allow(RegExp("[a-zA-Z\-' ]")) ],
             keyboardType: null
           ),
           SizedBox(height: 15,),
           MyTextField(
             controller: widget.addItemClass.price, 
             hintText: "Price", 
-            inputFormatter: null, 
+            inputFormatter: [FilteringTextInputFormatter.allow(RegExp("[0-9]")) ],
             keyboardType: null
           ),
           SizedBox(height: 15,),
           MyTextField(
             controller: widget.addItemClass.discount, 
             hintText: "Discount", 
-            inputFormatter: null, 
+            inputFormatter: [FilteringTextInputFormatter.allow(RegExp("[0-9]")) ],
             keyboardType: null
           ),
           SizedBox(height: 15,),
           MyTextField(
             controller: widget.addItemClass.stock, 
             hintText: "Stock", 
-            inputFormatter: null, 
+            inputFormatter: [FilteringTextInputFormatter.allow(RegExp("[0-9]")) ],
             keyboardType: null
           ),
           SizedBox(height: 15,),
@@ -134,7 +135,7 @@ class _AddItemTextFieldState extends State<AddItemTextField> {
         MyTextField(
           controller: widget.addItemClass.street, 
           hintText: "Street", 
-          inputFormatter: null, 
+          inputFormatter: [FilteringTextInputFormatter.allow(RegExp("[a-zA-Z&@&/,.0-9\-\(\)\+]")) ], 
           keyboardType: null
         ),
         SizedBox(height: 15,),

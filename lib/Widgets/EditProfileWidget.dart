@@ -5,6 +5,7 @@ import 'package:donation_system/Widgets/TextField.dart';
 import 'package:donation_system/transitions/slide_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'ProvincePicker.dart';
 
@@ -33,21 +34,21 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
           MyTextField(
             controller: widget.editProfileClass.firstName, 
             hintText: 'First Name', 
-            inputFormatter: null, 
+            inputFormatter: [FilteringTextInputFormatter.allow(RegExp("[a-zA-Z\-' ]")) ],
             keyboardType: null
           ),
           SizedBox(height: 15),
           MyTextField(
             controller: widget.editProfileClass.lastName, 
             hintText: 'Last Name', 
-            inputFormatter: null, 
+            inputFormatter: [FilteringTextInputFormatter.allow(RegExp("[a-zA-Z\-' ]")) ],
             keyboardType: null
           ),
           SizedBox(height: 15),
           MyTextField(
             controller: widget.editProfileClass.contacts, 
             hintText: 'Contact Number', 
-            inputFormatter: null, 
+             inputFormatter: [FilteringTextInputFormatter.allow(RegExp("[0-9\-\(\)\+]")) ],	 
             keyboardType: null
           ),
           SizedBox(height: 15),
@@ -129,7 +130,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
           MyTextField(
             controller: widget.editProfileClass.street, 
             hintText: 'Street', 
-            inputFormatter: null, 
+            inputFormatter: [FilteringTextInputFormatter.allow(RegExp("[a-zA-Z&@&/,.0-9\-\(\)\+]")) ], 
             keyboardType: null
           ),
           SizedBox(height: 15),
