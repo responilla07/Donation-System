@@ -77,7 +77,7 @@ class CustomAppBar extends StatelessWidget {
                 });
             },
             child: Icon(
-              CustomIcons.next,
+              CustomIcons.power_off,
               color: redSecondaryColorLight,
             ),
           ),

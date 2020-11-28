@@ -53,6 +53,8 @@ class CustomIcons {
   static const IconData menu = IconData(0xe815, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData charity_socialcare = IconData(0xe816, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData wishlist = IconData(0xe817, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData charitylist = IconData(0xe818, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData power_off = IconData(0xf011, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData hand_holding_heart = IconData(0xf4be, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData store = IconData(0xf54e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

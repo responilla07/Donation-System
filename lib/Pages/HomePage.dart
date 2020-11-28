@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [ // TODO IVAN dito ka nalang maglalagay ng code mo sa column na ito
+                            children: [ 
                               position == 0 ? cardNewsPhoto() : Container(
                                 child: Column(                                  
                                   children: [

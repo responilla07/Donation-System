@@ -29,8 +29,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
         labelColor: Colors.white,
         unselectedLabelColor: Colors.white,
         tabs: [ 
-          Tab(child: Icon( CustomIcons.charity_socialcare)), 
-          Tab(child: Icon( CustomIcons.market)), 
+          Tab(child: Icon( CustomIcons.charitylist,size: 25,)), 
+          Tab(child: Icon( CustomIcons.market,size: 25)), 
           Tab(child: Icon( CustomIcons.charity_home )),
           Tab(child: Icon( CustomIcons.profile_outlined )),
         ],
