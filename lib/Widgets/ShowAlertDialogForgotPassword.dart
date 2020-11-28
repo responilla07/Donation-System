@@ -1,10 +1,23 @@
 import 'package:donation_system/Variables/color.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:donation_system/Variables/global.dart';
+
 
 
 import 'TextField.dart';
 
+Future<void> resetPassword(String email) async {
+        // await _firebaseAuth.sendPasswordResetEmail(email: email);
+}
+
+ 
+
+
+
 Future showAlertForgotPassword(BuildContext context) {
+  String email = "";
+  final myController = TextEditingController();
   return showDialog(
     context: context,
     builder: (BuildContext context){
@@ -25,7 +38,7 @@ Future showAlertForgotPassword(BuildContext context) {
               Text("you a password reset link",style: TextStyle(fontSize: 14),),
               SizedBox(height: 20,),
               MyTextField(
-                controller: null,
+                controller: myController,
                 hintText: "Email",
                 keyboardType: null,
                 inputFormatter: [],
@@ -47,7 +60,9 @@ Future showAlertForgotPassword(BuildContext context) {
                     ),
                   ),
                   FlatButton(
-                    onPressed: (){}, 
+                    onPressed: (){
+                      auth.sendPasswordResetEmail(email: myController.text);
+                    }, //TODO PILI CAtcher
                     child: Text(
                       'Submit',
                       style: TextStyle(
