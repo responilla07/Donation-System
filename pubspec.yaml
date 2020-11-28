@@ -42,6 +42,7 @@ flutter:
   assets:
     - assets/
     - assets/placeholders/
+    - assets/buttons/
   # example:
   fonts:
     - family: Nunito
