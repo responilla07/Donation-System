@@ -145,7 +145,7 @@ class _CharityPageState extends State<CharityPage> {
                   padding: EdgeInsets.only(top: 10),
                   child: GestureDetector(
                     onTap: () async {
-                      await Navigator.push(context, SlideLeftRoute(page: CharityDetailsPage()));
+                      await Navigator.push(context, SlideLeftRoute(page: CharityDetailsPage(charityModel: charityPageClass.listOfCharity.value[index],)));
                     },
                     child: CharityItemCard(charityModel: charityPageClass.listOfCharity.value[index],)
                   )
