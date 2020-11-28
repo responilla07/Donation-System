@@ -34,7 +34,7 @@ class _AddItemState extends State<AddItem> {
               button: CustomRaisedButton(
                 title: "Add Photo", 
                 onTap: () async {
-                  if(addItemClass.imageUrl.length != 3){
+                  if(addItemClass.imageUrl.length != 1){
                     String temp = await addItemClass.getPhoto();
                     setState(()  {
                       addItemClass.imageUrl.add(temp);
@@ -50,7 +50,11 @@ class _AddItemState extends State<AddItem> {
                 title: "Submit", 
                 onTap: (){
                   if(addItemClass.validate('fields')){
-                    
+                    addItemClass.addItem(context).then((success){
+                      if (success) {
+                        Navigator.pop(context);
+                      }
+                    });
                   }
                   else{
                     Toast.show( addItemClass.validate('message'), context, duration: 3, gravity: Toast.BOTTOM);

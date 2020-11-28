@@ -5,7 +5,6 @@ import 'package:donation_system/Classes/CharitablePickerClass.dart';
 import 'package:donation_system/Models/CharityModel.dart';
 import 'package:donation_system/Models/ItemModel.dart';
 import 'package:donation_system/Variables/color.dart';
-import 'package:donation_system/Widgets/LoaderForPagination.dart';
 import 'package:donation_system/Widgets/SubPagesAppBar.dart';
 import 'package:flutter/material.dart';
 
@@ -194,7 +193,7 @@ class _ChartiablePickerState extends State<ChartiablePicker> {
                         itemBuilder: (context, position){
                           return GestureDetector(
                             onTap: (){
-                              Navigator.of(context).pop({'name' : charitableClass.listofCharity.value[position].name});
+                              Navigator.of(context).pop({'name' : charitableClass.listofCharity.value[position].name, 'id' :charitableClass.listofCharity.value[position].id });
                             },
                             child: Column(
                               children: <Widget>[
