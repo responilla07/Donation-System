@@ -1,6 +1,6 @@
-import 'package:donation_system/Pages/EditProfile.dart';
+import 'package:donation_system/SubPages/AddItem.dart';
+import 'package:donation_system/SubPages/EditProfile.dart';
 import 'package:donation_system/Presentation/custom_icons_icons.dart';
-
 import 'package:donation_system/Variables/color.dart';
 import 'package:donation_system/Widgets/ProfileDetails.dart';
 import 'package:donation_system/transitions/slide_route.dart';
@@ -136,7 +136,9 @@ class _ProfilePageState extends State<ProfilePage> {
                   ConstrainedBox(
                   constraints: BoxConstraints.expand(),
                   child: FlatButton(
-                          onPressed: null,
+                          onPressed: (){
+                            Navigator.push(context, SlideLeftRoute(page: AddItem()));
+                          },
                           padding: EdgeInsets.all(0.0),
                           child: Image.asset('assets/buttons/TrackOrder.png'))),                            
                   
@@ -150,5 +152,7 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 }
+
+
 
 
