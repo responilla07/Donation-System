@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:donation_system/SubPages/NewsDetails.dart';
 import 'package:donation_system/Variables/color.dart';
+import 'package:donation_system/Widgets/CacheNetworkImagePlaceholder.dart';
 import 'package:donation_system/Widgets/SubPagesAppBar.dart';
 import 'package:donation_system/transitions/slide_route.dart';
 import 'package:flutter/material.dart';
@@ -88,15 +89,7 @@ class CardNews extends StatelessWidget {
                       '$imageurl',
                   fit: BoxFit.cover,
                   placeholder: (context, value) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                                redSecondaryColor)),
-                      ],
-                    );
+                    return CacheNetworkImagePlaceholder();
                   },
                 ),
               ),

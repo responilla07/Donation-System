@@ -3,6 +3,7 @@ import 'package:donation_system/SubPages/HotlinesPage.dart';
 import 'package:donation_system/SubPages/NewsDetails.dart';
 import 'package:donation_system/SubPages/NewsPage.dart';
 import 'package:donation_system/Variables/color.dart';
+import 'package:donation_system/Widgets/CacheNetworkImagePlaceholder.dart';
 import 'package:donation_system/Widgets/CarouselBanner.dart';
 import 'package:donation_system/transitions/slide_route.dart';
 import 'package:flutter/gestures.dart';
@@ -203,13 +204,7 @@ class _HomePageState extends State<HomePage> {
             imageUrl: 'https://sa.kapamilya.com/absnews/abscbnnews/media/2020/tvpatrol/11/25/vaccine.jpg',
             fit: BoxFit.cover,
             placeholder: (context, value){
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(redSecondaryColor)),
-                ],
-              );
+              return CacheNetworkImagePlaceholder();
             },
           ),
         ),

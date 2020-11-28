@@ -1,23 +1,24 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:donation_system/Classes/CharityPageClass.dart';
+import 'package:donation_system/Classes/MyCharityClass.dart';
 import 'package:donation_system/Models/CharityModel.dart';
-import 'package:donation_system/SubPages/CharityDetails.dart';
 import 'package:donation_system/Variables/color.dart';
-import 'package:donation_system/Widgets/LoaderForPagination.dart';
 import 'package:donation_system/Widgets/CharityItemCard.dart';
+import 'package:donation_system/Widgets/LoaderForPagination.dart';
+import 'package:donation_system/Widgets/SubPagesAppBar.dart';
 import 'package:donation_system/transitions/slide_route.dart';
 import 'package:flutter/material.dart';
 
-class CharityPage extends StatefulWidget {
+import 'CharityDetails.dart';
+
+class MyCharityList extends StatefulWidget {
   @override
-  _CharityPageState createState() => _CharityPageState();
+  _MyCharityListState createState() => _MyCharityListState();
 }
 
-ValueNotifier<Map<String, CharityModel>> _valueNotifierOfCharityModel = ValueNotifier<Map<String, CharityModel>>(Map<String, CharityModel>());
-class _CharityPageState extends State<CharityPage> {
-  CharityPageClass charityPageClass = CharityPageClass();
+class _MyCharityListState extends State<MyCharityList> {
+  MyCharityListClass charityPageClass = MyCharityListClass();
   StreamSubscription<QuerySnapshot> subsOfMyOrders;
 
   notifier() {  }
@@ -42,8 +43,8 @@ class _CharityPageState extends State<CharityPage> {
             int index = charityPageClass.findeCharityPosition(doc.doc.id);
             CharityModel charityModel = CharityModel(doc.doc.id, doc.doc.data());
 
-            if (charityPageClass.listOfCharity.value[index].id == charityModel.id) {
-              charityPageClass.listOfCharity.value[index] = charityModel;
+            if (charityPageClass.myListOfCharity.value[index].id == charityModel.id) {
+              charityPageClass.myListOfCharity.value[index] = charityModel;
             }
             if(!charityPageClass.isDispose.value){
               setState(() {});
@@ -51,8 +52,8 @@ class _CharityPageState extends State<CharityPage> {
           }else if(doc.type == DocumentChangeType.removed) {
             int index = charityPageClass.findeCharityPosition(doc.doc.id);
             CharityModel charityModel = CharityModel(doc.doc.id, doc.doc.data());
-            if (charityPageClass.listOfCharity.value[index].id == charityModel.id) {
-              charityPageClass.listOfCharity.value.removeAt(index);
+            if (charityPageClass.myListOfCharity.value[index].id == charityModel.id) {
+              charityPageClass.myListOfCharity.value.removeAt(index);
             }
             if(!charityPageClass.isDispose.value){
               setState(() {});
@@ -73,8 +74,7 @@ class _CharityPageState extends State<CharityPage> {
     charityPageClass.isPullUp.addListener(notifier);
     charityPageClass.isDispose.addListener(notifier);
     charityPageClass.isFetching.addListener(notifier);
-    _valueNotifierOfCharityModel.addListener((){setState(() {});});
-    charityPageClass.listOfCharity.addListener((){setState(() {});});
+    charityPageClass.myListOfCharity.addListener((){setState(() {});});
     charityPageClass.scrollController.addListener(scrollNotifier);
     startSnapshot();
     super.initState();
@@ -90,8 +90,7 @@ class _CharityPageState extends State<CharityPage> {
     charityPageClass.isPullUp.removeListener(() { });
     charityPageClass.isDispose.removeListener(() { });
     charityPageClass.isFetching.removeListener(() { });
-    _valueNotifierOfCharityModel.removeListener(() { });
-    charityPageClass.listOfCharity.removeListener(() { });
+    charityPageClass.myListOfCharity.removeListener(() { });
     charityPageClass.scrollController.removeListener(() { });
     
     super.dispose();
@@ -100,12 +99,34 @@ class _CharityPageState extends State<CharityPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      appBar: PreferredSize( 
+        preferredSize: Size.fromHeight(45.0),
+        child: SubPagesAppBar(
+          title: "My Charity",
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      floatingActionButton: Container(
+        height: 50, width: 50,
+        decoration: BoxDecoration(
+          color: redSecondaryColor,
+          borderRadius: BorderRadius.all(Radius.circular(100))
+        ),
+        child: IconButton(
+          icon: Icon(
+            Icons.add,
+            color: white,
+            size: 30,
+          ), 
+          onPressed: null
+        ),
+      ),
       body: Center(
         child: FutureBuilder(
           future: charityPageClass.getDataFromFirestore(charityPageClass.controllerOfSearch.text.toLowerCase()),
           builder: (context, snapshot) {
-            
             if (snapshot.connectionState == ConnectionState.waiting){
               if (charityPageClass.isFetching.value) {
                 return Column(
@@ -126,16 +147,15 @@ class _CharityPageState extends State<CharityPage> {
                 );
               }
             }
-
             if (snapshot.connectionState == ConnectionState.done ){ charityPageClass.isFetching.value = false; }
 
-            return charityPageClass.listOfCharity.value.length != 0 ? new ListView.builder(
+            return charityPageClass.myListOfCharity.value.length != 0 ? new ListView.builder(
               padding: EdgeInsets.fromLTRB(15, 5, 15, 15),
-              itemCount: charityPageClass.listOfCharity.value.length + 1,
+              itemCount: charityPageClass.myListOfCharity.value.length + 1,
               primary: false,
               controller: charityPageClass.scrollController,
               itemBuilder: (context, index) {
-                return (index == (charityPageClass.listOfCharity.value.length))
+                return (index == (charityPageClass.myListOfCharity.value.length))
                 ? LoaderForPagination(
                   isPullUp: charityPageClass.isPullUp.value,
                   loaderHeight: 40,
@@ -145,9 +165,9 @@ class _CharityPageState extends State<CharityPage> {
                   padding: EdgeInsets.only(top: 10),
                   child: GestureDetector(
                     onTap: () async {
-                      await Navigator.push(context, SlideLeftRoute(page: CharityDetailsPage()));
+                      await Navigator.push(context, SlideLeftRoute(page: CharityDetailsPage(charityModel: charityPageClass.myListOfCharity.value[index])));
                     },
-                    child: CharityItemCard(charityModel: charityPageClass.listOfCharity.value[index],)
+                    child: CharityItemCard(charityModel: charityPageClass.myListOfCharity.value[index],)
                   )
                 );
               },

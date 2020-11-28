@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:donation_system/SubPages/AddItem.dart';
 import 'package:donation_system/SubPages/EditProfile.dart';
 import 'package:donation_system/Presentation/custom_icons_icons.dart';
+import 'package:donation_system/SubPages/MyCharityList.dart';
 import 'package:donation_system/Variables/color.dart';
 import 'package:donation_system/Variables/global.dart';
 import 'package:donation_system/Widgets/ProfileDetails.dart';
@@ -131,7 +132,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     ConstrainedBox(
                     constraints: BoxConstraints.expand(),
                     child: FlatButton(
-                            onPressed: null,
+                            onPressed: (){
+                              Navigator.push(context, SlideLeftRoute(page: MyCharityList()));
+                            },
                             padding: EdgeInsets.all(0.0),
                             child: Image.asset('assets/buttons/myCharity.png'))),
                     ConstrainedBox(

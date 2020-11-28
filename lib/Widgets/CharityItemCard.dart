@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:donation_system/Classes/CharityPageClass.dart';
 import 'package:donation_system/Models/CharityModel.dart';
 import 'package:flutter/material.dart';
 
@@ -7,16 +6,14 @@ import 'package:flutter/material.dart';
 class CharityItemCard extends StatelessWidget {
   const CharityItemCard({
     Key key,
-    @required this.charityPageClass,
-    @required this.index,
+    @required this.charityModel,
   }) : super(key: key);
 
-  final CharityPageClass charityPageClass;
-  final int index;
+  final CharityModel charityModel;
 
   @override
   Widget build(BuildContext context) {
-    CharityModel charityModel = charityPageClass.listOfCharity.value[index];
+    // CharityModel charityModel
 
     return Card(
       shape: RoundedRectangleBorder(
@@ -67,7 +64,7 @@ class CharityItemCard extends StatelessWidget {
                 padding: EdgeInsets.all(15),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: charityPageClass.currentQueuCardChildrens(charityModel)
+                  children: currentCardChildrens(charityModel)
                 ),
               ),
             ),
@@ -76,5 +73,43 @@ class CharityItemCard extends StatelessWidget {
       ),
       elevation: 8.0,
     );
+  }
+
+  ////THIS IS FOR THE [CARDS OF THE CHARITY]
+  currentCardChildrens(CharityModel charityModel) {
+    List<Widget> charityCardChildren = [];
+    List<String> charityDetailsSample = [ 
+      charityModel.contact,
+      (charityModel.location.state + ', ' + charityModel.location.province + (charityModel.location.street == '' ? ('') : (', ' + charityModel.location.street)) ),
+      charityModel.description,
+    ];
+    
+    charityCardChildren.add( Text( //Charity name
+      charityModel.name,
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 22,
+        color: Colors.white,
+      ),
+      maxLines: 2,
+      overflow: TextOverflow.ellipsis,
+    ),);
+    
+    for (int detail = 0; detail < 3; detail++) {
+      charityCardChildren.add( detail == 2 ? SizedBox(height: 5,) : Container());
+      charityCardChildren.add( Text(
+        charityDetailsSample[detail],
+        textAlign: TextAlign.start,
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+          fontStyle: detail == 2 ? FontStyle.italic : null
+        ),
+        maxLines: detail == 0 || detail == 1 ? 1 : 2,
+        overflow: TextOverflow.ellipsis,
+      ),);
+    }
+
+    return charityCardChildren;
   }
 }

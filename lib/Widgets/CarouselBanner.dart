@@ -3,6 +3,8 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:donation_system/Variables/color.dart';
 import 'package:flutter/material.dart';
 
+import 'CacheNetworkImagePlaceholder.dart';
+
 class CarouselBanner extends StatelessWidget {
   const CarouselBanner({
     Key key,
@@ -40,13 +42,7 @@ class CarouselBanner extends StatelessWidget {
                     imageUrl: 'https://e-cif.redcross.org.ph/images/cover.png',
                     fit: BoxFit.cover,
                     placeholder: (context, value){
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(redSecondaryColor)),
-                        ],
-                      );
+                      return CacheNetworkImagePlaceholder();
                     },
                   ),
                 )
@@ -70,13 +66,7 @@ class CarouselBanner extends StatelessWidget {
                     imageUrl: 'https://static.tripzilla.com/thumb/4/4/36932_700x.jpg',
                     fit: BoxFit.cover,
                     placeholder: (context, value){
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(redSecondaryColor)),
-                        ],
-                      );
+                      return CacheNetworkImagePlaceholder();
                     },
                   ),
                 )
@@ -100,13 +90,7 @@ class CarouselBanner extends StatelessWidget {
                     imageUrl: 'https://1zr10d273dd12uxogy1gcbd8-wpengine.netdna-ssl.com/wp-content/uploads/2017/06/kalayupdate-5.jpeg',
                     fit: BoxFit.cover,
                     placeholder: (context, value){
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(redSecondaryColor)),
-                        ],
-                      );
+                      return CacheNetworkImagePlaceholder();
                     },
                   ),
                 )

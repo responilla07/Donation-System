@@ -6,6 +6,7 @@ import 'package:donation_system/Models/CharityModel.dart';
 import 'package:donation_system/Models/ItemModel.dart';
 import 'package:donation_system/Presentation/custom_icons_icons.dart';
 import 'package:donation_system/Variables/color.dart';
+import 'package:donation_system/Widgets/CacheNetworkImagePlaceholder.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -249,13 +250,7 @@ class ItemDetailsClass {
         imageUrl: itemModel.itemPhoto[i],
         fit: BoxFit.cover,
         placeholder: (context, value){
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(redSecondaryColor)),
-            ],
-          );
+          return CacheNetworkImagePlaceholder();
         },
       ),);
     }
