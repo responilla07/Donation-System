@@ -32,7 +32,7 @@ class ItemCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: CachedNetworkImage(
-                  imageUrl: itemModel.itemPhoto[0],
+                  imageUrl: itemModel.itemPhoto.length > 0 ? itemModel.itemPhoto[0] : '',
                   fit: BoxFit.cover,
                   placeholder: (context, value){
                     return Column(

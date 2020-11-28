@@ -1,17 +1,12 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_pro/carousel_pro.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:donation_system/Classes/ItemDetailsClass.dart';
-import 'package:donation_system/Formatter/number.dart';
-import 'package:donation_system/Methods/Style.dart';
 import 'package:donation_system/Models/CharityModel.dart';
 import 'package:donation_system/Models/ItemModel.dart';
-import 'package:donation_system/Presentation/custom_icons_icons.dart';
+import 'package:donation_system/SubPages/OrderPage.dart';
 import 'package:donation_system/Variables/color.dart';
 import 'package:donation_system/Variables/global.dart';
-import 'package:donation_system/Variables/size.dart';
 import 'package:donation_system/Widgets/SubPagesAppBar.dart';
-import 'package:flutter/gestures.dart';
+import 'package:donation_system/transitions/slide_route.dart';
 import 'package:flutter/material.dart';
 
 class ItemDetails extends StatefulWidget {
@@ -87,8 +82,7 @@ class _ItemDetailsState extends State<ItemDetails> with SingleTickerProviderStat
                       print('wishlist button clicked!');
                     },
                     buyCallback: () {
-                      itemDetailsClass.showBuyDialog(context);
-                      // Navigator.push( context, SlideLeftRoute(page: HotlinesPage()));
+                      Navigator.push( context, SlideLeftRoute(page: OrderPage(itemModel: widget.itemModel,)));
                     },
                   ),
                   Expanded(

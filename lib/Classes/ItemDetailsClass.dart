@@ -10,7 +10,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class ItemDetailsClass {
-  
+  TextEditingController totalOrder = TextEditingController();
+
   Column itemDetails(ItemModel itemModel, String itemDescriptionDisplay, bool isHidingClicker, String itemDescription, bool isSeeMore, VoidCallback onTap ) {
     return Column(
       children: [
@@ -272,46 +273,6 @@ class ItemDetailsClass {
           ),
         ),
       )
-    );
-  }
-
-  
-  Future showBuyDialog(BuildContext context) {
-    return showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          content: Container(
-            height: 230,
-            child: Column(
-              children: [
-                Text(
-                  'Buy now or add to cart?',
-                  style: TextStyle(
-                    color: redSecondaryColor,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold
-                  ),
-                ),
-                Row(
-                  children: [
-                    Card(
-                      elevation: 8.0,
-                      child: IconButton(
-                        color: Colors.black12,
-                        icon: Icon(Icons.add), 
-                        onPressed: () {
-                        }
-                      ),
-                    )
-                  ],
-                )
-
-              ],
-            ),
-          ),
-        );
-      },
     );
   }
 }

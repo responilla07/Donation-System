@@ -9,6 +9,7 @@ class MyTextField extends StatefulWidget {
     @required this.hintText,
     @required this.inputFormatter,
     @required this.keyboardType,
+    this.color,
 
   });
 
@@ -16,6 +17,7 @@ class MyTextField extends StatefulWidget {
   final TextEditingController controller;
   final List<TextInputFormatter> inputFormatter;
   final TextInputType keyboardType;
+  final Color color;
 
   @override
   _MyTextFieldState createState() => _MyTextFieldState();
@@ -57,14 +59,14 @@ class _MyTextFieldState extends State<MyTextField> {
               filled: true,
               fillColor: Colors.white,
               hintText: widget.hintText,
-              contentPadding: EdgeInsets.fromLTRB(10, 10, 40, 10),
+              contentPadding: EdgeInsets.fromLTRB(10, 10, widget.hintText == "Password" || widget.hintText == "Confirm Password" ? 40 : 10, 10),
              border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(5.0),
-                borderSide: BorderSide(color: redSecondaryColor)
+                borderSide: BorderSide(color: widget.color == null ? redSecondaryColor : widget.color)
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(5.0),
-                borderSide: BorderSide(color: redSecondaryColor)
+                borderSide: BorderSide(color: widget.color == null ? redSecondaryColor : widget.color)
               ),
             ),
           ),

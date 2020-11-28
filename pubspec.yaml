@@ -29,6 +29,7 @@ dependencies:
   qrscan: ^0.2.17
   flutter_datetime_picker: ^1.4.0
   carousel_pro:
+  flutter_masked_text:
 
 dev_dependencies:
   flutter_test:
