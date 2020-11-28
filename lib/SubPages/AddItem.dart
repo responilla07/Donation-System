@@ -2,6 +2,7 @@ import 'package:donation_system/Classes/AddItemClass.dart';
 import 'package:donation_system/Widgets/AddItemPicture.dart';
 import 'package:donation_system/Widgets/AddItemTextField.dart';
 import 'package:donation_system/Widgets/Button.dart';
+import 'package:donation_system/Widgets/ProcessIndicator.dart';
 import 'package:donation_system/Widgets/SubPagesAppBar.dart';
 import 'package:flutter/material.dart';
 import 'package:toast/toast.dart';
@@ -27,43 +28,51 @@ class _AddItemState extends State<AddItem> {
         ),
       ),
       body: Center(
-        child: ListView(
-          children: <Widget>[
-            
-            AddItemPicture(
-              button: CustomRaisedButton(
-                title: "Add Photo", 
-                onTap: () async {
-                  if(addItemClass.imageUrl.length != 3){
-                    String temp = await addItemClass.getPhoto();
-                    setState(()  {
-                      addItemClass.imageUrl.add(temp);
-                    });
-                  }
-                }
-              ), 
-              addItemClass: addItemClass
-            ),
-
-            AddItemTextField(
-              button:  CustomRaisedButton(
-                title: "Submit", 
-                onTap: (){
-                  if(addItemClass.validate('fields')){
-                    addItemClass.addItem(context).then((success){
-                      if (success) {
-                        Navigator.pop(context);
+        child: Stack(
+          children: [
+            ListView(
+              children: <Widget>[
+                
+                AddItemPicture(
+                  button: CustomRaisedButton(
+                    title: "Add Photo", 
+                    onTap: () async {
+                      if(addItemClass.imageUrl.length != 3){
+                        String temp = await addItemClass.getPhoto();
+                        setState(()  {
+                          addItemClass.imageUrl.add(temp);
+                        });
                       }
-                    });
-                  }
-                  else{
-                    Toast.show( addItemClass.validate('message'), context, duration: 3, gravity: Toast.BOTTOM);
-                  }
-                }
-              ),
-              addItemClass: addItemClass, 
-            ),
+                    }
+                  ), 
+                  addItemClass: addItemClass
+                ),
 
+                AddItemTextField(
+                  button:  CustomRaisedButton(
+                    title: "Submit", 
+                    onTap: (){
+                      setState(() { addItemClass.isProcessing = true; });
+                      if(addItemClass.validate('fields')){
+                        addItemClass.addItem(context).then((success){
+                          if (success) {
+                            Navigator.pop(context);
+                          }
+                          setState(() { addItemClass.isProcessing = false; });
+                        });
+                      }
+                      else{
+                        Toast.show( addItemClass.validate('message'), context, duration: 3, gravity: Toast.BOTTOM);
+                        setState(() { addItemClass.isProcessing = false; });
+                      }
+                    }
+                  ),
+                  addItemClass: addItemClass, 
+                ),
+
+              ],
+            ),
+            addItemClass.isProcessing ? ProcessIndicator() : Container()
           ],
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
