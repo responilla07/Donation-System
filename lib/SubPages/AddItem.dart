@@ -34,7 +34,7 @@ class _AddItemState extends State<AddItem> {
               button: CustomRaisedButton(
                 title: "Add Photo", 
                 onTap: () async {
-                  if(addItemClass.imageUrl.length != 1){
+                  if(addItemClass.imageUrl.length != 3){
                     String temp = await addItemClass.getPhoto();
                     setState(()  {
                       addItemClass.imageUrl.add(temp);

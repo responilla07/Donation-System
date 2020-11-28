@@ -82,7 +82,18 @@ class AddItemClass{
     
     itemModel.itemPhoto.add(await uploadFiles(imageUrl[0], temp));
     
-
+    if(imageUrl.length == 3){
+      itemModel.itemPhoto.add(await uploadFiles(imageUrl[0], temp));
+      itemModel.itemPhoto.add(await uploadFiles(imageUrl[1], temp));
+      itemModel.itemPhoto.add(await uploadFiles(imageUrl[2], temp));
+    }
+    else if(imageUrl.length == 2){
+      itemModel.itemPhoto.add(await uploadFiles(imageUrl[0], temp));
+      itemModel.itemPhoto.add(await uploadFiles(imageUrl[1], temp));
+    }
+    else if(imageUrl.length == 1){
+      itemModel.itemPhoto.add(await uploadFiles(imageUrl[0], temp));
+    }
 
     userRef = db.collection("Products").doc(temp);
 
