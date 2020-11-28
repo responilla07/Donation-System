@@ -78,6 +78,8 @@ class OrderPageClass {
     );
   }
 
+  var emailRegExp = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+
   dynamic checkFields(String isFor){
     bool isValid = false;
 
@@ -85,15 +87,20 @@ class OrderPageClass {
         address1.text.trim() != '' && address2.text.trim() != '' && state != '' && province != '' &&
         postal.text.trim() != '' && countryValue != ''){
         
-        if(paymentOption == "card" && cardController.text.trim() != "" && 
-        monthController.text.trim() != '' && yearController.text.trim() != ''){
-          isValid = true;
-        }
-        else if(paymentOption == "Cash on Delivery"){
-          isValid = true;
+        if(emailRegExp.hasMatch(email.text.trim())){
+          if(paymentOption == "card" && cardController.text.trim() != "" && 
+          monthController.text.trim() != '' && yearController.text.trim() != ''){
+            isValid = true;
+          }
+          else if(paymentOption == "Cash on Delivery"){
+            isValid = true;
+          }
+          else{
+            message = "Please choose a payment method and fill up the fields required";
+          }
         }
         else{
-          message = "Please choose a payment method and fill up the fields required";
+          message = "Enter a valid email.";
         }
 
       }

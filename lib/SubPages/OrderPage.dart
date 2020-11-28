@@ -8,6 +8,7 @@ import 'package:donation_system/Widgets/SubPagesAppBar.dart';
 import 'package:donation_system/Widgets/TextField.dart';
 import 'package:donation_system/transitions/slide_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:toast/toast.dart';
 import 'package:donation_system/Widgets/drop_down.dart' as custom;
 
@@ -89,7 +90,7 @@ class _OrderPageState extends State<OrderPage> {
                           MyTextField(
                             controller: orderClass.fullname, 
                             hintText: 'full name*', 
-                            inputFormatter: null, 
+                            inputFormatter: [FilteringTextInputFormatter.allow(RegExp("[a-zA-Z\-' ]")) ],
                             keyboardType: null,
                             color: redSecondaryColor,
                           ),
@@ -97,15 +98,17 @@ class _OrderPageState extends State<OrderPage> {
                           MyTextField(
                             controller: orderClass.email, 
                             hintText: 'email*', 
-                            inputFormatter: null, 
+                            inputFormatter: [FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9.a-zA-Z0-9.!#\$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]")) ],	 
                             keyboardType: null,
                             color: redSecondaryColor,
                           ),
+
+                          
                           SizedBox(height: 15,),
                           MyTextField(
                             controller: orderClass.phone, 
                             hintText: 'phone*', 
-                            inputFormatter: null, 
+                            inputFormatter: [FilteringTextInputFormatter.allow(RegExp("[0-9\-\(\)\+]")) ],	
                             keyboardType: null,
                             color: redSecondaryColor,
                           ),
@@ -113,7 +116,7 @@ class _OrderPageState extends State<OrderPage> {
                           MyTextField(
                             controller: orderClass.address1, 
                             hintText: 'address line 1*', 
-                            inputFormatter: null, 
+                            inputFormatter: [FilteringTextInputFormatter.allow(RegExp("[a-zA-Z&@&/,.0-9\-\(\)\+]")) ],
                             keyboardType: null,
                             color: redSecondaryColor,
                           ),
@@ -121,7 +124,7 @@ class _OrderPageState extends State<OrderPage> {
                           MyTextField(
                             controller: orderClass.address2, 
                             hintText: 'address line 2', 
-                            inputFormatter: null, 
+                            inputFormatter: [FilteringTextInputFormatter.allow(RegExp("[a-zA-Z&@&/,.0-9\-\(\)\+]")) ],
                             keyboardType: null,
                             color: redSecondaryColor,
                           ),
@@ -204,7 +207,7 @@ class _OrderPageState extends State<OrderPage> {
                           MyTextField(
                             controller: orderClass.postal, 
                             hintText: 'postal code', 
-                            inputFormatter: null, 
+                             inputFormatter: [FilteringTextInputFormatter.allow(RegExp("[0-9]")) ],	
                             keyboardType: null,
                             color: redSecondaryColor,
                           ),
