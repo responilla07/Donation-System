@@ -28,7 +28,7 @@ class _ProfilePageState extends State<ProfilePage> {
               left: 0,
               right: 0,
               child: Container(
-                height: 350,
+                height: 355,
                 padding: EdgeInsets.all(15),
                 child: Card(
                 elevation: 5,
@@ -86,7 +86,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             contact: myUserDetails.value.contact,
                             state: myUserDetails.value.location.state,
                             province: myUserDetails.value.location.province,
-                            street: myUserDetails.value.location.street + 'asd asd  as 6sa54d as65 0465sa4 d06a5s 046dsa5 das65 d4sa',
+                            street: myUserDetails.value.location.street,
                           )
 
                         ],

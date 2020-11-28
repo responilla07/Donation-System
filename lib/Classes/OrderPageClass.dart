@@ -84,7 +84,7 @@ class OrderPageClass {
     bool isValid = false;
 
       if(fullname.text.trim() != '' && email.text.trim() != '' && phone.text.trim() != '' &&
-        address1.text.trim() != '' && address2.text.trim() != '' && state != '' && province != '' &&
+        address1.text.trim() != '' && state != '' && province != '' &&
         postal.text.trim() != '' && countryValue != ''){
         
         if(emailRegExp.hasMatch(email.text.trim())){
@@ -121,6 +121,7 @@ class OrderPageClass {
     ordersModel.country = countryValue.toString();
     ordersModel.state = state;
     ordersModel.province = province;
+    ordersModel.buyerId = myUserDetails.value.id;
     
     if(paymentOption == "card"){
       ordersModel.cardNumber = cardController.text.trim().substring(0,12);
