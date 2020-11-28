@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:donation_system/SubPages/NewsDetails.dart';
 import 'package:donation_system/Variables/color.dart';
+import 'package:donation_system/Widgets/SubPagesAppBar.dart';
 import 'package:donation_system/transitions/slide_route.dart';
 import 'package:flutter/material.dart';
 
@@ -13,9 +14,14 @@ class _NewsPageState extends State<NewsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('News'),
-        centerTitle: true,
+      appBar: PreferredSize( 
+        preferredSize: Size.fromHeight(45.0),
+        child: SubPagesAppBar(
+          title: "News",
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),

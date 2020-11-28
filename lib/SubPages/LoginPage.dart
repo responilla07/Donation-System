@@ -7,6 +7,7 @@ import 'package:donation_system/Widgets/FacebookLogin.dart';
 import 'package:donation_system/Widgets/GoogleLogin.dart';
 import 'package:donation_system/Widgets/ProcessIndicator.dart';
 import 'package:donation_system/Widgets/ShowAlertDialogForgotPassword.dart';
+import 'package:donation_system/Widgets/SubPagesAppBar.dart';
 import 'package:donation_system/Widgets/TextField.dart';
 import 'package:donation_system/transitions/slide_route.dart';
 import 'package:flutter/gestures.dart';
@@ -26,6 +27,15 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreferredSize( 
+        preferredSize: Size.fromHeight(45.0),
+        child: SubPagesAppBar(
+          title: "Log In",
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       body: Stack(
         children: [
           GestureDetector(

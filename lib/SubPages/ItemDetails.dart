@@ -60,7 +60,7 @@ class _ItemDetailsState extends State<ItemDetails> with SingleTickerProviderStat
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: white,
-      appBar: PreferredSize( //TODO Eto ang gamitin na app bar sa ibang sub pages
+      appBar: PreferredSize( 
         preferredSize: Size.fromHeight(45.0),
         child: SubPagesAppBar(
           title: "Item Details",
@@ -78,7 +78,30 @@ class _ItemDetailsState extends State<ItemDetails> with SingleTickerProviderStat
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  itemDetailsClass.carouselBanner(widget.itemModel),
+                  Stack(
+                    children: [
+                      itemDetailsClass.carouselBanner(widget.itemModel),
+                      Positioned(
+                        bottom: 0,
+                        left:0,
+                          child: Container(
+                          color:Colors.black.withOpacity(.5),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: List.generate(5, (index) {
+                              num value = 4;
+                                return Icon(
+                                  index < value ? Icons.star : Icons.star_border,
+                                  color: index <value?  Colors.yellow:Colors.white,
+                                  size: 30,
+                              );
+                            }),
+                          ),
+                        ),
+                      )
+                    
+                    ],
+                  ),
                   itemDetailsClass.itemDetailsButton(
                     chatCallback: () {
                       print('chat button clicked!');
