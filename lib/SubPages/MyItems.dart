@@ -7,6 +7,7 @@ import 'package:donation_system/Models/ItemModel.dart';
 import 'package:donation_system/SubPages/AddItem.dart';
 import 'package:donation_system/Variables/color.dart';
 import 'package:donation_system/Variables/global.dart';
+import 'package:donation_system/Widgets/PagePlaceHolder.dart';
 import 'package:donation_system/Widgets/SubPagesAppBar.dart';
 import 'package:donation_system/transitions/slide_route.dart';
 import 'package:flutter/material.dart';
@@ -284,7 +285,16 @@ class _MyItemsState extends State<MyItems> {
                         },
                         itemCount: marketClass.listOfItems.value.length
                       ),
-                    ) : Text("Create place holder here"); //TODO Create placeholder for this page
+                    ) : Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(15),
+                        child: PagePlaceHolder(
+                          image: 'assets/placeholders/noItemFound.png', 
+                          header: "No item listed", 
+                          details: 'No item listed available, you can sell products in profile page.'
+                        ),
+                      ),
+                    );
                   }
                 ),
               ],

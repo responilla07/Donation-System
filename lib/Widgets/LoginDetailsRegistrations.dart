@@ -34,14 +34,12 @@ class _LoginDetailsRegistrationsState extends State<LoginDetailsRegistrations> {
             'Registration',
             style: TextStyle(
               fontSize: 40,
-              //TODO font style 
             ),
           ),
           Text(
             'Please Enter your email and password',
             style: TextStyle(
               fontSize: 16,
-              //TODO font style 
             ),
           ),
           SizedBox(height: 65,),

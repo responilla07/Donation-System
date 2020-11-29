@@ -38,14 +38,12 @@ class _UserDetailsRegisterState extends State<UserDetailsRegister> {
             'Registration',
             style: TextStyle(
               fontSize: 40,
-              //TODO font style 
             ),
           ),
           Text(
             'Please Enter your information',
             style: TextStyle(
               fontSize: 16,
-              //TODO font style 
             ),
           ),
           SizedBox(height: 65, ),

@@ -8,6 +8,8 @@ import 'package:donation_system/Variables/color.dart';
 import 'package:donation_system/Widgets/SubPagesAppBar.dart';
 import 'package:flutter/material.dart';
 
+import 'PagePlaceHolder.dart';
+
 class ChartiablePicker extends StatefulWidget {
   @override
   _ChartiablePickerState createState() => _ChartiablePickerState();
@@ -212,7 +214,11 @@ class _ChartiablePickerState extends State<ChartiablePicker> {
                         },
                         itemCount: charitableClass.listofCharity.value.length,
                       ),
-                    ) : Text("Create place holder here"); //TODO Create placeholder for this page
+                    ) : PagePlaceHolder(
+                      image: 'assets/placeholders/nocharity.png', 
+                      header: "No Charities", 
+                      details: 'No charities are listed, you can add charities in profile page.'
+                    );
                   }
                 ),
               ],

@@ -7,6 +7,7 @@ import 'package:donation_system/SubPages/ItemDetails.dart';
 import 'package:donation_system/Variables/color.dart';
 import 'package:donation_system/Widgets/ItemCard.dart';
 import 'package:donation_system/Widgets/LoaderForPagination.dart';
+import 'package:donation_system/Widgets/PagePlaceHolder.dart';
 import 'package:donation_system/Widgets/TextField.dart';
 import 'package:donation_system/transitions/slide_route.dart';
 import 'package:flutter/material.dart';
@@ -214,7 +215,16 @@ class _MarketPageState extends State<MarketPage> {
                           SizedBox(height: !marketClass.isPullUp.value ? 80 : 0,),
                         ],
                       ),
-                    ) : Text("Create place holder here"); //TODO Create placeholder for this page
+                    ) : Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(15),
+                        child: PagePlaceHolder(
+                          image: 'assets/placeholders/noItemFound.png', 
+                          header: "No item listed", 
+                          details: 'No item listed available, you can sell products in profile page.'
+                        ),
+                      ),
+                    );
                   }
                 ),
               ],
