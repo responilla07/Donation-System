@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:donation_system/SubPages/MyTrackingPage.dart';
+import 'package:donation_system/SubPages/MyWishlistPage.dart';
 import 'package:donation_system/SubPages/TrackingPage.dart';
 import 'package:donation_system/SubPages/EditProfile.dart';
 import 'package:donation_system/Presentation/custom_icons_icons.dart';
@@ -11,7 +12,6 @@ import 'package:donation_system/Variables/global.dart';
 import 'package:donation_system/Widgets/ProfileDetails.dart';
 import 'package:donation_system/transitions/slide_route.dart';
 import 'package:flutter/material.dart';
-import 'package:toast/toast.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -145,7 +145,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     constraints: BoxConstraints.expand(),
                     child: FlatButton(
                             onPressed: (){
-                              Toast.show("My Wishlist is currently not available.", context, duration: 4, gravity: Toast.BOTTOM);
+                              Navigator.push(context, SlideLeftRoute(page: MyWishlistPage()));
                             },
                             padding: EdgeInsets.all(0.0),
                             child: Image.asset('assets/buttons/myWishList.png'))),

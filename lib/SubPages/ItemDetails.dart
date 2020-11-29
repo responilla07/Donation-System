@@ -3,7 +3,7 @@ import 'package:donation_system/Classes/ItemDetailsClass.dart';
 import 'package:donation_system/Formatter/number.dart';
 import 'package:donation_system/Models/CharityModel.dart';
 import 'package:donation_system/Models/ItemModel.dart';
-import 'package:donation_system/SubPages/MyWishList.dart';
+import 'package:donation_system/SubPages/MyWishlistPage.dart';
 import 'package:donation_system/SubPages/OrderPage.dart';
 import 'package:donation_system/SubPages/chatpage.dart';
 import 'package:donation_system/Variables/color.dart';
@@ -11,7 +11,6 @@ import 'package:donation_system/Variables/global.dart';
 import 'package:donation_system/Widgets/SubPagesAppBar.dart';
 import 'package:donation_system/transitions/slide_route.dart';
 import 'package:flutter/material.dart';
-import 'package:toast/toast.dart';
 
 class ItemDetails extends StatefulWidget {
   ItemDetails({
@@ -117,7 +116,7 @@ class _ItemDetailsState extends State<ItemDetails> with SingleTickerProviderStat
                       Navigator.push(context, SlideLeftRoute(page: ChatPage()));
                     },
                     wishlistCallback: () {
-                      Navigator.push(context, SlideLeftRoute(page: MyWishList()));
+                      Navigator.push(context, SlideLeftRoute(page: MyWishlistPage()));
                     },
                     buyCallback: () {
                       Navigator.push( context, SlideLeftRoute(page: OrderPage(itemModel: widget.itemModel,)));

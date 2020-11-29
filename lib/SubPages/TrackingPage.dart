@@ -3,6 +3,7 @@ import 'package:donation_system/Models/OrdersModel.dart';
 import 'package:donation_system/Presentation/custom_icons_icons.dart';
 import 'package:donation_system/Variables/color.dart';
 import 'package:donation_system/Variables/global.dart';
+import 'package:donation_system/Widgets/PagePlaceHolder.dart';
 import 'package:donation_system/Widgets/SubPagesAppBar.dart';
 import 'package:flutter/material.dart';
 
@@ -161,16 +162,10 @@ class _TrackingState extends State<Tracking> {
               }
               else{
                 return Center(
-                  child: Container(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10.0),
-                    child: Text(
-                      'Buyer list is empty.',
-                      style: TextStyle(
-                        fontSize:MediaQuery.of(context).size.width/25.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey
-                      ),
-                    ),
+                  child: PagePlaceHolder(
+                    image: 'assets/placeholders/Nodelivery.png', 
+                    header: "Empty order", 
+                    details: 'No current order available, you can buy products at market place.'
                   ),
                 );
               }

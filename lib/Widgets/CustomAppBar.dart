@@ -21,13 +21,13 @@ class CustomAppBar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           GestureDetector(
-            onTap: () =>{showMenuAlert(context)},
+            // onTap: () =>{showMenuAlert(context)},
             child: Container(
               padding: EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: redSecondaryColorLight,
+                color: Colors.transparent,
                 border: Border.all(
-                color: redSecondaryColorLight,
+                color: Colors.transparent,
                 ),
                 borderRadius: BorderRadius.all(
                   Radius.circular(50),
@@ -35,7 +35,7 @@ class CustomAppBar extends StatelessWidget {
               ),
               child: Icon(
                 CustomIcons.menu,
-                color: Colors.white,
+                color: Colors.transparent,
                 size: 18,
               ),
             ),
