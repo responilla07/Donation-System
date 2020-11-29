@@ -39,7 +39,7 @@ class _CharityDetailsPageState extends State<CharityDetailsPage> {
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            loggedUser.uid != widget.charityModel?.founderID ? Container():
+            loggedUser?.uid == null || loggedUser?.uid != widget.charityModel?.founderID ? Container():
             Container(
               height: 50, width: 50,
               decoration: BoxDecoration(
