@@ -13,126 +13,116 @@ import 'package:flutter/material.dart';
 class ItemDetailsClass {
   TextEditingController totalOrder = TextEditingController();
 
-  Column itemDetails(ItemModel itemModel, String itemDescriptionDisplay, bool isHidingClicker, String itemDescription, bool isSeeMore, VoidCallback onTap ) {
-    return Column(
-      children: [
-        Container(
-          padding: EdgeInsets.fromLTRB(15,15,15,5),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                itemModel.name,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18
-                ),
-              ),
-              Text(
-                "₱ " + numberDecimalComma(itemModel.price),
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: bluePrimaryColorDark,
-                  fontSize: 18
-                ),
-              ),
-              SizedBox( height: 5, ),
-              Text(
-                itemModel.location.state + ', ' + itemModel.location.province,
-                style: TextStyle(
-                  fontSize: 14,
-                ),
-              ),
-              itemModel.location.street == '' ? Container() 
-              : Text(
-                itemModel.location.street,
-                style: TextStyle(
-                  fontSize: 14,
-                ),
-              ),
-              SizedBox( height: 10, ),
-              Text(
-                'Description',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 17,
-                  color: redSecondaryColorDark
-                ),
-              ),
-              RichText(
-                textAlign: TextAlign.left,
-                text: TextSpan(children: <InlineSpan>[
-                  TextSpan(
-                    text: itemDescriptionDisplay,
-                    style: TextStyle(
-                      color: hexColor('393939'),
-                      fontWeight: FontWeight.w400,
-                      fontSize: 12,
-                    )
-                  ),
-
-                  isHidingClicker ? TextSpan(text: '') : TextSpan(
-                    recognizer: new TapGestureRecognizer()..onTap = onTap,
-                    text: !isSeeMore ? " See More" : " See Less",
-                    style: TextStyle(
-                      color: bluePrimaryColorDark.withOpacity(0.8),
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold
-                    )
-                  ),
-                ]),
-              ),
-            ],
+  Container itemDetails(ItemModel itemModel, String itemDescriptionDisplay, bool isHidingClicker, String itemDescription, bool isSeeMore, VoidCallback onTap ) {
+    return Container(
+      padding: EdgeInsets.fromLTRB(15,15,15,5),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Text(
+            itemModel.name,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 18
+            ),
           ),
-        ),
-      ],
+          Text(
+            "₱ " + numberDecimalComma(itemModel.price),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: bluePrimaryColorDark,
+              fontSize: 18
+            ),
+          ),
+          SizedBox( height: 5, ),
+          Text(
+            itemModel.location.state + ', ' + itemModel.location.province,
+            style: TextStyle(
+              fontSize: 14,
+            ),
+          ),
+          itemModel.location.street == '' ? Container() 
+          : Text(
+            itemModel.location.street,
+            style: TextStyle(
+              fontSize: 14,
+            ),
+          ),
+          SizedBox( height: 10, ),
+          Text(
+            'Description',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 17,
+              color: redSecondaryColorDark
+            ),
+          ),
+          RichText(
+            textAlign: TextAlign.left,
+            text: TextSpan(children: <InlineSpan>[
+              TextSpan(
+                text: itemDescriptionDisplay,
+                style: TextStyle(
+                  color: hexColor('393939'),
+                  fontWeight: FontWeight.w400,
+                  fontSize: 12,
+                )
+              ),
+
+              isHidingClicker ? TextSpan(text: '') : TextSpan(
+                recognizer: new TapGestureRecognizer()..onTap = onTap,
+                text: !isSeeMore ? " See More" : " See Less",
+                style: TextStyle(
+                  color: bluePrimaryColorDark.withOpacity(0.8),
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold
+                )
+              ),
+            ]),
+          ),
+        ],
+      ),
     );
   }
 
-  Column charitableOrgDetails(CharityModel charityModel, ItemModel itemModel) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Container(
-          padding: EdgeInsets.fromLTRB(15,0,15,0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                'Charitable Organization',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 17,
-                  color: redSecondaryColorDark
-                ),
-              ),
-              Text(
-                charityModel.name,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold
-                ),
-              ),
-              Text(
-                charityModel.location.state + ', ' + charityModel.location.province,
-                style: TextStyle(
-                  fontSize: 14
-                ),
-              ),
-              charityModel.location.street == '' ? Container() 
-              : Text(
-                itemModel.location.street,
-                style: TextStyle(
-                  fontSize: 14,
-                ),
-              ),
-            ],
+  Container charitableOrgDetails(CharityModel charityModel, ItemModel itemModel) {
+    return Container(
+      padding: EdgeInsets.fromLTRB(15,0,15,0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Text(
+            'Charitable Organization',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 17,
+              color: redSecondaryColorDark
+            ),
           ),
-        ),
-      ],
+          Text(
+            charityModel.name,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold
+            ),
+          ),
+          Text(
+            charityModel.location.state + ', ' + charityModel.location.province,
+            style: TextStyle(
+              fontSize: 14
+            ),
+          ),
+          charityModel.location.street == '' ? Container() 
+          : Text(
+            itemModel.location.street,
+            style: TextStyle(
+              fontSize: 14,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
