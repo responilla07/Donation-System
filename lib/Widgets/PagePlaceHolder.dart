@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class PlaceHolder extends StatelessWidget {
-  const PlaceHolder(
+class PagePlaceHolder extends StatelessWidget {
+  const PagePlaceHolder(
       {Key key,
       @required this.image,
       @required this.header,
@@ -15,6 +15,7 @@ class PlaceHolder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
           height: 200,

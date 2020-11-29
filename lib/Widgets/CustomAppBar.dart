@@ -1,3 +1,4 @@
+import 'package:donation_system/Models/UserModel.dart';
 import 'package:donation_system/Presentation/custom_icons_icons.dart';
 import 'package:donation_system/SubPages/LoginPage.dart';
 import 'package:donation_system/Variables/color.dart';
@@ -74,6 +75,7 @@ class CustomAppBar extends StatelessWidget {
           GestureDetector(
             onTap: () {
                 auth.signOut().then((value) async {
+                  myUserDetails.value = UserDetailsModel('', {});
                   loggedUser = null;
                   await Navigator.pushReplacement(context, SlideLeftRoute(page: LoginPage()));
                 });
