@@ -57,19 +57,23 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             button: CustomRaisedButton(
                               onTap: (){
                                 setState(() { regClass.isProcessing = true; });
-                                if (regClass.validate("fields")) {
-                                  regClass.processRegistration(context).then((isRegistered){
-                                    if (isRegistered) {
-                                      Navigator.pop(context);
-                                      Navigator.pushReplacement(context, SlideRightRoute(page: MainPage()));
-                                      setState(() { regClass.isProcessing = false; });
-                                    }
-                                  });
-                                } 
-                                else{
-                                  Toast.show(regClass.validate('message'), context, duration: 3, gravity: Toast.BOTTOM);
-                                  setState(() { regClass.isProcessing = false; });
-                                }
+                                  if (regClass.validate("fields")) {
+                                    regClass.processRegistration(context).then((isRegistered){
+                                      if (isRegistered) {
+                                        Navigator.pop(context);
+                                        Navigator.pushReplacement(context, SlideRightRoute(page: MainPage()));
+                                        setState(() { regClass.isProcessing = false; });
+                                      }
+                                    }).catchError((onError){
+                                      print(onError.message);
+                                      Toast.show(onError.message, context, duration: 4, gravity: Toast.BOTTOM);
+                                    
+                                    }).then((value) =>  setState(() {regClass.isProcessing = false;}));
+                                  } 
+                                  else{
+                                    Toast.show(regClass.validate('message'), context, duration: 3, gravity: Toast.BOTTOM);
+                                    setState(() { regClass.isProcessing = false; });
+                                  }
                               },
                               title: "REGISTER",
                             ),

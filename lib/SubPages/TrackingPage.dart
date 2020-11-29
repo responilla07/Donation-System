@@ -25,7 +25,7 @@ class _TrackingState extends State<Tracking> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(45.0),
         child: SubPagesAppBar(
-          title: "Track Your Parcel",
+          title: "My Orders",
           onTap: () {
             Navigator.pop(context);
           },
@@ -33,7 +33,7 @@ class _TrackingState extends State<Tracking> {
       ),
       body: SafeArea(
         child: StreamBuilder<QuerySnapshot>(
-          //TODO Note* lalagyan nalang ng .where('itemID', isEqualTo: 'id ng item') dina nalagyan dahil hindi na aabot kakapusin na pang present lang
+          
           stream: FirebaseFirestore.instance.collection('Orders').where('buyerId', isEqualTo: loggedUser.uid).orderBy('orderDate', descending: true).limit(6).snapshots(),
           builder: (BuildContext context,snapshot){
             if (snapshot.hasData) {
@@ -50,7 +50,7 @@ class _TrackingState extends State<Tracking> {
                       return Padding(
                             padding: EdgeInsets.symmetric(horizontal: 15, vertical: 7.5),
                             child: Card(
-                            color: redSecondaryColor,
+                            color: bluePrimaryColorLight,
                             elevation: 5,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
@@ -64,7 +64,7 @@ class _TrackingState extends State<Tracking> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'from',
+                                        'From',
                                         style: TextStyle(color: Colors.white),
                                       ),
                                       Text(
@@ -80,7 +80,7 @@ class _TrackingState extends State<Tracking> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'to',
+                                        'To',
                                         style: TextStyle(color: Colors.white),
                                       ),
                                       Text(
@@ -116,7 +116,7 @@ class _TrackingState extends State<Tracking> {
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              'status',
+                                              'Status',
                                               style: TextStyle(color: Colors.white),
                                             ),
                                             Text(

@@ -63,7 +63,6 @@ class _CreateCharityState extends State<CreateCharity> {
                           }
                           setState(() { createCharityClass1.isProcessing = false; });
                         });
-                        Toast.show("wprds", context, duration: 3, gravity: Toast.BOTTOM);
                       }
                       else{
                         Toast.show( createCharityClass1.validate('message'), context, duration: 3, gravity: Toast.BOTTOM);
