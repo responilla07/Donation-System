@@ -1,60 +1,30 @@
+import 'package:donation_system/Widgets/PagePlaceHolder.dart';
 import 'package:donation_system/Widgets/SubPagesAppBar.dart';
 import 'package:flutter/material.dart';
 
-class ChatPage extends StatefulWidget {
-  @override
-  _ChatPageState createState() => _ChatPageState();
-}
-
-class _ChatPageState extends State<ChatPage> {
+class ChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(45.0),
-        child: SubPagesAppBar(
-          title: "Chat Page",
-          onTap: () {
-            Navigator.pop(context);
-          },
+      appBar: PreferredSize( 
+      preferredSize: Size.fromHeight(45.0),
+      child: SubPagesAppBar(
+        title: "Chat List",
+        onTap: () {
+          Navigator.pop(context);
+        },
+      ),
+    ),
+      body: Padding(
+        padding: const EdgeInsets.all(15),
+        child: Center(
+          child: PagePlaceHolder(
+            image: 'assets/placeholders/nochat.png', 
+            header: "Empty chat", 
+            details: 'No current conversation available, try to chat someone you may know.'
+          )
         ),
       ),
-      body: SafeArea(
-        child:Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  height: 200,
-                  child: Image(
-                    image: AssetImage(
-                      'assets/placeholders/noNewsfound.png',
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Text(
-              'OOPS!',
-              style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              'There are no recent convo',
-            ),
-            Text(
-              'Don\t be lonely, start a convo!!!',
-            ),
-            SizedBox(
-              height: 15,
-            ),
-          ],
-        ),
-        ),
     );
   }
 }

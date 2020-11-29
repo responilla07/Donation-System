@@ -5,6 +5,7 @@ import 'package:donation_system/SubPages/EditProfile.dart';
 import 'package:donation_system/Presentation/custom_icons_icons.dart';
 import 'package:donation_system/SubPages/MyCharityList.dart';
 import 'package:donation_system/SubPages/MyItems.dart';
+import 'package:donation_system/SubPages/chatpage.dart';
 import 'package:donation_system/Variables/color.dart';
 import 'package:donation_system/Variables/global.dart';
 import 'package:donation_system/Widgets/ProfileDetails.dart';
@@ -170,7 +171,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     constraints: BoxConstraints.expand(),
                     child: FlatButton(
                             onPressed: (){
-                              Toast.show("Chat is currently not available.", context, duration: 4, gravity: Toast.BOTTOM);
+                              Navigator.push(context, SlideLeftRoute(page: ChatPage()));
                             },
                             padding: EdgeInsets.all(0.0),
                             child: Image.asset('assets/buttons/chatIcon.png'))),  
