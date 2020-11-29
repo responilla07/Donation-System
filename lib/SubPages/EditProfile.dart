@@ -184,13 +184,6 @@ class _EditProfileState extends State<EditProfile> {
                               ),
                               SizedBox(height: 15),
                               MyTextField(
-                              controller: editProfileClass.oldPassword,
-                              hintText: "Old Password",
-                              inputFormatter: [],
-                              keyboardType: null,
-                              ),
-                              SizedBox(height: 15),
-                              MyTextField(
                                 controller: editProfileClass.newPassword,
                                 hintText: "New Password",
                                 inputFormatter: [],

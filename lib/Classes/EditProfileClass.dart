@@ -106,14 +106,12 @@ class EditProfileClass{
     return dlref;
   }
 
-  TextEditingController oldPassword = new TextEditingController(text:'');
   TextEditingController newPassword = new TextEditingController(text:'');
   TextEditingController confirmpassword = new TextEditingController(text:'');
 
   dynamic changePassword(String isFor){
     bool success = false;
-    if(oldPassword.text.trim() != ''&&
-      newPassword.text.trim() != '' &&
+    if(newPassword.text.trim() != '' &&
       confirmpassword.text.trim() != ''){
       if( newPassword.text.length >= 6){
         if(newPassword.text.trim() == confirmpassword.text.trim()){
