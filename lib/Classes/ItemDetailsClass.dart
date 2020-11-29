@@ -37,22 +37,6 @@ class ItemDetailsClass {
                   fontSize: 18
                 ),
               ),
-              Row(
-                children: [
-                  Icon(Icons.star, size: 23, color: itemModel.ratings >= 1 ? Colors.yellow : Colors.grey),
-                  Icon(Icons.star, size: 23, color: itemModel.ratings >= 2 ? Colors.yellow : Colors.grey),
-                  Icon(Icons.star, size: 23, color: itemModel.ratings >= 3 ? Colors.yellow : Colors.grey),
-                  Icon(Icons.star, size: 23, color: itemModel.ratings >= 4 ? Colors.yellow : Colors.grey),
-                  Icon(Icons.star, size: 23, color: itemModel.ratings >= 5 ? Colors.yellow : Colors.grey),
-                  SizedBox(width: 5,),
-                  Text(
-                    '('+ totalCount(itemModel.totalReviewer) + ')',
-                    style: TextStyle(
-                      fontSize: 14
-                    ),
-                  ),
-                ],
-              ),
               SizedBox( height: 5, ),
               Text(
                 itemModel.location.state + ', ' + itemModel.location.province,
