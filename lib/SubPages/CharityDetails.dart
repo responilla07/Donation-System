@@ -192,7 +192,7 @@ class _CharityDetailsPageState extends State<CharityDetailsPage> {
             ),
           ),
           Text( //Charity name
-              "₱ " + totalCount(widget.charityModel.totalDonationGranted + 186),
+              "₱ " + numberDecimalComma(widget.charityModel.totalDonationGranted),
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 20,
