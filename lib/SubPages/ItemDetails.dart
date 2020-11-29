@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:donation_system/Classes/ItemDetailsClass.dart';
+import 'package:donation_system/Formatter/number.dart';
 import 'package:donation_system/Models/CharityModel.dart';
 import 'package:donation_system/Models/ItemModel.dart';
 import 'package:donation_system/SubPages/OrderPage.dart';
@@ -84,14 +85,25 @@ class _ItemDetailsState extends State<ItemDetails> with SingleTickerProviderStat
                           color:Colors.black.withOpacity(.5),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
-                            children: List.generate(5, (index) {
-                              num value = 4;
-                                return Icon(
-                                  index < value ? Icons.star : Icons.star_border,
-                                  color: index <value?  Colors.yellow:Colors.white,
-                                  size: 30,
-                              );
-                            }),
+                            children: [
+                              Row(
+                                children: [
+                                  Icon(widget.itemModel.ratings >= 1 ?Icons.star : Icons.star_border, size: 23, color: widget.itemModel.ratings >= 1 ? Colors.yellow : white),
+                                  Icon(widget.itemModel.ratings >= 1 ?Icons.star : Icons.star_border, size: 23, color: widget.itemModel.ratings >= 2 ? Colors.yellow : white),
+                                  Icon(widget.itemModel.ratings >= 1 ?Icons.star : Icons.star_border, size: 23, color: widget.itemModel.ratings >= 3 ? Colors.yellow : white),
+                                  Icon(widget.itemModel.ratings >= 1 ?Icons.star : Icons.star_border, size: 23, color: widget.itemModel.ratings >= 4 ? Colors.yellow : white),
+                                  Icon(widget.itemModel.ratings >= 1 ?Icons.star : Icons.star_border, size: 23, color: widget.itemModel.ratings >= 5 ? Colors.yellow : white),
+                                  SizedBox(width: 5,),
+                                  Text(
+                                    '('+ totalCount(widget.itemModel.totalReviewer) + ')',
+                                    style: TextStyle(
+                                      color: white,
+                                      fontSize: 14
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
                       )
