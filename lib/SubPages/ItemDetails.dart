@@ -8,6 +8,7 @@ import 'package:donation_system/Variables/global.dart';
 import 'package:donation_system/Widgets/SubPagesAppBar.dart';
 import 'package:donation_system/transitions/slide_route.dart';
 import 'package:flutter/material.dart';
+import 'package:toast/toast.dart';
 
 class ItemDetails extends StatefulWidget {
   ItemDetails({
@@ -99,10 +100,10 @@ class _ItemDetailsState extends State<ItemDetails> with SingleTickerProviderStat
                   ),
                   itemDetailsClass.itemDetailsButton(
                     chatCallback: () {
-                      print('chat button clicked!');
+                      Toast.show("Chat is currently not available.", context, duration: 4, gravity: Toast.BOTTOM);
                     },
                     wishlistCallback: () {
-                      print('wishlist button clicked!');
+                      Toast.show("My Wishlist is currently not available.", context, duration: 4, gravity: Toast.BOTTOM);
                     },
                     buyCallback: () {
                       Navigator.push( context, SlideLeftRoute(page: OrderPage(itemModel: widget.itemModel,)));
