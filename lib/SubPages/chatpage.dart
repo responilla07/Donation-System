@@ -19,6 +19,42 @@ class _ChatPageState extends State<ChatPage> {
           },
         ),
       ),
+      body: SafeArea(
+        child:Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: 200,
+                  child: Image(
+                    image: AssetImage(
+                      'assets/placeholders/noNewsfound.png',
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Text(
+              'OOPS!',
+              style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              'There are no recent convo',
+            ),
+            Text(
+              'Don\t be lonely, start a convo!!!',
+            ),
+            SizedBox(
+              height: 15,
+            ),
+          ],
+        ),
+        ),
     );
   }
 }
