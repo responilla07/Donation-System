@@ -9,6 +9,7 @@ import 'package:donation_system/Variables/global.dart';
 import 'package:donation_system/Widgets/ProfileDetails.dart';
 import 'package:donation_system/transitions/slide_route.dart';
 import 'package:flutter/material.dart';
+import 'package:toast/toast.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -141,26 +142,33 @@ class _ProfilePageState extends State<ProfilePage> {
                     ConstrainedBox(
                     constraints: BoxConstraints.expand(),
                     child: FlatButton(
-                            onPressed: null,
+                            onPressed: (){
+                              Toast.show("My Wishlist is currently not available.", context, duration: 4, gravity: Toast.BOTTOM);
+                            },
                             padding: EdgeInsets.all(0.0),
                             child: Image.asset('assets/buttons/myWishList.png'))),
                     ConstrainedBox(
                     constraints: BoxConstraints.expand(),
                     child: FlatButton(
-                            onPressed: null,
+                            onPressed: (){
+                              Toast.show("My Order is currently not available.", context, duration: 4, gravity: Toast.BOTTOM);
+                            },
                             padding: EdgeInsets.all(0.0),
                             child: Image.asset('assets/buttons/myOrder.png'))),
                     ConstrainedBox(
                     constraints: BoxConstraints.expand(),
                     child: FlatButton(
-                            onPressed: null,
+                            onPressed: (){
+                              
+                              Navigator.push(context, SlideLeftRoute(page: MyItems()));
+                            },
                             padding: EdgeInsets.all(0.0),
                             child: Image.asset('assets/buttons/myItems.png'))),
                     ConstrainedBox(
                     constraints: BoxConstraints.expand(),
                     child: FlatButton(
                             onPressed: (){
-                              Navigator.push(context, SlideLeftRoute(page: MyItems()));
+                              Toast.show("Chat is currently not available.", context, duration: 4, gravity: Toast.BOTTOM);
                             },
                             padding: EdgeInsets.all(0.0),
                             child: Image.asset('assets/buttons/chatIcon.png'))),  
@@ -168,7 +176,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     constraints: BoxConstraints.expand(),
                     child: FlatButton(
                             onPressed: (){
-                              
+                              Toast.show("Tracking order is currently not available.", context, duration: 4, gravity: Toast.BOTTOM);
                             },
                             padding: EdgeInsets.all(0.0),
                             child: Image.asset('assets/buttons/TrackOrder.png'))),                            
