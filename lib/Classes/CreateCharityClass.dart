@@ -74,7 +74,6 @@ class CreateCharityClass{
     var userRef;
     
     try{
-      charityModel.pictures.add(await uploadFiles(imageUrl[0], temp));
     
       if(imageUrl.length == 3){
         charityModel.pictures.add(await uploadFiles(imageUrl[0], temp));

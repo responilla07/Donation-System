@@ -79,7 +79,6 @@ class AddItemClass{
     var userRef;
     
     try{
-      itemModel.itemPhoto.add(await uploadFiles(imageUrl[0], temp));
     
       if(imageUrl.length == 3){
         itemModel.itemPhoto.add(await uploadFiles(imageUrl[0], temp));
