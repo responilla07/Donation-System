@@ -8,6 +8,7 @@ import 'package:donation_system/Widgets/CarouselBanner.dart';
 import 'package:donation_system/transitions/slide_route.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -166,7 +167,14 @@ class _HomePageState extends State<HomePage> {
               ),
               Expanded(child: Container()),
               GestureDetector(
-                onTap: () => Navigator.push( context, SlideLeftRoute(page: NewsDetails())),
+                onTap: () async {
+                  const url = 'https://news.abs-cbn.com/news/11/27/20/philippines-eyes-portfolio-of-potential-vaccines-vs-covid-19';
+                    if (await canLaunch(url)) {
+                      await launch(url);
+                    } else {
+                      throw 'Could not launch $url';
+                  }
+                },
                 child: Container(
                   alignment: Alignment.center,
                   height: 30,
