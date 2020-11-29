@@ -73,8 +73,6 @@ class RegistrationClass{
             loggedUser = (await auth.signInWithEmailAndPassword(email: email.text.trim(), password: password.text.trim())).user;
             loggedUser = auth.currentUser;
             myUserDetails.value = userDetailsModel;
-            //Do something here after signin
-            //TODO Stop the loading if loader for registration is added
           });
         });
       }).catchError((onError){

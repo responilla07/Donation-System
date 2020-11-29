@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:donation_system/SubPages/AddItem.dart';
 import 'package:donation_system/SubPages/EditProfile.dart';
 import 'package:donation_system/Presentation/custom_icons_icons.dart';
+import 'package:donation_system/SubPages/MyCharityList.dart';
+import 'package:donation_system/SubPages/MyItems.dart';
 import 'package:donation_system/Variables/color.dart';
 import 'package:donation_system/Variables/global.dart';
 import 'package:donation_system/Widgets/ProfileDetails.dart';
@@ -26,7 +28,7 @@ class _ProfilePageState extends State<ProfilePage> {
               left: 0,
               right: 0,
               child: Container(
-                height: 350,
+                height: 355,
                 padding: EdgeInsets.all(15),
                 child: Card(
                 elevation: 5,
@@ -84,7 +86,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             contact: myUserDetails.value.contact,
                             state: myUserDetails.value.location.state,
                             province: myUserDetails.value.location.province,
-                            street: myUserDetails.value.location.street + 'asd asd  as 6sa54d as65 0465sa4 d06a5s 046dsa5 das65 d4sa',
+                            street: myUserDetails.value.location.street,
                           )
 
                         ],
@@ -131,7 +133,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     ConstrainedBox(
                     constraints: BoxConstraints.expand(),
                     child: FlatButton(
-                            onPressed: null,
+                            onPressed: (){
+                              Navigator.push(context, SlideLeftRoute(page: MyCharityList()));
+                            },
                             padding: EdgeInsets.all(0.0),
                             child: Image.asset('assets/buttons/myCharity.png'))),
                     ConstrainedBox(
@@ -155,14 +159,16 @@ class _ProfilePageState extends State<ProfilePage> {
                     ConstrainedBox(
                     constraints: BoxConstraints.expand(),
                     child: FlatButton(
-                            onPressed: null,
+                            onPressed: (){
+                              Navigator.push(context, SlideLeftRoute(page: MyItems()));
+                            },
                             padding: EdgeInsets.all(0.0),
                             child: Image.asset('assets/buttons/chatIcon.png'))),  
                     ConstrainedBox(
                     constraints: BoxConstraints.expand(),
                     child: FlatButton(
                             onPressed: (){
-                              Navigator.push(context, SlideLeftRoute(page: AddItem()));
+                              
                             },
                             padding: EdgeInsets.all(0.0),
                             child: Image.asset('assets/buttons/TrackOrder.png'))),                            

@@ -7,14 +7,15 @@ class CharityModel {
     name,
     contact,
     description,
-    founderID;
+    founderID,
+    dateFounded;
 
   int 
     totalDonationGranted,
     totalNotif;
   DateTime 
-    dateCreated,
-    dateFounded;
+    dateCreated;
+
   List<dynamic> 
     pictures,
     searchKey;
@@ -29,17 +30,14 @@ class CharityModel {
     this.founderID = data['founderID'] ?? '';
     this.totalDonationGranted = data['totalDonationGranted'] ?? 0;
     this.totalNotif = data['totalNotif'] ?? 0;
-    
+    this.dateFounded = data['dateFounded'].toString() ?? '';
+
     if(data['dateCreated'] is DateTime){
       this.dateCreated = data['dateCreated'];
     } else if((data['dateCreated'] as Timestamp) != null){
       this.dateCreated = (data['dateCreated'] as Timestamp).toDate();
     }
-    if(data['dateFounded'] is DateTime){
-      this.dateFounded = data['dateFounded'];
-    } else if((data['dateFounded'] as Timestamp) != null){
-      this.dateFounded = (data['dateFounded'] as Timestamp).toDate();
-    }
+    
 
     this.pictures = data['pictures'] ?? List<dynamic>();
     this.searchKey = data['searchKey'] ?? List<dynamic>();

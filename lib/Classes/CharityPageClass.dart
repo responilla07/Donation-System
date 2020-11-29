@@ -100,44 +100,6 @@ class CharityPageClass {
     return findCharityPosition;
   }
 
-  ////THIS IS FOR THE [CARDS OF THE CHARITY]
-  currentQueuCardChildrens(CharityModel charityModel) {
-    List<Widget> charityCardChildren = [];
-    List<String> charityDetailsSample = [ 
-      charityModel.contact,
-      (charityModel.location.state + ', ' + charityModel.location.province + (charityModel.location.street == '' ? ('') : (', ' + charityModel.location.street)) ),
-      charityModel.description,
-    ];
-    
-    charityCardChildren.add( Text( //Charity name
-      charityModel.name,
-      style: TextStyle(
-        fontWeight: FontWeight.bold,
-        fontSize: 22,
-        color: Colors.white,
-      ),
-      maxLines: 2,
-      overflow: TextOverflow.ellipsis,
-    ),);
-    
-    for (int detail = 0; detail < 3; detail++) {
-      charityCardChildren.add( detail == 2 ? SizedBox(height: 5,) : Container());
-      charityCardChildren.add( Text(
-        charityDetailsSample[detail],
-        textAlign: TextAlign.start,
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
-          fontStyle: detail == 2 ? FontStyle.italic : null
-        ),
-        maxLines: detail == 0 || detail == 1 ? 1 : 2,
-        overflow: TextOverflow.ellipsis,
-      ),);
-    }
-
-    return charityCardChildren;
-  }
-
   ///THIS FOR DONE FETCHING DATA AFTER [PULL UP]
   Future<dynamic> whenCompleteFetchingInPullUp() {
     isPullUp.value = false;

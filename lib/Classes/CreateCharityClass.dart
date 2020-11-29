@@ -3,36 +3,33 @@
 import 'dart:io';
 
 import 'package:donation_system/Methods/CreateSearchKey.dart';
-import 'package:donation_system/Models/ItemModel.dart';
+import 'package:donation_system/Models/CharityModel.dart';
 import 'package:donation_system/Variables/global.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:toast/toast.dart';
 import 'package:uuid/uuid.dart';
 
-class AddItemClass{
+class CreateCharityClass{
 
   bool isProcessing = false;
   var batch = db.batch();
 
+  String date = "";
   String benefitId = "";
   TextEditingController itemName = new TextEditingController(text: '');
-  TextEditingController price = new TextEditingController(text: '');
-  TextEditingController discount = new TextEditingController(text: '');
-  TextEditingController stock = new TextEditingController(text: '');
+  TextEditingController contact = new TextEditingController(text: '');
   String state = "State";
   String province = "Province";
   TextEditingController street = new TextEditingController(text: '');
-  String charitable = "Charitable";
   TextEditingController description = new TextEditingController(text: '');
 
   List<String> convert = [];
 
   List<String> imageUrl = [];
 
-  ItemModel itemModel = ItemModel("",{});
+  CharityModel charityModel = CharityModel("",{});
 
   Future<String> getPhoto() async {
     final pickedFile = await ImagePicker().getImage(source: ImageSource.gallery);
@@ -44,10 +41,10 @@ class AddItemClass{
   dynamic validate(String isFor){
     bool isValid = false;
 
-    if (itemName.text.trim() != '' && price.text.trim() != ''
-    && discount.text.trim() != '' && state != '' && province != '' && 
+    if (itemName.text.trim() != '' && contact.text.trim() != ''
+    &&  state != '' && province != '' && date != '' &&
     street.text.trim() != '' && description.text.trim() != ''
-    && charitable != '' && imageUrl.length != 0) {
+    &&  imageUrl.length != 0) {
       
       isValid = true;
     }
@@ -60,20 +57,18 @@ class AddItemClass{
   Future<bool> addItem(BuildContext context) async{
     bool isRegistered = false;
     var uuid = Uuid();
-    itemModel.ownerID = myUserDetails.value.id;
-    itemModel.name = itemName.text.trim();
-    itemModel.price = int.parse(price.text.trim());
-    itemModel.discounted = int.parse(discount.text.trim());
-    itemModel.stock = int.parse(stock.text.trim());
-    itemModel.location.province = province.trim();
-    itemModel.location.state = state.trim();
-    itemModel.location.street = street.text.trim();
-    itemModel.beneficiaries = [benefitId];
-    itemModel.itemDescription = description.text.trim();
-    itemModel.ratings = 0;
-    itemModel.isArchive = false;
-    itemModel.totalReviewer = 0;
-    itemModel.searchKey = SearchKey().createSearchKey(itemModel.name = itemName.text.trim());
+    charityModel.founderID = myUserDetails.value.id;
+    charityModel.name = itemName.text.trim();
+    charityModel.contact = contact.text.trim();
+    charityModel.location.province = province.trim();
+    charityModel.location.state = state.trim();
+    charityModel.location.street = street.text.trim();
+    charityModel.description = description.text.trim();
+    charityModel.dateFounded = date;
+    charityModel.searchKey = SearchKey().createSearchKey(charityModel.name = itemName.text.trim());
+
+    charityModel.totalDonationGranted = 0;
+    charityModel.totalNotif = 0;
 
     var temp = uuid.v4();
     var userRef;
@@ -81,21 +76,21 @@ class AddItemClass{
     try{
     
       if(imageUrl.length == 3){
-        itemModel.itemPhoto.add(await uploadFiles(imageUrl[0], temp));
-        itemModel.itemPhoto.add(await uploadFiles(imageUrl[1], temp));
-        itemModel.itemPhoto.add(await uploadFiles(imageUrl[2], temp));
+        charityModel.pictures.add(await uploadFiles(imageUrl[0], temp));
+        charityModel.pictures.add(await uploadFiles(imageUrl[1], temp));
+        charityModel.pictures.add(await uploadFiles(imageUrl[2], temp));
       }
       else if(imageUrl.length == 2){
-        itemModel.itemPhoto.add(await uploadFiles(imageUrl[0], temp));
-        itemModel.itemPhoto.add(await uploadFiles(imageUrl[1], temp));
+        charityModel.pictures.add(await uploadFiles(imageUrl[0], temp));
+        charityModel.pictures.add(await uploadFiles(imageUrl[1], temp));
       }
       else if(imageUrl.length == 1){
-        itemModel.itemPhoto.add(await uploadFiles(imageUrl[0], temp));
+        charityModel.pictures.add(await uploadFiles(imageUrl[0], temp));
       }
 
-      userRef = db.collection("Products").doc(temp);
+      userRef = db.collection("Charities").doc(temp);
 
-      await userRef.set(itemModel.createItem()).then((value) async { 
+      await userRef.set(charityModel.createCharity()).then((value) async { 
         isRegistered = true;
       });
     }
@@ -114,7 +109,7 @@ Future<String> uploadFiles(String imageUrl, String docName) async {
   String dlRef ="";
 
     File file = File(imageUrl);
-    Reference reference = storage.ref().child('Item_Pictures/$docName/${uuid.v4()}');
+    Reference reference = storage.ref().child('Charity_Pictures/$docName/${uuid.v4()}');
     UploadTask uploadTask = reference.putFile(file);
      await uploadTask.then((taskSnapshot) async{
         dlRef = await taskSnapshot.ref.getDownloadURL();

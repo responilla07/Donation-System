@@ -5,6 +5,8 @@ import 'package:donation_system/SubPages/ItemDetails.dart';
 import 'package:donation_system/Variables/color.dart';
 import 'package:flutter/material.dart';
 
+import 'CacheNetworkImagePlaceholder.dart';
+
 class ItemCard extends StatelessWidget {
   const ItemCard({
     Key key,
@@ -35,13 +37,7 @@ class ItemCard extends StatelessWidget {
                   imageUrl: itemModel.itemPhoto.length > 0 ? itemModel.itemPhoto[0] : '',
                   fit: BoxFit.cover,
                   placeholder: (context, value){
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(redSecondaryColorLight)),
-                      ],
-                    );
+                    return CacheNetworkImagePlaceholder();
                   },
                 ),
               ),

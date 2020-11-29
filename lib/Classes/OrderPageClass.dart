@@ -1,20 +1,37 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:donation_system/Formatter/number.dart';
 import 'package:donation_system/Models/ItemModel.dart';
+import 'package:donation_system/Models/OrdersModel.dart';
 import 'package:donation_system/Variables/color.dart';
+import 'package:donation_system/Variables/global.dart';
 import 'package:donation_system/Variables/size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
+import 'package:toast/toast.dart';
+import 'package:uuid/uuid.dart';
 
 class OrderPageClass {
-  String state = "State";
-  String province = "Province";
+  bool isProcessing = false;
+  String state = "State*";
+  String province = "Province*";
   String countryValue;
+  String paymentOption;
 
-  final MaskedTextController cardController = MaskedTextController(mask: '0000000000000000');
-  final MaskedTextController monthController = MaskedTextController(mask: '00');
-  final MaskedTextController yearController = MaskedTextController(mask: '0000');
-  final MaskedTextController cvcController = MaskedTextController(mask: '000');
+  MaskedTextController cardController = MaskedTextController(mask: '0000000000000000');
+  MaskedTextController monthController = MaskedTextController(mask: '00');
+  MaskedTextController yearController = MaskedTextController(mask: '0000');
+  MaskedTextController cvcController = MaskedTextController(mask: '000');
+
+  TextEditingController fullname = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController phone = TextEditingController();
+  TextEditingController address1 = TextEditingController();
+  TextEditingController address2 = TextEditingController();
+  TextEditingController postal = TextEditingController();
+
+  OrdersModel ordersModel = OrdersModel('', {});
+  
+  String message = '';
   
   Card itemCard(BuildContext context, ItemModel itemModel) {
     return Card(
@@ -23,89 +40,114 @@ class OrderPageClass {
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: Container(
+        padding: EdgeInsets.all(15),
         width: PhoneSize(context).width,
-        child: Stack(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              height: 120,
-              width: 120,
-              decoration: BoxDecoration(
-                color: redSecondaryColorLight,
-                borderRadius: BorderRadius.all(Radius.circular(10))
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: CachedNetworkImage(
-                  imageUrl: itemModel.itemPhoto.length > 0 ? itemModel.itemPhoto[0] : '',
-                  fit: BoxFit.cover,
-                  placeholder: (context, value){
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(redSecondaryColorLight)),
-                      ],
-                    );
-                  },
-                ),
+            Text(
+              "Amount to pay: " + "₱ " + numberDecimalComma(itemModel.price),
+              style: TextStyle(
+                fontSize: 16,
               ),
             ),
-            Positioned(
-              left: 130,
-              right: 10,
-              bottom: 15,
-              top: 15,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    itemModel.name,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                  ),
-                  Text(
-                    itemModel.location.state + ', ' + itemModel.location.province,
-                    style: TextStyle(
-                      fontSize: 14,
-                    ),
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                  ),
-                  Text( 
-                    "₱ " + numberDecimalComma(itemModel.price),
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                      color: bluePrimaryColorDark,
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Icon(Icons.star, size: 15, color: itemModel.ratings >= 1 ? Colors.yellow : Colors.grey),
-                      Icon(Icons.star, size: 15, color: itemModel.ratings >= 2 ? Colors.yellow : Colors.grey),
-                      Icon(Icons.star, size: 15, color: itemModel.ratings >= 3 ? Colors.yellow : Colors.grey),
-                      Icon(Icons.star, size: 15, color: itemModel.ratings >= 4 ? Colors.yellow : Colors.grey),
-                      Icon(Icons.star, size: 15, color: itemModel.ratings >= 5 ? Colors.yellow : Colors.grey),
-                      SizedBox(width: 5,),
-                      Text(
-                        '('+ totalCount(itemModel.totalReviewer) + ')',
-                        style: TextStyle(
-                          fontSize: 12
-                        ),
-                      ),
-                    ],
-                  ),
-                  Expanded(child: Container()),
-                ],
+            Text(
+              "Transaction Fee: " + "₱ 20.00",
+              style: TextStyle(
+                fontSize: 16,
               ),
-            )
+            ),
+            Text(
+              "Delivery Fee: " + "₱ 75.00",
+              style: TextStyle(
+                fontSize: 16,
+              ),
+            ),
+            Text(
+              "Total amount to pay: " + "₱ " + numberDecimalComma(itemModel.price + 20 + 75),
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: redSecondaryColorDark
+              ),
+            ),
+
           ],
         ),
       ),
     );
+  }
+
+  var emailRegExp = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+
+  dynamic checkFields(String isFor){
+    bool isValid = false;
+
+      if(fullname.text.trim() != '' && email.text.trim() != '' && phone.text.trim() != '' &&
+        address1.text.trim() != '' && state != '' && province != '' &&
+        postal.text.trim() != '' && countryValue != ''){
+        
+        if(emailRegExp.hasMatch(email.text.trim())){
+          if(paymentOption == "card" && cardController.text.trim() != "" && 
+          monthController.text.trim() != '' && yearController.text.trim() != ''){
+            isValid = true;
+          }
+          else if(paymentOption == "Cash on Delivery"){
+            isValid = true;
+          }
+          else{
+            message = "Please choose a payment method and fill up the fields required";
+          }
+        }
+        else{
+          message = "Enter a valid email.";
+        }
+
+      }
+      else{
+        message = "All Fields are required";
+      }
+    return isFor == "fields" ? isValid : isFor == "message" ? message : "error";
+  }
+
+  Future<bool> createOrder(BuildContext context, ItemModel itemModel) async{
+    bool success = false;
+    ordersModel.fullname = fullname.text.trim();
+    ordersModel.email = email.text.trim();
+    ordersModel.phone = phone.text.trim();
+    ordersModel.address1 = address1.text.trim();
+    ordersModel.address2 = address2.text.trim();
+    ordersModel.postal = postal.text.trim();
+    ordersModel.country = countryValue.toString();
+    ordersModel.state = state;
+    ordersModel.province = province;
+    ordersModel.buyerId = myUserDetails.value.id;
+    
+    if(paymentOption == "card"){
+      ordersModel.cardNumber = cardController.text.trim().substring(0,12);
+      ordersModel.expMonth = monthController.text.trim();
+      ordersModel.expYear = yearController.text.trim();
+    }
+
+    ordersModel.itemID = itemModel.id;
+    ordersModel.status = "onGoing";
+    ordersModel.price = itemModel.price;
+    ordersModel.transactionFee = 20;
+    ordersModel.deliveryFee = 75;
+    ordersModel.totalPrice = itemModel.price + 20 + 75;
+    var uuid = Uuid();
+    var temp = uuid.v4();
+    try{
+      var userRef = db.collection("Orders").doc(temp);
+
+      await userRef.set(ordersModel.createOrder()).then((value) async { 
+        success = true;
+      });
+    }
+    catch (e){
+      Toast.show("Something went wrong happen.", context, duration: 4, gravity: Toast.BOTTOM);
+    }
+    
+    return success;
   }
 }
