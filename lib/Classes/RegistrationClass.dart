@@ -49,6 +49,7 @@ class RegistrationClass{
 
   Future<bool> processRegistration(BuildContext context) async {
     auth.signOut();
+    myUserDetails.value = UserDetailsModel('', {});
     bool isRegistered = false;
 
     userDetailsModel.profileUrl= "";

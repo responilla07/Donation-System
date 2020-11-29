@@ -7,6 +7,7 @@ import 'package:donation_system/SubPages/CharityDetails.dart';
 import 'package:donation_system/Variables/color.dart';
 import 'package:donation_system/Widgets/LoaderForPagination.dart';
 import 'package:donation_system/Widgets/CharityItemCard.dart';
+import 'package:donation_system/Widgets/PagePlaceHolder.dart';
 import 'package:donation_system/transitions/slide_route.dart';
 import 'package:flutter/material.dart';
 
@@ -151,7 +152,11 @@ class _CharityPageState extends State<CharityPage> {
                   )
                 );
               },
-            ) : Text("Create place holder here"); //TODO Create placeholder for this page
+            ) : PagePlaceHolder(
+              image: 'assets/placeholders/nocharity.png', 
+              header: "No Charities", 
+              details: 'No charities are listed, you can add charities in profile page.'
+            );
           }
         ),
       ),

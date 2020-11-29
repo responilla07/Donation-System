@@ -148,7 +148,7 @@ class _UserDetailsRegisterState extends State<UserDetailsRegister> {
           MyTextField(
             controller: widget.regClass.completeAddress, 
             hintText: "Street", 
-            inputFormatter: [FilteringTextInputFormatter.allow(RegExp("[a-zA-Z&@&/,.0-9\-\(\)\+]")) ],
+            inputFormatter: [FilteringTextInputFormatter.allow(RegExp("[a-zA-Z&@&/,.0-9\-\(\)\+ ]")) ],
             keyboardType: null
           ),
           SizedBox(height: 25,),

@@ -5,8 +5,10 @@ import 'package:donation_system/Classes/MyCharityClass.dart';
 import 'package:donation_system/Models/CharityModel.dart';
 import 'package:donation_system/SubPages/CreateCharity.dart';
 import 'package:donation_system/Variables/color.dart';
+import 'package:donation_system/Variables/global.dart';
 import 'package:donation_system/Widgets/CharityItemCard.dart';
 import 'package:donation_system/Widgets/LoaderForPagination.dart';
+import 'package:donation_system/Widgets/PagePlaceHolder.dart';
 import 'package:donation_system/Widgets/SubPagesAppBar.dart';
 import 'package:donation_system/transitions/slide_route.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +23,7 @@ class MyCharityList extends StatefulWidget {
 class _MyCharityListState extends State<MyCharityList> {
   MyCharityListClass charityPageClass = MyCharityListClass();
   StreamSubscription<QuerySnapshot> subsOfMyOrders;
+  int lenCheckerDaya = 0;
 
   notifier() {  }
   scrollNotifier() {
@@ -68,14 +71,29 @@ class _MyCharityListState extends State<MyCharityList> {
     });
   }
 
+  checkDataPandaya() async {
+    if (!charityPageClass.isDispose.value) {
+      await db.collection('Charities').where('founderID', isEqualTo: myUserDetails.value.id).get().then((value){
+        if (value.docs.length > 0) {
+          lenCheckerDaya = 1;
+        }
+      });
+    }
+  }
+
   @override
   void initState() {
+    checkDataPandaya();
     charityPageClass.isEnd.addListener(notifier);
     charityPageClass.isStart.addListener(notifier);
     charityPageClass.isPullUp.addListener(notifier);
     charityPageClass.isDispose.addListener(notifier);
     charityPageClass.isFetching.addListener(notifier);
-    charityPageClass.myListOfCharity.addListener((){setState(() {});});
+    charityPageClass.myListOfCharity.addListener((){
+      if (!charityPageClass.isDispose.value) {
+        setState(() {});
+      }
+    });
     charityPageClass.scrollController.addListener(scrollNotifier);
     startSnapshot();
     super.initState();
@@ -132,7 +150,7 @@ class _MyCharityListState extends State<MyCharityList> {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting){
               if (charityPageClass.isFetching.value) {
-                return Column(
+                return lenCheckerDaya > 0 ? Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CircularProgressIndicator(
@@ -147,11 +165,14 @@ class _MyCharityListState extends State<MyCharityList> {
                       ),
                     ),
                   ],
+                )  : PagePlaceHolder(
+                  image: 'assets/placeholders/nocharity.png', 
+                  header: "No Charities", 
+                  details: 'No charities are listed, you can add charities in profile page.'
                 );
               }
             }
             if (snapshot.connectionState == ConnectionState.done ){ charityPageClass.isFetching.value = false; }
-
             return charityPageClass.myListOfCharity.value.length != 0 ? new ListView.builder(
               padding: EdgeInsets.fromLTRB(15, 5, 15, 15),
               itemCount: charityPageClass.myListOfCharity.value.length + 1,
@@ -174,7 +195,11 @@ class _MyCharityListState extends State<MyCharityList> {
                   )
                 );
               },
-            ) : Text("Create place holder here"); //TODO Create placeholder for this page
+            )  : PagePlaceHolder(
+              image: 'assets/placeholders/nocharity.png', 
+              header: "No Charities", 
+              details: 'No charities are listed, you can add charities in profile page.'
+            );
           }
         ),
       ),
