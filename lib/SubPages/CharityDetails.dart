@@ -116,7 +116,7 @@ class _CharityDetailsPageState extends State<CharityDetailsPage> {
                       size: 30,
                     ), 
                     onPressed: (){
-                      Toast.show("Available soon...", context, duration: 4, gravity: Toast.BOTTOM);
+                      Toast.show("available soon...", context, duration: 4, gravity: Toast.BOTTOM);
                     }
                   ),
                 ),

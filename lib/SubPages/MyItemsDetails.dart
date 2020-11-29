@@ -2,12 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:donation_system/Classes/ItemDetailsClass.dart';
 import 'package:donation_system/Models/CharityModel.dart';
 import 'package:donation_system/Models/ItemModel.dart';
+import 'package:donation_system/Presentation/custom_icons_icons.dart';
 import 'package:donation_system/SubPages/OrderPage.dart';
 import 'package:donation_system/Variables/color.dart';
 import 'package:donation_system/Variables/global.dart';
 import 'package:donation_system/Widgets/SubPagesAppBar.dart';
 import 'package:donation_system/transitions/slide_route.dart';
 import 'package:flutter/material.dart';
+import 'package:toast/toast.dart';
 
 class MyItemsDetails extends StatefulWidget {
   MyItemsDetails({
@@ -58,10 +60,70 @@ class _MyItemsDetailsState extends State<MyItemsDetails> with SingleTickerProvid
       appBar: PreferredSize( 
         preferredSize: Size.fromHeight(45.0),
         child: SubPagesAppBar(
-          title: "Item Details",
+          title: "My Item Details",
           onTap: () {
             Navigator.pop(context);
           },
+        ),
+      ),
+      floatingActionButton: Container(
+        height: 110,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Container(
+              height: 50, width: 50,
+              decoration: BoxDecoration(
+                color: redSecondaryColor,
+                borderRadius: BorderRadius.all(Radius.circular(100)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(.8),
+                    offset: Offset(0, 2),
+                    blurRadius: 3,
+                    spreadRadius: 3,
+                  )
+                ]
+              ),
+              child: IconButton(
+                icon: Icon(
+                  Icons.edit,
+                  color: white,
+                  size: 30,
+                ), 
+                onPressed: (){
+                  Toast.show("Edit item is not currently available.", context, duration: 4, gravity: Toast.BOTTOM);
+                }
+              ),
+            ),
+            SizedBox(height: 10,),
+            Container(
+              height: 50, width: 50,
+              decoration: BoxDecoration(
+                color: redSecondaryColor,
+                borderRadius: BorderRadius.all(Radius.circular(100)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(.8),
+                    offset: Offset(0, 2),
+                    blurRadius: 3,
+                    spreadRadius: 3,
+                  )
+                ]
+              ),
+              child: IconButton(
+                icon: Icon(
+                  CustomIcons.chat,
+                  color: white,
+                  size: 30,
+                ), 
+                onPressed: (){
+                  Toast.show("available soon...", context, duration: 4, gravity: Toast.BOTTOM);
+                }
+              ),
+            ),
+          ],
         ),
       ),
       body: StreamBuilder<DocumentSnapshot>(
@@ -97,17 +159,17 @@ class _MyItemsDetailsState extends State<MyItemsDetails> with SingleTickerProvid
                     
                     ],
                   ),
-                  itemDetailsClass.itemDetailsButton(
-                    chatCallback: () {
-                      print('chat button clicked!');
-                    },
-                    wishlistCallback: () {
-                      print('wishlist button clicked!');
-                    },
-                    buyCallback: () {
-                      Navigator.push( context, SlideLeftRoute(page: OrderPage(itemModel: widget.itemModel,)));
-                    },
-                  ),
+                  // itemDetailsClass.itemDetailsButton(
+                  //   chatCallback: () {
+                  //     print('chat button clicked!');
+                  //   },
+                  //   wishlistCallback: () {
+                  //     print('wishlist button clicked!');
+                  //   },
+                  //   buyCallback: () {
+                  //     Navigator.push( context, SlideLeftRoute(page: OrderPage(itemModel: widget.itemModel,)));
+                  //   },
+                  // ),
                   Expanded(
                     child: ListView(
                       primary: false,
