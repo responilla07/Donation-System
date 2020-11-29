@@ -19,6 +19,42 @@ class _MyWishListState extends State<MyWishList> {
           },
         ),
       ),
+      body: SafeArea(
+        child:Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: 200,
+                  child: Image(
+                    image: AssetImage(
+                      'assets/placeholders/noItemFound.png',
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Text(
+              'Oh no!',
+              style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              'There are no items in your Wish List',
+            ),
+            Text(
+              'Add Items to your Wish List',
+            ),
+            SizedBox(
+              height: 15,
+            ),
+          ],
+        ),
+        ),
     );
   }
 }
