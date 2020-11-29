@@ -3,7 +3,9 @@ import 'package:donation_system/Classes/ItemDetailsClass.dart';
 import 'package:donation_system/Formatter/number.dart';
 import 'package:donation_system/Models/CharityModel.dart';
 import 'package:donation_system/Models/ItemModel.dart';
+import 'package:donation_system/SubPages/MyWishList.dart';
 import 'package:donation_system/SubPages/OrderPage.dart';
+import 'package:donation_system/SubPages/chatpage.dart';
 import 'package:donation_system/Variables/color.dart';
 import 'package:donation_system/Variables/global.dart';
 import 'package:donation_system/Widgets/SubPagesAppBar.dart';
@@ -112,10 +114,10 @@ class _ItemDetailsState extends State<ItemDetails> with SingleTickerProviderStat
                   ),
                   itemDetailsClass.itemDetailsButton(
                     chatCallback: () {
-                      Toast.show("Chat is currently not available.", context, duration: 4, gravity: Toast.BOTTOM);
+                      Navigator.push(context, SlideLeftRoute(page: ChatPage()));
                     },
                     wishlistCallback: () {
-                      Toast.show("My Wishlist is currently not available.", context, duration: 4, gravity: Toast.BOTTOM);
+                      Navigator.push(context, SlideLeftRoute(page: MyWishList()));
                     },
                     buyCallback: () {
                       Navigator.push( context, SlideLeftRoute(page: OrderPage(itemModel: widget.itemModel,)));
