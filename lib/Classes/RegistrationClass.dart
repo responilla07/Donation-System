@@ -75,9 +75,6 @@ class RegistrationClass{
             myUserDetails.value = userDetailsModel;
           });
         });
-      }).catchError((onError){
-        print(onError.message);
-        Toast.show(onError.message, context, duration: 4, gravity: Toast.BOTTOM);
       });
     } catch (e) {
       Toast.show("Something went wrong happen.", context, duration: 4, gravity: Toast.BOTTOM);

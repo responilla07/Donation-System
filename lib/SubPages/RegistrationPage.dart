@@ -71,7 +71,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                     Navigator.pushReplacement(context, SlideRightRoute(page: MainPage()));
                                     setState(() { regClass.isProcessing = false; });
                                   }
-                                });
+                                }).catchError((onError){
+                                  print(onError.message);
+                                  Toast.show(onError.message, context, duration: 4, gravity: Toast.BOTTOM);
+                                 
+                                }).then((value) =>  setState(() {regClass.isProcessing = false;}));
                               } 
                               else{
                                 Toast.show(regClass.validate('message'), context, duration: 3, gravity: Toast.BOTTOM);
